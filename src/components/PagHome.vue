@@ -1,11 +1,11 @@
 <script setup>
 
-import PagHome from '@/components/PagHome.vue';
-
 </script>
 
 <template>
-<PagHome />
+    <RouterLink to="/login">
+    <h1>login</h1>
+    </RouterLink>
 </template>
 
 <style scoped>
