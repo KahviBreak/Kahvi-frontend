@@ -1,9 +1,9 @@
 <script setup>
-import MenuBar from '@/components/MenuBar.vue';
+import PagCadast from '@/components/PagCadast.vue';
 </script>
 
 <template>
-<MenuBar/>
+ <PagCadast/>
 </template>
 
 <style scoped>

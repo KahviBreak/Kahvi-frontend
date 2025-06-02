@@ -1,9 +1,9 @@
 <script setup>
-
+import PagCadast from '@/components/PagCadast.vue';
 </script>
 
 <template>
-    <h1></h1>
+    <PagCadast/>
 </template>
 
 <style scoped>
