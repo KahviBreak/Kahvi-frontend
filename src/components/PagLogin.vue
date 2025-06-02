@@ -1,21 +1,21 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <div class="container">
-    <!-- Decorações -->
-    <div class="decor decor-top-left"><img src="../assets/images/Group5.png" alt=""></div>
-    <div class="decor decor-top-right"><img src="../assets/images/Group6.png" alt=""></div>
-    <div class="decor decor-bottom-left"><img src="../assets/images/Group7.png" alt=""></div>
-    <div class="decor decor-bottom-right"><img src="../assets/images/Group8.png" alt=""></div>
+  
+    <div class="decor decor-top">
+      <img src="../assets/images/Group12.png" alt="" class="img-decor-top" />
+    </div>
+    <div class="decor decor-bottom">
+      <img src="../assets/images/Group13.png" alt="" class="img-decor-bottom" />
+    </div>
 
-    <!-- Conteúdo -->
     <div class="content">
-      <img src="../assets/images/Kahvi! 2.png" alt="Logo Kahvi" class="logo"/>
+      <img src="../assets/images/Kahvi!2.png" alt="Logo Kahvi" class="logo" />
 
       <div class="form">
-        <input type="email" placeholder="Email" class="input"/>
-        <input type="password" placeholder="Senha" class="input"/>
+        <input type="email" placeholder="Email" class="input" />
+        <input type="password" placeholder="Senha" class="input" />
 
         <button class="button">LOGIN</button>
 
@@ -29,20 +29,22 @@
 </template>
 
 <style scoped>
-/* Reset básico */
+@import url('https://fonts.googleapis.com/css2?family=Varta:wght@300..700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body, html, .container {
+body,
+html,
+.container {
   width: 100%;
   height: 100vh;
   background-color: #fff;
 }
 
-/* Container principal */
 .container {
   display: flex;
   justify-content: center;
@@ -50,7 +52,6 @@ body, html, .container {
   position: relative;
 }
 
-/* Conteúdo central */
 .content {
   display: flex;
   flex-direction: column;
@@ -58,61 +59,60 @@ body, html, .container {
   gap: 20px;
 }
 
-/* Logo */
 .logo {
-  width: 200px;
+  width: 150px;
   max-width: 80%;
+  margin-bottom: 10%;
 }
 
-/* Formulário */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 25px;
   width: 300px;
   max-width: 90%;
 }
 
 .input {
   padding: 15px;
-  border: 1px solid #BFBDA6;
+  border: 1px solid #bfbda6;
   border-radius: 12px;
   font-size: 1rem;
 }
 
 .input::placeholder {
-  color: #55524C;
+  color: #55524c;
   font-weight: 600;
-  text-align: center;
+  font-family: 'Varta', sans-serif;
 }
 
-/* Botão */
 .button {
   padding: 15px;
-  background-color: #2F402C;
+  background-color: #2f402c;
   color: white;
   border: none;
   border-radius: 7px;
   cursor: pointer;
   font-weight: bold;
+  font-family: 'Varta', sans-serif;
 }
 
 .button:hover {
   background-color: #3d543a;
 }
 
-/* Texto de cadastro */
 .register {
   display: flex;
   justify-content: center;
   gap: 5px;
   font-size: 0.9rem;
-  color: #2F402C;
+  color: #2f402c;
+  font-family: 'Varta', sans-serif;
 }
 
 .register a {
   text-decoration: none;
-  color: #2F402C;
+  color: #2f402c;
   font-weight: bold;
 }
 
@@ -120,40 +120,32 @@ body, html, .container {
   text-decoration: underline;
 }
 
-/* Bolas decorativas */
 .decor {
   position: absolute;
 }
 
-.decor-top-left {
-  top: 20px;
-  left: 20px;
+.decor-top {
+  top: 0;
+  right: 0;
 }
 
-.decor-top-right {
-
-  top: 30px;
-  right: 30px;
+.decor-bottom {
+  bottom: 0;
+  left: 0;
 }
 
-.decor-bottom-left {
-
-  bottom: 30px;
-  left: 30px;
+.img-decor-top {
+  width: 280px;
 }
 
-.decor-bottom-right {
-
-  bottom: 20px;
-  right: 20px;
+.img-decor-bottom {
+  width: 280px;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-  .decor-top-left,
-  .decor-top-right,
-  .decor-bottom-left,
-  .decor-bottom-right {
+  .decor-top,
+  .decor-bottom {
     width: 80px;
     height: 80px;
   }
