@@ -143,13 +143,7 @@ html,
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
-  .decor-top,
-  .decor-bottom {
-    width: 80px;
-    height: 80px;
-  }
-
+@media (max-width: 850px) {
   .logo {
     width: 150px;
   }
@@ -157,5 +151,14 @@ html,
   .form {
     width: 90%;
   }
+
+  .img-decor-top{
+    display: none;
+  }
+
+  .img-decor-bottom{
+    display: none;
+  }
+
 }
 </style>
