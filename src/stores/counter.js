@@ -10,3 +10,24 @@ export const useCounterStore = defineStore('counter', () => {
 
   return { count, doubleCount, increment }
 })
+
+export const useCouterStore = defineStore('counter', {
+  state: () => ({
+    email: '',
+    isAuthenticated: false,
+    error: null
+  }),
+  actions: {
+    async login(email, password) {
+      this.error = null
+      if (email === 'teste@kahvi.com' && password === '1234') {
+        this.email = email
+        this.isAuthenticated = true
+      } else {
+        this.email = ''
+        this.isAuthenticated = false
+        this.error = 'Email ou senha inválidos'
+      }
+    }
+  }
+})

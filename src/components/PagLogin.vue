@@ -1,8 +1,18 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import { useCouterStore } from '../stores/counter'
+
+const store = useCouterStore()
+const email = ref('')
+const password = ref('')
+
+function handleLogin() {
+  store.login(email.value, password.value)
+}
+</script>
 
 <template>
   <div class="container">
-  
     <div class="decor decor-top">
       <img src="../assets/images/Group12.png" alt="" class="img-decor-top" />
     </div>
@@ -14,15 +24,20 @@
       <img src="../assets/images/Kahvi!2.png" alt="Logo Kahvi" class="logo" />
 
       <div class="form">
-        <input type="email" placeholder="Email" class="input" />
-        <input type="password" placeholder="Senha" class="input" />
+        <input type="email" placeholder="Email" class="input" v-model="email" />
+        <input type="password" placeholder="Senha" class="input" v-model="password" />
 
-        <button class="button">LOGIN</button>
+        <button class="button" @click="handleLogin">LOGIN</button>
 
         <div class="register">
           <span>Não tem uma conta?</span>
           <a href="#">Criar &gt;&gt;</a>
         </div>
+
+        <p v-if="store.error" style="color: red;">{{ store.error }}</p>
+        <p v-if="store.isAuthenticated" style="color: green;">
+          Bem-vindo, {{ store.email }}!
+        </p>
       </div>
     </div>
   </div>
