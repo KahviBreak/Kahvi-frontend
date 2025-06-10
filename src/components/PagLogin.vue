@@ -1,15 +1,22 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useCouterStore } from '../stores/counter'
 
 const store = useCouterStore()
 const email = ref('')
 const password = ref('')
+const router = useRouter()
 
-function handleLogin() {
-  store.login(email.value, password.value)
+async function handleLogin() {
+  await store.login(email.value, password.value)
+
+  if (store.isAuthenticated) {
+    router.push('/')
+  }
 }
 </script>
+
 
 <template>
   <div class="container">
@@ -35,9 +42,6 @@ function handleLogin() {
         </div>
 
         <p v-if="store.error" style="color: red;">{{ store.error }}</p>
-        <p v-if="store.isAuthenticated" style="color: green;">
-          Bem-vindo, {{ store.email }}!
-        </p>
       </div>
     </div>
   </div>
