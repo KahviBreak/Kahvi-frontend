@@ -1,7 +1,5 @@
 <script setup>
 import PagLogin from '@/components/PagLogin.vue';
-
-
 </script>
 
 <template>
@@ -9,5 +7,4 @@ import PagLogin from '@/components/PagLogin.vue';
 </template>
 
 <style scoped>
-
 </style>

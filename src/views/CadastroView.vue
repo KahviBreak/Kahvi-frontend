@@ -3,7 +3,7 @@ import PagCadast from '@/components/PagCadast.vue';
 </script>
 
 <template>
- <PagCadast/>
+    <PagCadast/>
 </template>
 
 <style scoped>
