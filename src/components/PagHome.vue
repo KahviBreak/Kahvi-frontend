@@ -2,7 +2,11 @@
 </script>
 
 <template>
-    .group5{
+    <img src="@/assets/Group 28.png" alt="">
+</template>
+
+<style scoped>
+.group5{
     /* Group 5 */
 position: absolute;
 left: 1241px;
@@ -44,8 +48,4 @@ position: absolute;
 left: 110px;
 top: 899px;
 }
-</template>
-
-<style scoped>
-
 </style>
