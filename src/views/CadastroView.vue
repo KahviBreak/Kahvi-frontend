@@ -1,10 +1,11 @@
 <script setup>
-import PagLogin from '@/components/PagLogin.vue';
+import PagCadast from '@/components/PagCadast.vue';
 </script>
 
 <template>
-    <PagLogin />
+    <PagCadast/>
 </template>
 
 <style scoped>
+
 </style>
