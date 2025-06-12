@@ -1,11 +1,10 @@
 <script setup>
-import MenuBar from '@/components/MenuBar.vue';
+import PagLogin from '@/components/PagLogin.vue';
 </script>
 
 <template>
-<MenuBar/>
+    <PagLogin />
 </template>
 
 <style scoped>
-
 </style>
