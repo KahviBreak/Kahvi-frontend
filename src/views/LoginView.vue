@@ -1,9 +1,11 @@
 <script setup>
+import PagLogin from '@/components/PagLogin.vue';
+
 
 </script>
 
 <template>
-    <h1></h1>
+    <PagLogin />
 </template>
 
 <style scoped>
