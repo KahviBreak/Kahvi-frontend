@@ -1,22 +1,24 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useCouterStore } from '../stores/counter'
+import { useUsuarioStore } from '@/stores/counter.js'
 
-const store = useCouterStore()
+const store = useUsuarioStore() 
 const email = ref('')
 const password = ref('')
 const router = useRouter()
+const loading = ref(false)
 
 async function handleLogin() {
+  loading.value = true
   await store.login(email.value, password.value)
+  loading.value = false
 
   if (store.isAuthenticated) {
     router.push('/')
   }
 }
 </script>
-
 
 <template>
   <div class="container">
@@ -31,17 +33,31 @@ async function handleLogin() {
       <img src="../assets/images/Kahvi!2.png" alt="Logo Kahvi" class="logo" />
 
       <div class="form">
-        <input type="email" placeholder="Email" class="input" v-model="email" />
-        <input type="password" placeholder="Senha" class="input" v-model="password" />
-        <input type="email" placeholder="Email" class="input" v-model="email" />
-        <input type="password" placeholder="Senha" class="input" v-model="password" />
+        <input
+          type="email"
+          placeholder="Email"
+          class="input"
+          v-model="email"
+          autocomplete="username"
+          :disabled="loading"
+        />
+        <input
+          type="password"
+          placeholder="Senha"
+          class="input"
+          v-model="password"
+          autocomplete="current-password"
+          :disabled="loading"
+        />
 
-        <button class="button" @click="handleLogin">LOGIN</button>
-        <button class="button" @click="handleLogin">LOGIN</button>
+        <button class="button" @click="handleLogin" :disabled="loading">
+          {{ loading ? 'Entrando...' : 'LOGIN' }}
+        </button>
 
         <div class="register">
           <span>Não tem uma conta?</span>
-          <a href="#">Criar &gt;&gt;</a>
+          <!-- Use router-link se for página interna, ou um @click.prevent -->
+          <a href="#" @click.prevent="$router.push('/register')">Criar &gt;&gt;</a>
         </div>
 
         <p v-if="store.error" style="color: red;">{{ store.error }}</p>
@@ -49,7 +65,6 @@ async function handleLogin() {
     </div>
   </div>
 </template>
-
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Varta:wght@300..700&display=swap');
 
