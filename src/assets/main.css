@@ -1,8 +1,14 @@
 * {
   margin: 0px;
-  background-color: white;
 }
 
+
+input{
+    margin-top: 5%;
+    padding: 4%;
+    border-radius: 12px;
+    border: #BFBDA6 solid 1px;
+}
 /* @import './base.css';
 
 #app {
