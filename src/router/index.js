@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
-import FacaSeuPedido from '@/views/FacaSeuPedido.vue'
+import PedidoView from '@/views/PedidoView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,9 +17,9 @@ const router = createRouter({
       component: LoginView,
     },
     {
-      path: '/facaseupedido',
-      name: 'facaseupedido',
-      component: FacaSeuPedido
+      path: '/pedido',
+      name: 'pedido',
+      component: PedidoView
     }
   ],
 })
