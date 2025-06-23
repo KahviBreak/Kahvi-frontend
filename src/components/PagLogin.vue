@@ -33,10 +33,7 @@ async function handleLogin() {
       <div class="form">
         <input type="email" placeholder="Email" class="input" v-model="email" />
         <input type="password" placeholder="Senha" class="input" v-model="password" />
-        <input type="email" placeholder="Email" class="input" v-model="email" />
-        <input type="password" placeholder="Senha" class="input" v-model="password" />
 
-        <button class="button" @click="handleLogin">LOGIN</button>
         <button class="button" @click="handleLogin">LOGIN</button>
 
         <div class="register">
