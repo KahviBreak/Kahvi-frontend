@@ -131,7 +131,8 @@ div {
 
 .produto img {
   object-fit: cover;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 /* Nome do Produto */
