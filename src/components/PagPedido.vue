@@ -17,6 +17,12 @@ onMounted(() => {
   produto.value = produtoStore
 })
 
+const categoriaSelecionada = ref('Tudo')
+
+const selecionarCategoria = (nome) => {
+  categoriaSelecionada.value = nome
+}
+
 function click() {
   alert('funcionando')
 }
@@ -25,10 +31,16 @@ function click() {
 <template>
   <div>
     <div class="container-categoria">
-      <div v-for="categoria in categoriaStore.categorias" :key="categoria.id" class="categoria">
-        <h1>{{ categoria.nome }}</h1>
-      </div>
+    <div
+      v-for="(categoria, index) in categoriaStore.categorias"
+      :key="categoria.id"
+      :class="['categoria', { ativo: categoriaSelecionada === categoria.nome }]"
+      @click="selecionarCategoria(categoria.nome)"
+    >
+      <h1>{{ categoria.nome.toUpperCase() }}</h1>
+      <div class="linha" v-if="categoriaSelecionada === categoria.nome"></div>
     </div>
+  </div>
     <div class="container-product">
       <div v-for="produto in produtoStore.produtos" :key="produto.id" class="produto">
         <button type="button" class="button" @click="click()">ADD <svg width="24" height="24" viewBox="0 0 24 24"
@@ -58,7 +70,8 @@ function click() {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
 /* Estilo Geral */
 div {
   font-family: 'Arial', sans-serif;
@@ -66,50 +79,41 @@ div {
   background-color: #fff;
 }
 
-/* Container das Categorias */
 .container-categoria {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5%;
+  margin-top: 5%;
+  width: 100%;
 }
 
-/* Cada Categoria */
 .categoria {
-
+  text-align: center;
+  cursor: pointer;
+  color: #5F7B5B;
+  font-size: 13px;
+  position: relative;
 }
 
-/* Nome da Categoria */
 .categoria h1 {
-
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  font-family: "Yantramanav", sans-serif;
 }
 
-/* Hover Categoria (fundo levemente verde) */
-.categoria:hover {
-
+.categoria .linha {
+  margin-top: 4px;
+  height: 2px;
+  background-color: #5F7B5B;
+  width: 100%;
+  border-radius: 2px;
 }
 
-/* Categoria Ativa (se quiser usar no futuro) */
-.categoria.ativa {
-
-}
-
-.categoria.ativa h1 {
-
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .container-categoria {
-    gap: 8px;
-    padding: 10px 5px;
-  }
-
-  .categoria {
-    padding: 5px 14px;
-    border-radius: 20px;
-  }
-
-  .categoria h1 {
-    font-size: 0.8rem;
-  }
+.categoria:hover h1 {
+  color: #5F7B5B;
 }
 
 /* Container dos Produtos */
@@ -127,6 +131,9 @@ div {
   text-align: center;
   position: relative;
   display: inline-block;
+  font-family: 'Overlock', sans-serif;
+  font-weight: 100;
+  font-size: 24px;
 }
 
 .produto img {
