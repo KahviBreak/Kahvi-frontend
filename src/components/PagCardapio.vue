@@ -7,9 +7,9 @@
     <div class="container-dois">
             <h1>BOLOS</h1>
       <div>
-        <img src="../assets/bolo.png" alt="" />
+        <img class="bolo" src="../assets/bolo.png" alt="" />
       </div>
-      <div>
+      <div class="bolos">
       <p>Bolo de Paçoca</p>
       <p>Bolo Red Velvet</p>
       <p>Bolo de Laranja</p>
@@ -20,9 +20,9 @@
     <div class="container-dois">
             <h1>SALGADOS</h1>
       <div>
-        <img src="../assets/pao.png" alt="" />
+        <img class="bolo" src="../assets/pao.png" alt="" />
       </div>
-      <div>
+      <div class="bolos">
       <p>Pão de Queijo</p>
       <p>Croissant de Presunto e Queijo</p>
       <p>Sanduíche Natural</p>
@@ -33,9 +33,9 @@
     <div class="container-tres">
             <h1>SOBREMESAS</h1>
       <div>
-        <img src="../assets/cupcake.png" alt="" />
+        <img class="abaixo" src="../assets/cupcake.png" alt="" />
       </div>
-      <div>
+      <div class="abaixos">
       <p>Brownie</p>
       <p>Cheesecake de Frutas Vermelhas</p>
       <p>Torta de Limão com Merengue</p>
@@ -48,9 +48,9 @@
     <div class="container-tres">
             <h1>CAFÈS</h1>
       <div>
-        <img src="../assets/xicara.png" alt="" />
+        <img class="abaixo" src="../assets/xicara.png" alt="" />
       </div>
-      <div>
+      <div class="abaixos">
       <p>Espresso de Brigadeiro</p>
       <p>Café Coado</p>
       <p>Macchiato</p>
@@ -114,7 +114,7 @@ line-height: 58px;
 
 .container-tres {
   display: grid;
-  grid-template-columns: repeat(2, 1fr 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .container-dois {
@@ -122,6 +122,25 @@ line-height: 58px;
   grid-template-columns: repeat(2, 1fr);
 }
 
+.bolo{
+  margin-left: 30%;
+  margin-top: 30%;
+}
+.bolos{
+  position: absolute;
+  margin-top: 5%;
+
+}
+
+.abaixo{
+  margin-top: 20%;
+  margin-left: 70%;
+}
+.abaixos{
+  position: absolute;
+    margin-top: 15%;
+
+}
 h1 {
   font-family: 'Overlock SC';
   font-style: normal;
