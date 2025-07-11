@@ -87,6 +87,7 @@
 
 .home {
   margin-top: 2%;
+  padding-top: 1.5%;
     background-image: url("../assets/fundoCardapio.png");
 }
 
@@ -109,6 +110,7 @@ button {
   font-weight: 400;
   font-size: 40px;
   line-height: 58px;
+  margin-top: 1%;
 }
 
 .titulo {
@@ -126,7 +128,7 @@ button {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
-  margin-top: 10%;
+  margin-top: 5%;
   gap: 100px;
 }
 
@@ -175,4 +177,51 @@ p {
   line-height: 29px;
   color: #402b19;
 }
+@media (max-width: 768px) {
+  .container {
+    gap: 50px;
+  }
+
+  .container-dois,
+  .container-tres {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .alimentos,
+  .alimentos-cima {
+    text-align: center;
+  }
+
+  .titulo {
+    font-size: 28px;
+    line-height: 36px;
+    padding: 0 10px;
+  }
+
+  .foto {
+    max-width: 80px;
+    height: auto;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  button {
+    font-size: 22px;
+    height: 55px;
+    width: 90%;
+  }
+}
+
 </style>
