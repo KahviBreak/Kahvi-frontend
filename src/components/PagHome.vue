@@ -2,50 +2,78 @@
 </script>
 
 <template>
-    <img src="@/assets/Group 28.png" alt="">
+    <div class="home-container">
+        <div class="home-content">
+            <img class="logo" src="@/assets/Kahvi! 2.png" alt="Logo Kahvi" />
+            <p class="slogan">
+                A cafeteria online que transforma qualquer momento comum em uma pausa especial.
+            </p>
+        </div>
+    </div>
 </template>
 
 <style scoped>
-.group5{
-    /* Group 5 */
-position: absolute;
-left: 1241px;
-top: 163px;
+@import url('https://fonts.googleapis.com/css2?family=Varta:wght@300..700&display=swap');
+
+.home-container {
+    width: 100%;
+    height: 100vh;
+    background-image: url("@/assets/fundoHome.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    margin-top: 2%;
 }
 
-.group6{
-    /* Group 6 */
-position: absolute;
-left: 1108px;
-top: 141px;
+.home-content {
+    max-width: 600px;
+    color: #6b3e2e;
 }
 
-.group7{
-    /* Group 7 */
-position: absolute;
-left: 1129px;
-top: 0px;
+.logo {
+    width: 1000px;
+    max-width: 100%;
 }
 
-.group8{
-    /* Group 8 */
-position: absolute;
-left: -45px;
-top: 626px;
+.slogan {
+    font-family: "Varta", sans-serif;
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 1.5;
 }
 
-.group9{
-/* Group 9 */
-position: absolute;
-left: 222px;
-top: 776px;
+@media screen and (min-width: 640px) {
+    .logo {
+        width: 190px;
+    }
 
+    .slogan {
+        font-size: 1.2rem;
+
+    }
 }
 
-.group10{
-/* Group 10 */
-position: absolute;
-left: 110px;
-top: 899px;
+@media screen and (min-width: 768px) {
+    .logo {
+        width: 500px;
+    }
+
+    .slogan {
+        font-size: 1.8rem;
+    }
 }
+
+/* Group 28 */
+
+/* position: absolute;
+width: 1475px;
+height: 984px;
+left: -18px;
+top: 88px; */
 </style>
