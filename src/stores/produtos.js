@@ -1,53 +1,33 @@
+import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import ProdutoService from '@/services/produtos'
+
+const produtoService = new ProdutoService()
 
 export const useProdutoStore = defineStore('produto', () => {
-    const produtos = ref([
-            {id: 4, nome: 'Espresso de Brigadeiro', descricao: 'Espresso com leite cremoso, calda de brigadeiro e granulado de chocolate belga.', preco: 10.00, img: '../src/assets/images/expressobrigadeiro.png'},
-            {id: 5, nome: 'Cokie Chocolate', descricao: 'Massa folhada amanteigada, leve e crocante, assada diariamente.', preco: 10.00, img: '../src/assets/images/cookie.png'},
-            {id: 6, nome: 'Croassant', descricao: 'Massa folhada amanteigada, leve e crocante, assada diariamente.', preco: 10.00, img: '../src/assets/images/croassant.png'},
-            {id: 7, nome: 'Cappuccino', descricao: 'Massa folhada amanteigada, leve e crocante, assada diariamente.', preco: 10.00, img: '../src/assets/images/cappuccino.png'},
-            {id: 8, nome: 'Pão de Queijo', descricao: 'Tradicional mineiro, crocante por fora e macio por dentro, feito com queijo artesanal.', preco: 10.00, img: '../src/assets/images/paoqueijo.png'},
-            {id: 9, nome: 'Bolo de Paçoca', descricao: 'Massa fofa com paçoca e cobertura de doce de leite e amendoim.', preco: 10.00, img: '../src/assets/images/bolopaçoca.png'},
-            {id: 10, nome: 'Bolo de Goiaba com Canela', descricao: 'Bolo de canela com massa leve e toque de açúcar dourado.', preco: 10.00, img: '../src/assets/images/bologoiaba.png'},
-            {id: 11, nome: 'Sanduíche Natural', descricao: 'Massa folhada amanteigada, leve e crocante, assada diariamente.', preco: 10.00, img: '../src/assets/images/sanduíchenatural.png'},
-            {id: 12, nome: 'Bolo de Pistache', descricao: 'Pistache e amendoim juntos em um bolo leve e saboroso.', preco: 10.00, img: '../src/assets/images/bolopistache.png'},
-            {id: 13, nome: 'Mousse de Marácuja', descricao: 'Cremosa, com polpa natural de maracujá e toque cítrico refrescante.', preco: 10.00, img: '../src/assets/images/moussemaracuja.png'},
-            {id: 14, nome: 'Bolo Red Velvet', descricao: 'Massa amanteigada com mix de frutas vermelhas frescas e cobertura de geleia artesanal.', preco: 10.00, img: '../src/assets/images/boloredvelvet.png'},
-            {id: 15, nome: 'Pão de Mel Recheado', descricao: 'Massa de especiarias com recheio cremoso e cobertura de chocolate ao leite.', preco: 10.00, img: '../src/assets/images/paodemel.png'},
-    ])
-    return { produtos };
+  const state = ref({
+    produtos: [],
+    page: 1,
+    page_size: 10,
+    total_pages: 0,
+  })
+
+  async function buscarProdutosPorCategoria(pagina = 1, categoria = '') {
+    console.log('dentro store')
+    console.log(categoria)
+    const data = await produtoService.listarProdutosPorCategoria(pagina, categoria)
+    state.value.produtos = data.results
+    state.value.total_pages = data.total_pages
+    state.value.page = data.page
+    state.value.page_size = data.page_size
+  }
+
+  const produtos = computed(() => state.value.produtos)
+  const meta = computed(() => ({
+    page: state.value.page,
+    page_size: state.value.page_size,
+    total_pages: state.value.total_pages,
+  }))
+
+  return { produtos, meta, buscarProdutosPorCategoria }
 })
-export default useProdutoStore
-
-// import { ref, computed } from 'vue'
-// import { defineStore } from 'pinia'
-// import LivroService from '@/services/livro'
-
-// const livroService = new LivroService()
-
-// export const useLivroStore = defineStore('livro', () => {
-//   const state = ref({
-//     livros: [],
-//     page: 1,
-//     page_size: 10,
-//     total_pages: 0,
-//   })
-
-//   async function buscarLivrosPorCategoria(pagina = 1, categoria = '') {
-//     const data = await livroService.listarLivrosPorCategoria(pagina, categoria)
-//     state.value.livros = data.results
-//     state.value.total_pages = data.total_pages
-//     state.value.page = data.page
-//     state.value.page_size = data.page_size
-//   }
-
-//   const livros = computed(() => state.value.livros)
-//   const meta = computed(() => ({
-//     page: state.value.page,
-//     page_size: state.value.page_size,
-//     total_pages: state.value.total_pages,
-//   }))
-
-//   return { livros, meta, buscarLivrosPorCategoria }
-// })

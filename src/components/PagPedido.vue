@@ -5,22 +5,26 @@ import { useProdutoStore } from '@/stores/produtos'
 
 const categoriaStore = useCategoriaStore()
 const produtoStore = useProdutoStore()
-
-const categoria = ref()
-const produto = ref()
-
-onMounted(() => {
-  categoria.value = categoriaStore
+const props = defineProps({
+  categoria: {
+    type: String,
+    required: true,
+  },
 })
 
 onMounted(() => {
-  produto.value = produtoStore
+  categoriaStore.buscarCategorias()
+  produtoStore.buscarProdutosPorCategoria(1, props.categoria)
 })
+
+// onMounted(() => {
+// })
 
 const categoriaSelecionada = ref('Tudo')
 
 const selecionarCategoria = (nome) => {
   categoriaSelecionada.value = nome
+  produtoStore.buscarProdutosPorCategoria(1, nome)
 }
 
 function click() {
@@ -32,7 +36,7 @@ function click() {
   <div>
     <div class="container-categoria">
     <div
-      v-for="(categoria, index) in categoriaStore.categorias"
+      v-for="categoria in categoriaStore.categorias"
       :key="categoria.id"
       :class="['categoria', { ativo: categoriaSelecionada === categoria.nome }]"
       @click="selecionarCategoria(categoria.nome)"
@@ -59,10 +63,10 @@ function click() {
             </defs>
           </svg>
         </button>
-        <img :src="produto.img" alt="produto.name" />
+        <img :src="produto.imagem.url" alt="produto.name" />
         <h1>{{ produto.nome }}</h1>
         <p>{{ produto.descricao }}</p>
-        <p>{{ `R$ ` + produto.preco.toFixed(2).replace(".", ",") }}</p>
+        <p>{{ `R$ ` + produto.preco }}</p>
       </div>
     </div>
   </div>

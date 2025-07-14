@@ -1,15 +1,18 @@
-// import axios from 'axios'
+import axios from 'axios'
 
-// class LivroService {
-//   async listarLivrosPorCategoria(pagina = 1, categoria = '') {
-//     try {
-//       const response = await axios.get(`livros/?page=${pagina}&categoria__descricao=${categoria}`)
-//       return response.data
-//     } catch (error) {
-//       console.error('Error fetching categories:', error)
-//       throw error
-//     }
-//   }
-// }
+class ProdutoService {
+  async listarProdutosPorCategoria(pagina = 1, categoria = '') {
+    console.log("categoria")
+    console.log(categoria)
 
-// export default LivroService
+    try {
+      const response = await axios.get(`produtos/?page=${pagina}&categoria__nome=${categoria}`)
+      return response.data
+    } catch (error) {
+      console.error('Error fetching categories:', error)
+      throw error
+    }
+  }
+}
+
+export default ProdutoService
