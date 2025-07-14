@@ -5,12 +5,12 @@ const cardapio = useCardapioStore();
 
 
 <template>
-  <div class="home">
-    <div>
+    <div class="cabeçalho">
       <p class="titulo">UM POUCO SOBRE NOSSO CARDÁPIO...</p>
     </div>
 
     <div class="container">
+    <div class="fundo2">
       <div class="container-dois">
         <div class="aliementos-cima">
           <h1>BOLOS</h1>
@@ -30,6 +30,9 @@ const cardapio = useCardapioStore();
           <img class="foto" src="../assets/pao.png" alt="" />
         </div>
       </div>
+    </div>
+
+    <div class="fundo3">
       <div class="container-tres">
         <div>
           <img class="foto" src="../assets/cupcake.png" alt="" />
@@ -41,12 +44,13 @@ const cardapio = useCardapioStore();
       </div>
       <div class="container-tres">
         <div>
-          <img class="foto" src="../assets/xicara.png" alt="" />
+          <img class="foto" src="../assets/xicara.png" alt="" style="margin-top: 10%;"/>
         </div>
         <div class="alimentos">
           <h1>CAFÈS</h1>
             <p v-for="(cafe, index) in cardapio.cafes" :key="'cafe-' + index">{{ cafe }}</p>
         </div>
+      </div>
       </div>
     </div>
 
@@ -62,7 +66,6 @@ const cardapio = useCardapioStore();
       </button>
     </div>
 
-  </div>
 </template>
 
 <style scoped>
@@ -70,16 +73,12 @@ const cardapio = useCardapioStore();
   text-align: end;
 }
 
-.home {
-  margin-top: 2%;
-  padding-top: 1.5%;
-  background-image: url("../assets/fundoCardapio.png");
-  padding-bottom: 1.5%;
-}
-
 .button {
   display: flex;
   justify-content: center;
+  background-color: #DBD1C5;
+  padding-top: 2%;
+  padding-bottom: 3%;
 }
 
 button {
@@ -99,6 +98,13 @@ button {
   margin-top: 1%;
 }
 
+.cabeçalho{
+  background-color: #FAF0E5;
+  height: 150px;
+  margin-top: 2%;
+  position: relative;
+}
+
 .titulo {
   display: flex;
   justify-content: center;
@@ -108,24 +114,45 @@ button {
   font-size: 40px;
   line-height: 49px;
   color: #402b19;
+  padding-top: 3%;
 }
 
 .container {
+}
+
+.fundo2{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
-  margin-top: 5%;
   gap: 100px;
-}
-
-.container-tres {
-  display: flex;
-  justify-content: row;
+  padding-top: 3%;
+  background-color: #DBD1C5;
+  height: 10%;
+  padding-bottom: 4%;
 }
 
 .container-dois {
   display: flex;
   justify-content: row;
+  gap: 50px;
+  margin-top: 3%;
+}
+
+.fundo3{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  gap: 100px;
+  padding-top: 3%;
+  background-color: #FAF0E5;
+  height: 10%;
+  padding-bottom: 4%;
+}
+
+.container-tres {
+  display: flex;
+  justify-content: row;
+  gap: 50px;
 }
 
 /* .bolo{
