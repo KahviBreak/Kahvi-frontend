@@ -13,6 +13,7 @@
 </template>
 
 <style scoped>
+
 @import url('https://fonts.googleapis.com/css2?family=Varta:wght@300..700&display=swap');
 
 .home-container {
