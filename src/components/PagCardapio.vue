@@ -193,49 +193,29 @@ p {
 }
 
 @media (max-width: 768px) {
-  .container {
-    gap: 50px;
-  }
-
   .container-dois,
   .container-tres {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    text-align: center;
-    gap: 20px;
-    padding: 0 10px;
-  }
-
-  .alimentos,
-  .alimentos-cima {
-    text-align: center;
-  }
-
-  .titulo {
-    font-size: 28px;
-    line-height: 36px;
-    padding: 0 10px;
+    gap: 16px;
+    margin-left: 2%;
   }
 
   .foto {
     max-width: 80px;
-    height: auto;
-  }
-
-  p {
-    font-size: 18px;
-    line-height: 24px;
   }
 
   h1 {
-    font-size: 26px;
-    line-height: 32px;
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 16px;
   }
 
   button {
-    font-size: 22px;
-    height: 55px;
-    width: 90%;
+    font-size: 20px;
+    height: 50px;
   }
 }
 </style>
