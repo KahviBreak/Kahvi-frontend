@@ -1,94 +1,80 @@
+<script setup>
+import { useCardapioStore } from '@/stores/cardapio.js';
+const cardapio = useCardapioStore();
+</script>
+
+
 <template>
   <div class="home">
-  <div>
-    <p class="titulo">UM POUCO SOBRE NOSSO CARDÁPIO...</p>
-  </div>
-
-  <div class="container">
-    <div class="container-dois">
-            <div class="aliementos-cima">
-        <h1>BOLOS</h1>
-        <p>Bolo de Paçoca</p>
-        <p>Bolo Red Velvet</p>
-        <p>Bolo de Laranja</p>
-        <p>Bolo de Chocolate com Brigadeiro</p>
-        <p>Bolo de Banana com Canela</p>
-      </div>
-      <div>
-        <img class="foto" src="../assets/bolo.png" alt="" />
-      </div>
-
+    <div>
+      <p class="titulo">UM POUCO SOBRE NOSSO CARDÁPIO...</p>
     </div>
-    <div class="container-dois">
-            <div class="alimentos-cima">
-        <h1>SALGADOS</h1>
-        <p>Pão de Queijo</p>
-        <p>Croissant de Presunto e Queijo</p>
-        <p>Sanduíche Natural</p>
-        <p>Focaccia de Alecrim</p>
-        <p>Esfiha Vegana</p>
+
+    <div class="container">
+      <div class="container-dois">
+        <div class="aliementos-cima">
+          <h1>BOLOS</h1>
+          <p v-for="(bolo, index) in cardapio.bolos" :key="'bolo-' + index">{{ bolo }}</p>
+        </div>
+        <div>
+          <img class="foto" src="../assets/bolo.png" alt="" />
+        </div>
+
       </div>
-      <div>
-        <img class="foto" src="../assets/pao.png" alt="" />
+      <div class="container-dois">
+        <div class="alimentos-cima">
+          <h1>SALGADOS</h1>
+          <p v-for="(salgado, index) in cardapio.salgados" :key="'salgado-' + index">{{ salgado }}</p>
+        </div>
+        <div>
+          <img class="foto" src="../assets/pao.png" alt="" />
+        </div>
       </div>
-    </div>
-    <div class="container-tres">
-      <div>
-        <img class="foto" src="../assets/cupcake.png" alt="" />
+      <div class="container-tres">
+        <div>
+          <img class="foto" src="../assets/cupcake.png" alt="" />
+        </div>
+        <div class="alimentos">
+          <h1>SOBREMESAS</h1>
+          <p v-for="(sobremesa, index) in cardapio.sobremesas" :key="'sobremesa-' + index">{{ sobremesa }}</p>
+        </div>
       </div>
-      <div class="alimentos">
-        <h1>SOBREMESAS</h1>
-        <p>Brownie</p>
-        <p>Cheesecake de Frutas Vermelhas</p>
-        <p>Torta de Limão com Merengue</p>
-        <p>Cookie Chocolate</p>
-        <p>Pudim de Leite</p>
-        <p>Mousse de Maracujá</p>
-        <p>Donuts Artesanais (sabores variados)</p>
+      <div class="container-tres">
+        <div>
+          <img class="foto" src="../assets/xicara.png" alt="" />
+        </div>
+        <div class="alimentos">
+          <h1>CAFÈS</h1>
+            <p v-for="(cafe, index) in cardapio.cafes" :key="'cafe-' + index">{{ cafe }}</p>
+        </div>
       </div>
     </div>
-    <div class="container-tres">
-      <div>
-        <img class="foto" src="../assets/xicara.png" alt="" />
-      </div>
-      <div class="alimentos">
-        <h1>CAFÈS</h1>
-        <p>Espresso de Brigadeiro</p>
-        <p>Café Coado</p>
-        <p>Macchiato</p>
-        <p>Cappuccino</p>
-        <p>Mocha</p>
-        <p>Latte</p>
-        <p>Affogato</p>
-        <p>Iced Coffee</p>
-        <p>Frappuccino</p>
-      </div>
+
+    <div class="button">
+      <button>
+        Fazer Pedido
+        <svg style="margin-left: 20px; margin-top: 2px;" width="19" height="27" viewBox="0 0 19 27" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.999997 1L18 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M18 13L1 26" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+
+      </button>
     </div>
-  </div>
-
-  <div class="button">
-  <button>
-    Fazer Pedido
-    <svg style="margin-left: 20px; margin-top: 2px;" width="19" height="27" viewBox="0 0 19 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M0.999997 1L18 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M18 13L1 26" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
-  </button>
-</div>
 
   </div>
 </template>
 
 <style scoped>
-.alimentos{
+.alimentos {
   text-align: end;
 }
 
 .home {
   margin-top: 2%;
   padding-top: 1.5%;
-    background-image: url("../assets/fundoCardapio.png");
+  background-image: url("../assets/fundoCardapio.png");
+  padding-bottom: 1.5%;
 }
 
 .button {
@@ -136,6 +122,7 @@ button {
   display: flex;
   justify-content: row;
 }
+
 .container-dois {
   display: flex;
   justify-content: row;
@@ -177,6 +164,7 @@ p {
   line-height: 29px;
   color: #402b19;
 }
+
 @media (max-width: 768px) {
   .container {
     gap: 50px;
@@ -223,5 +211,4 @@ p {
     width: 90%;
   }
 }
-
 </style>
