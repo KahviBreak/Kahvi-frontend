@@ -88,8 +88,8 @@ div {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 5%;
-  margin-top: 5%;
+  gap: 7%;
+  margin-top: 2%;
   width: 100%;
 }
 
@@ -103,7 +103,7 @@ div {
 
 .categoria h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 22px;
   letter-spacing: 0.5px;
   font-family: "Yantramanav", sans-serif;
 }
