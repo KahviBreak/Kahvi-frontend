@@ -1,12 +1,21 @@
 <script setup>
+
 import '@/assets/main.css'
 import { ref } from 'vue'
 
+
 const showMobileMenu = ref(false)
 function toggleMenu() {
-    showMobileMenu.value = !showMobileMenu.value
+   showMobileMenu.value = !showMobileMenu.value
 }
-</script>
+
+
+function closeMenu() {
+   showMobileMenu.value = false
+}
+
+
+</script>   
 
 <template>
     <div id="menu">
@@ -31,13 +40,24 @@ function toggleMenu() {
             <img src="@/assets/user-profile-03.png" alt="Usuário" id="user">
         </div>
 
-        <div v-if="showMobileMenu" id="mobile-menu">
-            <p @click="toggleMenu">Início</p>
-            <p @click="toggleMenu">Sobre nós</p>
-            <p @click="toggleMenu">Cardápio</p>
-            <p @click="toggleMenu">Faça seu pedido</p>
-        </div>
-    </div>
+
+
+       <div v-if="showMobileMenu" id="mobile-menu">
+           <button id="close-menu" @click="closeMenu"><img src="@/assets/images/close.png" alt=""></button>
+           <ul id="ul-links">
+               <router-link><li @click="toggleMenu">INÍCIO</li></router-link>
+               <router-link><li @click="toggleMenu">SOBRE NÓS</li></router-link>
+                <router-link><li @click="toggleMenu">CARDÁPIO</li></router-link>
+                <router-link><li @click="toggleMenu">FAÇA SEU PEDIDO</li></router-link>
+           </ul>
+           <p>ACOMPANHE KAHVI! NAS REDES SOCIAIS</p>
+           <div id="redes-sociais">
+               <button id="button-logo"><img src="@/assets/images/logoinsta.png" alt="insta" id="logo-sociais"></button>
+               <button id="button-logo"><img src="@/assets/images/Vector.png" alt="tiktok" id="logo-sociais"></button>
+              
+           </div>
+       </div>
+   </div>
 </template>
 
 <style scoped>
@@ -68,8 +88,7 @@ function toggleMenu() {
     flex-wrap: wrap;
 }
 
-#menu-links p,
-#mobile-menu p {
+#menu-links p{
     background-color: white;
     color: #5F7B5B;
     font-family: "Varta", sans-serif;
@@ -136,23 +155,86 @@ h1 {
 }
 
 #mobile-menu {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: white;
-    z-index: 10;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 10px 0;
+   display: flex;
+   flex-direction: column;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100vh;
+   background: #5F7B5B;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+
 #mobile-menu p {
-    padding: 10px 20px;
-    font-size: 20px;
-    text-align: center;
+   background-color: #5F7B5B;
+   font-family: 'Poppins', sans-serif;
+   font-size: 20px;
+   font-weight: 500;
+   color: #FFFFFF;
+   margin: 50px;
+   margin-top: 80px;
+   text-align: left;
 }
+
+
+#ul-links {
+   font-size: 20px;
+   color: #FFFFFF;
+   background-color: #5F7B5B;
+   list-style: none;
+   font-family: 'Poppins', sans-serif;
+   font-weight: 500;
+   display: flex;
+   flex-direction: column;
+   margin-top: 40px;
+}
+
+a:hover {
+  background-color: yellow;
+  font-size: 18px;
+}
+
+
+#ul-links li {
+   margin: 15px;
+}
+
+
+#close-menu {
+   background-color: #5F7B5B;
+   border: none;
+   color: white;
+   font-size: 24px;
+   width: 20px;
+   margin: 5px 15px 5px auto;
+}
+
+
+#close-menu img{
+   width: 28px;
+}
+
+
+#redes-sociais{
+   display: flex;
+   margin-left: 35px;
+}
+#button-logo {
+   background-color: #2f402cc5;
+   border: none;
+   width: 110px;
+   height: 110px;
+   margin: 20px 5px 20px 5px;
+   border-radius: 3px;
+}
+
+
+#logo-sociais {
+   width: 30px;
+}
+
 
 @media (max-width: 900px) {
     h1, p {
