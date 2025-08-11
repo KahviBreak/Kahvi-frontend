@@ -2,6 +2,7 @@
 import '@/assets/main.css'
 import { ref } from 'vue'
 
+
 const showMobileMenu = ref(false)
 function toggleMenu() {
     showMobileMenu.value = !showMobileMenu.value
@@ -32,10 +33,10 @@ function toggleMenu() {
         </div>
 
         <div v-if="showMobileMenu" id="mobile-menu">
-            <p @click="toggleMenu">Início</p>
-            <p @click="toggleMenu">Sobre nós</p>
-            <p @click="toggleMenu">Cardápio</p>
-            <p @click="toggleMenu">Faça seu pedido</p>
+            <p @click="toggleMenu"><router-link to="/">Início</router-link></p>
+            <p @click="toggleMenu"><router-link to="/">Sobre nós</router-link></p>
+            <p @click="toggleMenu"><router-link to="/cardapio">Cardápio</router-link></p>
+            <p @click="toggleMenu"><router-link to="/pedido">Faça seu pedido</router-link></p>
         </div>
     </div>
 </template>
