@@ -23,6 +23,7 @@ const router = createRouter({
       name: 'pedido',
       component: PedidoView
     },
+    {
       path: '/cardapio',
       name: 'cardapio',
       component: CardapioView,
