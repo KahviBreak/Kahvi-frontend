@@ -33,6 +33,7 @@ function click() {
 </script>
 
 <template>
+
   <div>
     <div class="container-categoria">
     <div
@@ -45,6 +46,12 @@ function click() {
       <div class="linha" v-if="categoriaSelecionada === categoria.nome"></div>
     </div>
   </div>
+   <div id="imagegrid">
+  <img src="@/assets/pedido1.png" alt="" style="height: 400px;width: 350px;">
+  <img src="@/assets/pedido2.png" alt="" style="height: 400px;width: 350px;" >
+  <img src="@/assets/pedido3.png" alt="" style="height: 400px;width: 350px;">
+  </div>
+
     <div class="container-product">
       <div v-for="produto in produtoStore.produtos" :key="produto.id" class="produto">
         <button type="button" class="button" @click="click()">ADD <svg width="24" height="24" viewBox="0 0 24 24"
@@ -63,7 +70,7 @@ function click() {
             </defs>
           </svg>
         </button>
-        <img :src="produto.imagem.url" alt="produto.name" />
+        <img :src="produto.imagem.url" alt="produto.name" style="height:369px;width:272px;"/>
         <h1>{{ produto.nome }}</h1>
         <p>{{ produto.descricao }}</p>
         <p>{{ `R$ ` + produto.preco }}</p>
@@ -76,7 +83,14 @@ function click() {
 @import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
-/* Estilo Geral */
+#imagegrid{
+  display: flex;
+  margin-top: 50px;
+  gap: 30px;
+  justify-content: center;
+}
+
+
 div {
   font-family: 'Arial', sans-serif;
   color: #4a2c18;
