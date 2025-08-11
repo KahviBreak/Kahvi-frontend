@@ -26,10 +26,18 @@ function closeMenu() {
             <span></span>
         </div>
         <div id="menu-links">
-            <p>Início</p>
+          <router-link to="/">
+          <p>Início</p>
+          </router-link>
+          <router-link>
             <p>Sobre nós</p>
+          </router-link>
+          <router-link to="/cardapio">
             <p>Cardápio</p>
+          </router-link>
+          <router-link to="/pedido">
             <p>Faça seu pedido</p>
+          </router-link>
             <div id="pesquisa">
                 <h1>Buscar</h1>
                 <img src="@/assets/Iconpesquisa.png" alt="Buscar" id="icon-pesquisa">
@@ -40,23 +48,23 @@ function closeMenu() {
         </div>
         </div>
 
-      
+
 
 
 
         <div v-if="showMobileMenu" id="mobile-menu">
             <button id="close-menu" @click="closeMenu"><img src="@/assets/images/close.png" alt=""></button>
             <ul id="ul-links">
-                <router-link>
+                <router-link to="/">
                     <li @click="toggleMenu">INÍCIO</li>
                 </router-link>
                 <router-link>
                     <li @click="toggleMenu">SOBRE NÓS</li>
                 </router-link>
-                <router-link>
+                <router-link to="/cardapio">
                     <li @click="toggleMenu">CARDÁPIO</li>
                 </router-link>
-                <router-link>
+                <router-link to="/pedido">
                     <li @click="toggleMenu">FAÇA SEU PEDIDO</li>
                 </router-link>
             </ul>

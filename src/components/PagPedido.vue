@@ -20,6 +20,21 @@ onMounted(() => {
 // onMounted(() => {
 // })
 
+// // Função para adicionar um produto ao carrinho
+// export function adicionarProdutoAoCarrinho(carrinho, produto) {
+//   // Verifica se o produto já está no carrinho
+//   const index = carrinho.findIndex(item => item.id === produto.id);
+
+//   if (index !== -1) {
+//     // Se já existe, aumenta a quantidade
+//     carrinho[index].quantidade += 1;
+//   } else {
+//     // Se não existe, adiciona com quantidade 1
+//     carrinho.push({ ...produto, quantidade: 1 });
+//   }
+//   return carrinho;
+// }
+
 const categoriaSelecionada = ref('Tudo')
 
 const selecionarCategoria = (nome) => {
