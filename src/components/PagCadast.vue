@@ -39,9 +39,8 @@ import '@/assets/main.css'
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 6%;
-    padding-left: 23%;
-    padding-right: 20%;
+    margin: 2% 18% 0 18%;
+    align-content: center;
 }
 
 #g1 {
