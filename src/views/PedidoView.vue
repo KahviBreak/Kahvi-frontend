@@ -1,11 +1,11 @@
 <script setup>
 import MenuBar from '@/components/MenuBar.vue';
-import PagHome from '@/components/PagHome.vue';
+import PagPedido from '@/components/PagPedido.vue';
 </script>
 
 <template>
-<MenuBar/>
-<PagHome />
+ <MenuBar />
+ <PagPedido />
 </template>
 
 <style scoped>
