@@ -63,7 +63,7 @@ function click() {
             </defs>
           </svg>
         </button>
-        <img :src="produto.imagem.url" alt="produto.name" />
+        <img :src="produto.imagem.url" alt="produto.name"  style="width:272px;height:369px;"/>
         <h1>{{ produto.nome }}</h1>
         <p>{{ produto.descricao }}</p>
         <p>{{ `R$ ` + produto.preco }}</p>

@@ -1,5 +1,6 @@
 <script setup>
 import '@/assets/main.css'
+import '@/main.js'
 import { ref } from 'vue'
 
 
