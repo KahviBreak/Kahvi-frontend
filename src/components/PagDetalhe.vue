@@ -29,6 +29,7 @@ const diminuirQuantidade = () => {
 
 </script>
 <template>
+  <div class="teste">
   <div class="container">
     <div class="img">
       <img src="@/assets/teste.png" alt="">
@@ -64,10 +65,11 @@ const diminuirQuantidade = () => {
           <button class="botao">Comprar agora</button>
         </div>
         <div>
-          <button style="background-color: #C2E0BD; color:#5F7B5B" class="botao">Adicionar no carrinho</button>
+          <button style="background-color: #C2E0BD; color:#5F7B5B;" class="botao">Adicionar no carrinho</button>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -75,7 +77,10 @@ const diminuirQuantidade = () => {
 @import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
-
+.teste{
+  display: flex;
+  justify-content: center;
+}
 body {
   font-family: 'Overpass', sans-serif;
 }
@@ -127,10 +132,10 @@ h1 {
 .graos input {
   box-sizing: border-box;
   width: 80px;
-  height: 30px;
+  height: 36px;
   background: #FFFFFF;
-  border: 1px solid #C1B8B0;
-  border-radius: 5px;
+  border: #C1B8B0 2px solid;
+  border-radius: 10px;
   margin: 0;
   padding: 0;
   font-size: 18px;
@@ -156,12 +161,14 @@ span {
 
 .quantButton{
   background-color: #FFFFFF;
-  gap: 20px;
+  max-width: 85px;
+  border: #C1B8B0 2px solid;
+  border-radius: 10px;
 }
 
 .quantity-button {
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 6px;
   width: 32px;
   height: 32px;
@@ -238,5 +245,169 @@ color: #FFFFFF;
 
 .botao:hover {
   opacity: 0.9;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .img {
+    text-align: center;
+  }
+
+  .img img {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .graos {
+    padding-left: 0;
+  }
+
+  .container-quant {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+}
+
+/* Ajuste para celulares */
+@media (max-width: 600px) {
+  .container {
+  max-width: 450px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.img img {
+  width: 100%;
+  border-radius: 12px 12px 0 0;
+  object-fit: cover;
+}
+
+.containerDetalhes {
+  background: #fff;
+  padding: 20px;
+  border-radius: 0 0 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 303px;
+  margin-left: 2px;
+}
+
+h1 {
+  font-family: 'Overlock', cursive;
+  font-weight: 700;
+  font-size: 20px;
+  color: #402B19;
+  margin: 0;
+}
+
+.descricao {
+  font-size: 14px;
+  color: #93755C;
+  margin: 0;
+}
+
+.preco {
+  font-size: 18px;
+  font-weight: bold;
+  color: #556B4E;
+  margin: 0;
+}
+
+.container-quant {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quantidade, .graos {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.quantButton {
+  background: #FFFFFF;
+  border: 1px solid #C1B8B0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.quantity-button {
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.quantity-value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #402B19;
+  min-width: 20px;
+  text-align: center;
+}
+
+.graos input {
+  width: 40px;
+  height: 28px;
+  border: 1px solid #C1B8B0;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.obs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #6E5641;
+  font-weight: 600;
+}
+
+input[type="text"] {
+  width: 100%;
+  height: 36px;
+  border: 1px solid #C1B8B0;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 4px 8px;
+}
+
+.botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.botao {
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 70%;
+  height:80%;
+  justify-self: center;
+  display: flex;
+}
 }
 </style>
