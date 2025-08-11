@@ -50,7 +50,7 @@ function closeMenu() {
                 <router-link><li @click="toggleMenu">CARDÁPIO</li></router-link>
                 <router-link><li @click="toggleMenu">FAÇA SEU PEDIDO</li></router-link>
            </ul>
-           <p>ACOMPANHE KAHVI! NAS REDES SOCIAIS</p>
+           <p>ACOMPANHE <span style="color: rgba(39, 54, 37, 1);">KAHVI!</span> NAS REDES SOCIAIS</p>
            <div id="redes-sociais">
                <button id="button-logo"><img src="@/assets/images/logoinsta.png" alt="insta" id="logo-sociais"></button>
                <button id="button-logo"><img src="@/assets/images/Vector.png" alt="tiktok" id="logo-sociais"></button>
@@ -62,6 +62,10 @@ function closeMenu() {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Varta:wght@300..700&display=swap');
+
+*{
+    text-decoration: none;
+}
 
 #menu {
     display: flex;
@@ -173,32 +177,33 @@ h1 {
    font-size: 20px;
    font-weight: 500;
    color: #FFFFFF;
-   margin: 50px;
-   margin-top: 80px;
+   margin: 100px 50px 15px 50px;
    text-align: left;
 }
 
 
 #ul-links {
    font-size: 20px;
-   color: #FFFFFF;
    background-color: #5F7B5B;
    list-style: none;
    font-family: 'Poppins', sans-serif;
    font-weight: 500;
    display: flex;
    flex-direction: column;
-   margin-top: 40px;
+   margin-top: 90px;
+   margin-bottom: 20px;
 }
 
-a:hover {
-  background-color: yellow;
+#ul-links :hover {
+  color: #273625;
   font-size: 18px;
 }
 
 
 #ul-links li {
    margin: 15px;
+   color: #FFFFFF;
+
 }
 
 
@@ -226,7 +231,7 @@ a:hover {
    border: none;
    width: 110px;
    height: 110px;
-   margin: 20px 5px 20px 5px;
+   margin: 0 5px 20px 10px;
    border-radius: 3px;
 }
 
@@ -273,7 +278,7 @@ a:hover {
         height: 60px;
     }
     h1, #mobile-menu p {
-        font-size: 18px;
+        font-size: 20px;
     }
 }
 </style>
