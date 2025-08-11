@@ -5,7 +5,7 @@ import PagHome from '@/components/PagHome.vue';
 
 <template>
 <MenuBar/>
-<PagHome></PagHome>
+<PagHome />
 </template>
 
 <style scoped>
