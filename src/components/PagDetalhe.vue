@@ -34,14 +34,16 @@ const diminuirQuantidade = () => {
       <img src="@/assets/teste.png" alt="">
     </div>
     <div class="containerDetalhes">
-      <h1>fjdnfjwd</h1>
+      <h1>Focaccia de Alecrim</h1>
       <p class="descricao">Focaccia macia com aroma fresco de alecrim.</p>
       <div class="container-quant">
         <div class="quantidade">
           <span>Quantidade:</span>
+          <div class="quantButton">
           <button class="quantity-button" @click="diminuirQuantidade" :disabled="quantity <= 1">−</button>
           <span class="quantity-value">{{ quantity }}</span>
           <button class="quantity-button" @click="aumentarQuantidade" :disabled="quantity >= product.inStock">+</button>
+        </div>
         </div>
         <div class="graos">
           <label for="grao" class="grao">Grão:</label>
@@ -50,14 +52,19 @@ const diminuirQuantidade = () => {
         </div>
       </div>
       <p class="preco"> r$3737874</p>
-      <label class="obs">alguma observação?</label>
-      <input type="text" placeholder="ex: pipipipi">
+      <label class="obs"><svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M9 0C13.9657 0 18 3.72236 18 8.32416C18 12.926 13.9657 16.6483 9 16.6483C7.58962 16.6483 6.25294 16.3477 5.06271 15.8114L1.73633 16.9457C1.7009 16.9578 1.66461 16.9676 1.62774 16.9751C0.792068 17.145 0.0636139 16.4179 0.311432 15.6527C0.319403 15.6281 0.32869 15.6039 0.339258 15.5801L1.51222 12.9439C0.557316 11.6223 0 10.0327 0 8.32416C0 3.72236 4.03428 0 9 0ZM12.7385 7.72701C13.1973 7.72701 13.5692 8.07296 13.5692 8.49971C13.5692 8.92646 13.1973 9.27242 12.7385 9.27242H12.6C12.1412 9.27242 11.7692 8.92646 11.7692 8.49971C11.7692 8.07296 12.1412 7.72701 12.6 7.72701H12.7385ZM9.96923 8.49971C9.96923 8.07296 9.59728 7.72701 9.13846 7.72701H9C8.54118 7.72701 8.16923 8.07296 8.16923 8.49971C8.16923 8.92646 8.54118 9.27242 9 9.27242H9.13846C9.59728 9.27242 9.96923 8.92646 9.96923 8.49971ZM5.53846 7.72701C5.99728 7.72701 6.36923 8.07296 6.36923 8.49971C6.36923 8.92646 5.99728 9.27242 5.53846 9.27242H5.4C4.94118 9.27242 4.56923 8.92646 4.56923 8.49971C4.56923 8.07296 4.94118 7.72701 5.4 7.72701H5.53846Z"
+            fill="#6E5641" />
+        </svg>
+        alguma observação?</label>
+      <input type="text" placeholder="Ex: tirar azeitona, milho etc.">
       <div class="botoes">
         <div>
-          <button class="botao">comprar agora</button>
+          <button class="botao">Comprar agora</button>
         </div>
         <div>
-          <button style="background-color: #C2E0BD; color:#5F7B5B" class="botao">adicionar no carrinho</button>
+          <button style="background-color: #C2E0BD; color:#5F7B5B" class="botao">Adicionar no carrinho</button>
         </div>
       </div>
     </div>
@@ -65,6 +72,10 @@ const diminuirQuantidade = () => {
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
+
 body {
   font-family: 'Overpass', sans-serif;
 }
@@ -109,20 +120,20 @@ h1 {
   grid-template-columns: 1fr 2fr 1fr;
 }
 
-.graos{
+.graos {
   padding-left: 50%;
 }
 
-.graos input{
-box-sizing: border-box;
-width: 80px;
-height: 30px;
-background: #FFFFFF;
-border: 1px solid #C1B8B0;
-border-radius: 5px;
-margin: 0;
-padding: 0;
-font-size: 18px;
+.graos input {
+  box-sizing: border-box;
+  width: 80px;
+  height: 30px;
+  background: #FFFFFF;
+  border: 1px solid #C1B8B0;
+  border-radius: 5px;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
 }
 
 .quantidade-grao {
@@ -141,6 +152,11 @@ span {
   font-weight: 500;
   font-size: 18px;
   color: #93755C;
+}
+
+.quantButton{
+  background-color: #FFFFFF;
+  gap: 20px;
 }
 
 .quantity-button {
@@ -169,9 +185,12 @@ span {
 }
 
 .obs {
-  font-weight: 500;
-  color: #93755C;
-  font-size: 16px;
+font-family: 'Overpass';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 25px;
+color: #6E5641;
 }
 
 input[type="text"] {
@@ -196,6 +215,16 @@ input[type="text"] {
   cursor: pointer;
   width: 100%;
   margin-top: 8px;
+
+font-family: 'Overpass';
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 30px;
+
+color: #FFFFFF;
+
+
 }
 
 .botoes {
