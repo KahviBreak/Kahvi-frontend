@@ -1,4 +1,3 @@
-
 <script setup>
 import { ref, onMounted } from 'vue'
 const quantity = ref(1)
@@ -13,7 +12,7 @@ const product = ref(
     inStock: 10,
     price: 'R$100,00',
   },
-  
+
 )
 
 const aumentarQuantidade = () => {
@@ -28,60 +27,44 @@ const diminuirQuantidade = () => {
   }
 }
 
-const aumentarGrao = () => {
-  if (grao.value < product.value.inStock) {
-    grao.value++
-  }
-}
-
-const diminuirGrao = () => {
-  if (grao.value > 1) {
-    grao.value--
-  }
-}
 </script>
 <template>
-    <div class="container">
-        <div class="img">
-            <img src="@/assets/teste.png" alt="">
-        </div>
-        <div class="containerDetalhes">
-            <h1>fjdnfjwd</h1>
-            <p class="descricao">Focaccia macia com aroma fresco de alecrim.</p>
-            <div>
-                <span>Quantidade</span>
-        <button class="quantity-button" @click="diminuirQuantidade" :disabled="quantity <= 1">−</button>
-        <span class="quantity-value">{{ quantity }}</span>
-        <button class="quantity-button" @click="aumentarQuantidade" :disabled="quantity >= product.inStock">+</button>
-        <span>Grão</span>
-        <button class="quantity-button" @click="diminuirGrao" :disabled="grao <= 1">−</button>
-        <span class="quantity-value">{{ grao }}</span>
-        <button class="quantity-button" @click="aumentarGrao" :disabled="grao >= product.inStock">+</button>
-            </div>
-            <p class="preco"> r$3737874</p>
-            <label class="obs">alguma observação?</label>
-            <input type="text" placeholder="ex: pipipipi">
-            <div class="botoes">
-            <div>
-            <button class="botao">comprar agora</button>
-            </div>
-            <div>
-            <button style="background-color: #C2E0BD; color:#5F7B5B" class="botao">adicionar no carrinho</button>
-            </div>
-            </div>
-        </div>
+  <div class="container">
+    <div class="img">
+      <img src="@/assets/teste.png" alt="">
     </div>
+    <div class="containerDetalhes">
+      <h1>fjdnfjwd</h1>
+      <p class="descricao">Focaccia macia com aroma fresco de alecrim.</p>
+      <div class="container-quant">
+        <div class="quantidade">
+          <span>Quantidade:</span>
+          <button class="quantity-button" @click="diminuirQuantidade" :disabled="quantity <= 1">−</button>
+          <span class="quantity-value">{{ quantity }}</span>
+          <button class="quantity-button" @click="aumentarQuantidade" :disabled="quantity >= product.inStock">+</button>
+        </div>
+        <div class="graos">
+          <label for="grao" class="grao">Grão:</label>
+          <br>
+          <input type="number" name="grao" id="grao">
+        </div>
+      </div>
+      <p class="preco"> r$3737874</p>
+      <label class="obs">alguma observação?</label>
+      <input type="text" placeholder="ex: pipipipi">
+      <div class="botoes">
+        <div>
+          <button class="botao">comprar agora</button>
+        </div>
+        <div>
+          <button style="background-color: #C2E0BD; color:#5F7B5B" class="botao">adicionar no carrinho</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-    background-color: #F1EDE8;
-    width: 100%;
-}
-
 body {
   font-family: 'Overpass', sans-serif;
 }
@@ -90,14 +73,15 @@ body {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   align-items: start;
-  gap: 40px;
   max-width: 1000px;
-  margin: 50px auto;
+  gap: 40px;
+  margin: 0px auto;
+  padding-top: 50px;
+  padding-bottom: 5%;
 }
 
 .img img {
-  width: 100%;
-  border-radius: 12px;
+  width: 76%;
   object-fit: cover;
 }
 
@@ -120,6 +104,27 @@ h1 {
   color: #93755C;
 }
 
+.container-quant {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+.graos{
+  padding-left: 50%;
+}
+
+.graos input{
+box-sizing: border-box;
+width: 80px;
+height: 30px;
+background: #FFFFFF;
+border: 1px solid #C1B8B0;
+border-radius: 5px;
+margin: 0;
+padding: 0;
+font-size: 18px;
+}
+
 .quantidade-grao {
   display: flex;
   align-items: center;
@@ -127,6 +132,12 @@ h1 {
 }
 
 span {
+  font-weight: 500;
+  font-size: 18px;
+  color: #93755C;
+}
+
+.grao {
   font-weight: 500;
   font-size: 18px;
   color: #93755C;
@@ -164,11 +175,14 @@ span {
 }
 
 input[type="text"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 100%;
-  font-size: 14px;
+  box-sizing: border-box;
+  width: 305px;
+  height: 49px;
+  background: #FFFFFF;
+  border: 1px solid #C1B8B0;
+  border-radius: 5px;
+  margin-top: 0;
+  padding: 0;
 }
 
 .botao {
@@ -184,8 +198,8 @@ input[type="text"] {
   margin-top: 8px;
 }
 
-.botoes{
-    row-gap: 100px;
+.botoes {
+  row-gap: 100px;
 }
 
 .botao:nth-of-type(2) {
@@ -196,5 +210,4 @@ input[type="text"] {
 .botao:hover {
   opacity: 0.9;
 }
-
 </style>

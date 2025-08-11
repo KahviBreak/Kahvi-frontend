@@ -5,9 +5,13 @@ import PagDetalhe from '@/components/PagDetalhe.vue';
 
 <template>
 <MenuBar/>
-<PagDetalhe />
+<div class="detalhe"><PagDetalhe /></div>
 </template>
 
 <style scoped>
 
+.detalhe{
+
+    background-color: #F1EDE8;
+}
 </style>
