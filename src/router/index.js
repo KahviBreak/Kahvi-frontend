@@ -4,6 +4,7 @@ import CadastroView from '@/views/CadastroView.vue'
 import LoginView from '@/views/LoginView.vue'
 import PedidoView from '@/views/PedidoView.vue'
 import CardapioView from '@/views/CardapioView.vue'
+import PagCarrinhoView from '@/views/PagCarrinhoView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/cadastro',
       name: 'cadastro',
       component: CadastroView,
+    },
+    {
+      path: '/cart',
+      name: 'carrinho',
+      component: PagCarrinhoView
     },
   ],
 })
