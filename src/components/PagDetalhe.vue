@@ -7,6 +7,8 @@ const produtoStore = useProdutoStore();
 const produto = ref({
   nome: '',
   descricao: '',
+  imagem: { url: '' },
+  preco: 0,
 })
 const quantity = ref(1)
 const grao = ref(1)
@@ -36,7 +38,7 @@ onMounted(async () => {
   <div class="teste">
   <div class="container">
     <div class="img">
-      <img src="@/assets/teste.png" alt="">
+      <img :src="produto.imagem.url" alt="" style="width: 506px; height:677px;">
     </div>
     <div class="containerDetalhes">
       <h1>{{ produto.nome }} - {{ props.id }}</h1>
