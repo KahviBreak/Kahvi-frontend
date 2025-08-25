@@ -1,19 +1,17 @@
 <script setup>
 import { ref, onMounted } from 'vue'
+const props = defineProps(['id'])
+import { useProdutoStore } from '@/stores/produtos'
+const produtoStore = useProdutoStore();
+
+const produto = ref({
+  nome: '',
+  descricao: '',
+})
 const quantity = ref(1)
 const grao = ref(1)
 
-const product = ref(
-  {
-    id: 1,
-    title: 'Produto 1',
-    description: 'Descrição do Produto 1',
-    image: 'image1.png',
-    inStock: 10,
-    price: 'R$100,00',
-  },
-
-)
+const product = ref({})
 
 const aumentarQuantidade = () => {
   if (quantity.value < product.value.inStock) {
@@ -27,6 +25,12 @@ const diminuirQuantidade = () => {
   }
 }
 
+onMounted(async () => {
+  const produtoSelecionado = await produtoStore.buscarProdutoPorId(props.id)
+  produto.value = produtoSelecionado || { nome: 'Produto não encontrado', descricao: '' };
+  // produto.value = buscarProdutoPorId(id);
+})
+
 </script>
 <template>
   <div class="teste">
@@ -35,8 +39,8 @@ const diminuirQuantidade = () => {
       <img src="@/assets/teste.png" alt="">
     </div>
     <div class="containerDetalhes">
-      <h1>Focaccia de Alecrim</h1>
-      <p class="descricao">Focaccia macia com aroma fresco de alecrim.</p>
+      <h1>{{ produto.nome }} - {{ props.id }}</h1>
+      <p class="descricao">{{produto.descricao}}</p>
       <div class="container-quant">
         <div class="quantidade">
           <span>Quantidade:</span>
@@ -52,7 +56,7 @@ const diminuirQuantidade = () => {
           <input type="number" name="grao" id="grao">
         </div>
       </div>
-      <p class="preco"> R$XX</p>
+      <p class="preco"> R${{produto.preco}}</p>
       <div class="observacao-div">
       <label class="obs"><svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd"

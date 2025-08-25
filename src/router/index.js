@@ -21,9 +21,10 @@ const router = createRouter({
       component: LoginView,
     },
     {
-      path: '/detalhe',
+      path: '/detalhe/:id',
       name: 'detalhe',
       component: PagDetalheView,
+      props: true,
     },
     {
       path: '/sobre',
