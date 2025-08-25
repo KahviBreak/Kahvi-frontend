@@ -33,7 +33,7 @@ const router = createRouter({
     {
       path: '/pedido',
       name: 'pedido',
-      component: PedidoView
+      component: PedidoView,
     },
     {
       path: '/cardapio',
@@ -45,7 +45,6 @@ const router = createRouter({
       name: 'cadastro',
       component: CadastroView,
     },
-  ],
-})
+  ]});
 
 export default router
