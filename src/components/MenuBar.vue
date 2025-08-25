@@ -34,13 +34,13 @@ function closeMenu() {
                 <h1>Buscar</h1>
                 <img src="@/assets/Iconpesquisa.png" alt="Buscar" id="icon-pesquisa">
             </div>
-              <div id="icons-end">
+
+        </div>
+        <div id="icons-end">
             <img src="@/assets/circle.png" alt="Carrinho" id="basket">
             <img src="@/assets/user-profile-03.png" alt="Usuário" id="user">
         </div>
-        </div>
 
-      
 
 
 
@@ -89,8 +89,8 @@ function closeMenu() {
 }
 
 #logo {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     margin-left: 70px;
 }
 
@@ -101,19 +101,21 @@ function closeMenu() {
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
+    align-content: space-between;
 }
 
 #menu-links p {
     background-color: white;
     color: #5F7B5B;
     font-family: "Varta", sans-serif;
-    font-size: 25px;
+    font-size: 20px;
     cursor: pointer;
+    margin-top: 0.5%;
 }
 
 #menu-links :hover {
     color: #273625;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 #pesquisa {
@@ -125,7 +127,7 @@ function closeMenu() {
     justify-content: space-between;
     padding: 0 15px;
     min-width: 100px;
-    max-width: 332px;
+    max-width: 300px;
     flex: 1;
 }
 
@@ -137,14 +139,14 @@ function closeMenu() {
 #icons-end {
     display: flex;
     align-items: center;
-    margin-left: 70px;
-    gap: 30px;
+    gap: 40px;
+    margin-right: 4%;
 }
 
 h1 {
     color: white;
     font-family: "Varta", sans-serif;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 200;
     margin: 10px 5px 5px 5px;
 }
@@ -266,7 +268,7 @@ h1 {
         font-size: 22px;
     }
 
-    #menu{
+    #menu {
         background-color: #5F7B5B;
     }
 
