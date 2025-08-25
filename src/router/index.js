@@ -6,6 +6,7 @@ import PagDetalheView from '@/views/PagDetalheView.vue'
 import SobreView from '@/views/SobreView.vue'
 import PedidoView from '@/views/PedidoView.vue'
 import CardapioView from '@/views/CardapioView.vue'
+import PerfilClienteView from '@/views/PerfilClienteView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
       path: '/cadastro',
       name: 'cadastro',
       component: CadastroView,
+    },
+    {
+      path: '/perfil',
+      name: 'perfilCliente',
+      component: PerfilClienteView
     },
   ]});
 
