@@ -68,88 +68,111 @@ const getImage = (img) =>
 
 <style scoped>
 .carrinho {
-    display: flex;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .lista-produtos {
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .card-produto {
-    display: flex;
-    background: #f1ede8;
-    border-radius: 8px;
-    padding: 10px;
-    align-items: center;
+  display: flex;
+  background: #f1ede8;
+  border-radius: 8px;
+  padding: 15px;
+  align-items: center;
+  height: 225px;
 }
 
 .img-produto {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-    background: white;
-    object-fit: cover;
+  width: 150px;
+  height: 170px;
+  border-radius: 12px;
+  background: white;
+  object-fit: cover;
+    margin-left: 3%;
 }
 
 .info-produto {
-    margin-left: 10px;
-    flex: 1;
+
+  margin-left: 15px;
+
+}
+
+.info-produto h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.info-produto p {
+  margin: 2px 0 8px 0;
+  font-size: 0.85rem;
+  color: #444;
 }
 
 .quantidade {
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
+  display: flex;
+  align-items: center;
+  margin: 6px 0;
 }
 
 .quantidade button {
-    background: white;
-    border: 1px solid #ccc;
-    width: 25px;
-    height: 25px;
-    border-radius: 4px;
+  background: white;
+  border: 1px solid #ccc;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .quantidade span {
-    margin: 0 8px;
+  margin: 0 8px;
+  min-width: 20px;
+  text-align: center;
 }
 
 .excluir {
-    color: red;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 0.85rem;
-    padding: 0;
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0;
+  margin-top: 6px;
 }
 
 .resumo-pedido {
-    flex: 1;
-    background: #f1ede8;
-    padding: 15px;
-    border-radius: 8px;
-    height: fit-content;
+  background: #f1ede8;
+  border-radius: 8px;
+  padding: 15px;
+  height: 225px;
+}
+
+.resumo-pedido h4 {
+  margin: 0 0 15px;
 }
 
 .total {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .finalizar {
-    background: #4e6b4e;
-    color: white;
-    border: none;
-    padding: 10px;
-    width: 100%;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
+  background: #4e6b4e;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
