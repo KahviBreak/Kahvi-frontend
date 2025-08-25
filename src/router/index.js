@@ -1,7 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import CadastroView from '@/views/CadastroView.vue'
 import LoginView from '@/views/LoginView.vue'
 import PagDetalheView from '@/views/PagDetalheView.vue'
+import SobreView from '@/views/SobreView.vue'
+import PedidoView from '@/views/PedidoView.vue'
+import CardapioView from '@/views/CardapioView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +24,26 @@ const router = createRouter({
       path: '/detalhe',
       name: 'detalhe',
       component: PagDetalheView,
+    },
+    {
+      path: '/sobre',
+      name: 'sobre',
+      component: SobreView,
+    },
+    {
+      path: '/pedido',
+      name: 'pedido',
+      component: PedidoView
+    },
+    {
+      path: '/cardapio',
+      name: 'cardapio',
+      component: CardapioView,
+    },
+    {
+      path: '/cadastro',
+      name: 'cadastro',
+      component: CadastroView,
     },
   ],
 })
