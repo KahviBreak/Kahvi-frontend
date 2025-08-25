@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUsuarioStore } from '@/stores/counter.js'
 
-const store = useUsuarioStore() 
+const store = useUsuarioStore()
 const email = ref('')
 const password = ref('')
 const router = useRouter()
@@ -31,8 +31,7 @@ async function handleLogin() {
 
     <div class="content">
       <img src="../assets/images/Kahvi!2.png" alt="Logo Kahvi" class="logo" />
-
-      <div class="form">
+      <!-- <div class="form">
         <input
           type="email"
           placeholder="Email"
@@ -48,20 +47,21 @@ async function handleLogin() {
           v-model="password"
           autocomplete="current-password"
           :disabled="loading"
-        />
+        /> -->
 
-        <button class="button" @click="handleLogin" :disabled="loading">
+        <!-- <button class="button" @click="handleLogin" :disabled="loading">
           {{ loading ? 'Entrando...' : 'LOGIN' }}
         </button>
 
         <div class="register">
           <span>Não tem uma conta?</span>
-          <!-- Use router-link se for página interna, ou um @click.prevent -->
           <a href="#" @click.prevent="$router.push('/register')">Criar &gt;&gt;</a>
         </div>
 
         <p v-if="store.error" style="color: red;">{{ store.error }}</p>
-      </div>
+      </div> -->
+      <passage-auth app-id="Ok2hf9w8TwAneY5Dkijrs990"></passage-auth>
+
     </div>
   </div>
 </template>
