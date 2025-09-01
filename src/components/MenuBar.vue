@@ -1,7 +1,9 @@
 <script setup>
 
 import '@/assets/main.css'
+import '@/main.js'
 import { ref } from 'vue'
+
 
 const showMobileMenu = ref(false)
 function toggleMenu() {
@@ -53,6 +55,7 @@ function closeMenu() {
 
 
         <div v-if="showMobileMenu" id="mobile-menu">
+
             <button id="close-menu" @click="closeMenu"><img src="@/assets/images/close.png" alt=""></button>
             <ul id="ul-links">
                 <router-link to="/">
@@ -75,6 +78,12 @@ function closeMenu() {
                 <button id="button-logo"><img src="@/assets/images/Vector.png" alt="tiktok" id="logo-sociais"></button>
 
             </div>
+
+            <p @click="toggleMenu"><router-link to="/">Início</router-link></p>
+            <p @click="toggleMenu"><router-link to="/">Sobre nós</router-link></p>
+            <p @click="toggleMenu"><router-link to="/cardapio">Cardápio</router-link></p>
+            <p @click="toggleMenu"><router-link to="/pedido">Faça seu pedido</router-link></p>
+
         </div>
     </div>
 </template>
