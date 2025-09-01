@@ -44,12 +44,12 @@ const getImage = (img) =>
                     <p class="descricao">{{ item.descricao }}</p>
 
                     <div class="number">
-                    <div class="quantidade">
-                        <button @click="item.quantidade--" :disabled="item.quantidade <= 1">−</button>
-                        <span>{{ item.quantidade }}</span>
-                        <button @click="item.quantidade++">+</button>
-                    </div>
-                    <p class="preco">R$ {{ item.preco }}</p>
+                        <div class="quantidade">
+                            <button @click="item.quantidade--" :disabled="item.quantidade <= 1">−</button>
+                            <span>{{ item.quantidade }}</span>
+                            <button @click="item.quantidade++">+</button>
+                        </div>
+                        <p class="preco">R$ {{ item.preco }}</p>
                     </div>
 
                     <button class="excluir">Excluir</button>
@@ -71,14 +71,14 @@ const getImage = (img) =>
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
 .carrinho {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 20px;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -112,22 +112,22 @@ const getImage = (img) =>
 
 .info-produto h3 {
     margin-bottom: 2%;
-font-family: 'Overlock';
-font-style: normal;
-font-weight: 700;
-font-size: 24px;
-line-height: 29px;
-color: #402B19;
+    font-family: 'Overlock';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #402B19;
 }
 
-.descricao{
+.descricao {
     margin-bottom: 8%;
-font-family: 'Overpass';
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
-line-height: 20px;
-color: #93755C;
+    font-family: 'Overpass';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #93755C;
 }
 
 .quantidade {
@@ -152,31 +152,32 @@ color: #93755C;
     min-width: 20px;
     text-align: center;
 }
-.number{
+
+.number {
     display: flex;
     margin-bottom: 4%;
 }
 
-.preco{
-font-family: 'Outfit';
-font-style: normal;
-font-weight: 700;
-font-size: 26px;
-line-height: 30px;
-color: #402B19;
-margin-left: 40%;
-margin-top: 2%;
+.preco {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 30px;
+    color: #402B19;
+    margin-left: 40%;
+    margin-top: 2%;
 }
 
 .excluir {
-font-family: 'Outfit';
-font-style: normal;
-font-weight: 600;
-font-size: 20px;
-line-height: 25px;
-color: #FF0000;
-border: none;
-cursor: pointer;
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 25px;
+    color: #FF0000;
+    border: none;
+    cursor: pointer;
 }
 
 .resumo-pedido {
@@ -246,5 +247,95 @@ cursor: pointer;
     display: flex;
     justify-self: center;
     justify-content: center;
+}
+
+@media (max-width: 500px) {
+
+    .card-produto {
+        height: 250px;
+        width: 400px;
+        margin: 7% 5% 0 6%;
+        background: #ffff;
+
+
+    }
+
+    .carrinho {
+        display: grid;
+        grid-template-columns: none;
+        background-color: #f1ede8;
+
+    }
+
+    .img-produto {
+        height: 200px;
+    }
+
+
+
+    .info-produto h3 {
+        font-size: 18px;
+        font-weight: 700;
+
+    }
+
+    .descricao {
+        font-size: 15px;
+        margin-bottom: 2%;
+    }
+
+    .number {
+        display: grid;
+        justify-content: space-between;
+        flex-direction: column-reverse;
+
+    }
+
+    .preco {
+        font-size: 20px;
+        margin-left: 10%;
+        line-height: normal;
+        grid-row: 1;
+    }
+
+    .resumo-pedido {
+        background: #ffff;
+        border-radius: 8px;
+        padding: 15px;
+        height: 60px;
+        width: 400px;
+        margin: 7% 5% 0 6%;
+
+
+    }
+
+    .excluir {
+        background-color: #ffff;
+    }
+
+    .resumo-pedido h4 {
+
+        font-size: 18px;
+
+    }
+
+    .quantidade {
+        border-radius: 9px;
+
+    }
+
+    .quantidade button {
+        width: 18px;
+        height: 28px;
+        border-radius: 10px;
+    }
+
+    .total {
+        width: 60px;
+    }
+
+    .finalizar {
+        width: 60%;
+    }
 }
 </style>
