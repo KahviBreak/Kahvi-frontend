@@ -29,7 +29,7 @@ function closeMenu() {
             <p>Início</p>
             <p>Sobre nós</p>
             <p>Cardápio</p>
-            <p>Faça seu pedido</p>
+            <p>Localização</p>
             <div id="pesquisa">
                 <h1>Buscar</h1>
                 <img src="@/assets/Iconpesquisa.png" alt="Buscar" id="icon-pesquisa">
