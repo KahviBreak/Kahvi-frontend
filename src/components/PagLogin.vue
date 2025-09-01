@@ -2,24 +2,22 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUsuarioStore } from '@/stores/counter.js'
-import "@passageidentity/passage-elements/passage-auth";
-const appId = import.meta.env.VITE_PASSAGE_APP_ID;
 
-// const store = useUsuarioStore()
-// const email = ref('')
-// const password = ref('')
-// const router = useRouter()
-// const loading = ref(false)
+const store = useUsuarioStore() 
+const email = ref('')
+const password = ref('')
+const router = useRouter()
+const loading = ref(false)
 
-// async function handleLogin() {
-//   loading.value = true
-//   await store.login(email.value, password.value)
-//   loading.value = false
+async function handleLogin() {
+  loading.value = true
+  await store.login(email.value, password.value)
+  loading.value = false
 
-//   if (store.isAuthenticated) {
-//     router.push('/')
-//   }
-// }
+  if (store.isAuthenticated) {
+    router.push('/')
+  }
+}
 </script>
 
 <template>
@@ -33,7 +31,8 @@ const appId = import.meta.env.VITE_PASSAGE_APP_ID;
 
     <div class="content">
       <img src="../assets/images/Kahvi!2.png" alt="Logo Kahvi" class="logo" />
-      <!-- <div class="form">
+
+      <div class="form">
         <input
           type="email"
           placeholder="Email"
@@ -49,22 +48,20 @@ const appId = import.meta.env.VITE_PASSAGE_APP_ID;
           v-model="password"
           autocomplete="current-password"
           :disabled="loading"
-        /> -->
+        />
 
-        <!-- <button class="button" @click="handleLogin" :disabled="loading">
+        <button class="button" @click="handleLogin" :disabled="loading">
           {{ loading ? 'Entrando...' : 'LOGIN' }}
         </button>
 
         <div class="register">
           <span>Não tem uma conta?</span>
+          <!-- Use router-link se for página interna, ou um @click.prevent -->
           <a href="#" @click.prevent="$router.push('/register')">Criar &gt;&gt;</a>
         </div>
 
         <p v-if="store.error" style="color: red;">{{ store.error }}</p>
-      </div> -->
-    <div class="authContainer">
-      <passage-auth :app-id="appId"></passage-auth>
-    </div>
+      </div>
     </div>
   </div>
 </template>
