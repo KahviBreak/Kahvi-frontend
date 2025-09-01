@@ -253,7 +253,7 @@ const getImage = (img) =>
 
     .card-produto {
         height: 250px;
-        width: 400px;
+        width: 350px;
         margin: 7% 5% 0 6%;
         background: #ffff;
 
