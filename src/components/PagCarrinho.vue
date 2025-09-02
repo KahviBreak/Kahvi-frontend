@@ -79,13 +79,14 @@ const getImage = (img) =>
     grid-template-columns: 2fr 1fr;
     gap: 20px;
     width: 100%;
-    margin: 0 auto;
+    margin: 0 ;
 }
 
 .lista-produtos {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    width: 70%;
 }
 
 .card-produto {
@@ -95,6 +96,8 @@ const getImage = (img) =>
     padding: 15px;
     align-items: center;
     height: 225px;
+    width: 100%;
+    margin-left: 10%;
 }
 
 .img-produto {
@@ -185,6 +188,7 @@ const getImage = (img) =>
     border-radius: 8px;
     padding: 15px;
     height: 225px;
+    width: 500px;
 }
 
 .resumo-pedido h4 {
@@ -252,10 +256,14 @@ const getImage = (img) =>
 @media (max-width: 500px) {
 
     .card-produto {
-        height: 250px;
+        height: 200px;
         width: 350px;
-        margin: 7% 5% 0 6%;
+        margin: auto;
+        margin-top: 4%;
         background: #ffff;
+        border-radius: 8px;
+        border:  solid 0;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
 
 
     }
@@ -263,12 +271,14 @@ const getImage = (img) =>
     .carrinho {
         display: grid;
         grid-template-columns: none;
-        background-color: #f1ede8;
+        background-color: #FDE9D0;
 
     }
 
+    /*93755C*/
+
     .img-produto {
-        height: 200px;
+        height: 190px;
     }
 
 
@@ -280,7 +290,7 @@ const getImage = (img) =>
     }
 
     .descricao {
-        font-size: 15px;
+        font-size: 12px;
         margin-bottom: 2%;
     }
 
@@ -292,7 +302,7 @@ const getImage = (img) =>
     }
 
     .preco {
-        font-size: 20px;
+        font-size: 15px;
         margin-left: 10%;
         line-height: normal;
         grid-row: 1;
@@ -302,9 +312,14 @@ const getImage = (img) =>
         background: #ffff;
         border-radius: 8px;
         padding: 15px;
-        height: 60px;
-        width: 400px;
-        margin: 7% 5% 0 6%;
+        height: 150px;
+        width: 300px;
+        justify-content: center;
+        justify-self: center;
+        border-radius: 8px;
+        border:  solid 0;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+
 
 
     }
@@ -335,7 +350,36 @@ const getImage = (img) =>
     }
 
     .finalizar {
-        width: 60%;
+        width: 80%;
+        height: 40px;
+        border-radius: 8px;
+        padding: 6px;
+        font-weight: 300;
     }
+
+    .total-dois {
+    font-size: 18px;
+    line-height: 30px;
+    color: #5F7B5B;
+    margin: 0;
 }
+
+.total {
+    display: flex;
+    font-weight: bold;
+    margin-bottom: 2px;
+    margin: auto;
+    width: 70%;
+    gap: 110px;
+}
+
+.total-tres {
+    font-size: 18px;
+    line-height: 30px;
+    color: #402B19;
+    margin: 0;
+}
+}
+
+
 </style>
