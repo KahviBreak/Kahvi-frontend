@@ -7,7 +7,7 @@ import SobreView from '@/views/SobreView.vue'
 import PedidoView from '@/views/PedidoView.vue'
 import CardapioView from '@/views/CardapioView.vue'
 import PagCarrinhoView from '@/views/PagCarrinhoView.vue'
-
+import RelatorioView from '@/views/RelatorioView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -51,6 +51,10 @@ const router = createRouter({
       path: '/cart',
       name: 'carrinho',
       component: PagCarrinhoView
+    },
+    {path: '/relatorio',
+      name: 'relatorio',
+      component: RelatorioView
     },
   ]});
 
