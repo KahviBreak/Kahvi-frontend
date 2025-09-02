@@ -74,11 +74,28 @@
 
 #info h1 {
     margin-top: 2.5%;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 30px;
 }
 
 #info p {
     font-size: 20px;
+}
+
+@media (max-width: 500px) {
+    #footer {
+        background-color: #5F7B5B;
+        flex-direction: column;
+        height: 50px;
+        display: flex;
+        align-items: center;
+    }
+
+    #footer-top, 
+    #info{
+        display: none;
+    }
+
+
 }
 </style>
