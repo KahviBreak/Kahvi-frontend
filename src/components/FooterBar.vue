@@ -22,7 +22,7 @@
 #footer {
     background-color: #F9ECDD;
     flex-direction: column;
-    height: 300px;
+    height: 100px;
     display: flex;
     align-items: center;
 }
@@ -32,28 +32,28 @@
     align-items: center;
     width: 100%;
     background-color: #F9ECDD;
-    padding: 5%;
+    padding: 3%;
 }
 
 #logokahvi {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     margin: 0 22% 0 2%
 }
 
 #logo-insta {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     margin-top: 0.5%;
     justify-content: center;
-    margin-left: 15%;
+    margin-left: 18%;
 
 }
 
 #logo-tiktok {
-    width: 50px;
-    height: 50px;
-    margin-left: 18px;
+    width: 30px;
+    height: 30px;
+    margin-left: 30px;
     margin-top: 0.8%;
     justify-content: center;
 
@@ -68,18 +68,18 @@
     display: flex;
     flex-direction: column;
     font-family: "Spline Sans", sans-serif;
-    padding: 2%;
+    padding: 1%;
     color: #402B19;
 }
 
 #info h1 {
-    margin-top: 2.5%;
+    margin-top: 1%;
     font-weight: 500;
-    font-size: 30px;
+    font-size: 15px;
 }
 
 #info p {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 @media (max-width: 500px) {
@@ -91,7 +91,7 @@
         align-items: center;
     }
 
-    #footer-top, 
+    #footer-top,
     #info{
         display: none;
     }
