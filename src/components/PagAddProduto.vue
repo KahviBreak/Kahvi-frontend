@@ -40,12 +40,9 @@ const handleFileUpload = (event) => {
   <div class="page">
     <div class="product-container">
       <div class="product-image">
-         <!-- quando clicar na imagem -> abre input file -->
         <label for="uploadImagem">
           <img v-if="imagemPreview" :src="imagemPreview" alt="Preview do Produto" class="img-clickable" />
         </label>
-
-        <!-- input file escondido -->
         <input 
           id="uploadImagem" 
           type="file" 
@@ -68,7 +65,7 @@ const handleFileUpload = (event) => {
 
         <div class="controls">
           <div class="quantity-control">
-            <span>Valor un.:</span>
+            <span style="color:#556B4E ;">Valor un.:</span>
             <div class="quantity-buttons">
               <button class="quantity-btn" @click="diminuirQuantidade" :disabled="quantity <= 1">−</button>
               <span class="quantity-value">{{ quantity }}</span>
@@ -80,7 +77,7 @@ const handleFileUpload = (event) => {
             <label for="categoria" class="form-label">Categoria</label>
             <br>
             <select id="categoria" name="categoria" class="select-category" v-model="categoriaSelecionada">
-              <option value="" disabled>Selecione...</option>
+              <option value="" disabled>Selecione</option>
               <option v-for="cat in categorias" :key="cat.value" :value="cat.value">
                 {{ cat.label }}
               </option>
@@ -286,7 +283,6 @@ input[type="text"] {
   opacity: 0.9;
 }
 
-/* RESPONSIVO */
 @media (max-width: 1024px) {
   .product-container {
     grid-template-columns: 1fr;
@@ -318,145 +314,58 @@ input[type="text"] {
 }
 
 @media (max-width: 600px) {
-  .product-container {
-    max-width: 450px;
-    margin: 0 auto;
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .select-category {
-    width: 100px;
-    height: 30px;
-    font-size: 14px;
-  }
 
 
-  .product-image img {
-    width: 100%;
-    border-radius: 12px 12px 0 0;
-    object-fit: cover;
-  }
+.btn-primary{
+   padding: 5px;
+  font-size: 12px;
+  width: 40%;
+  margin-top: 10px;
+  font-weight: 200;
+  display: grid;
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+}
 
-  .product-details {
-    background: #fff;
-    padding: 20px;
-    border-radius: 0 0 12px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    min-width: 303px;
-    margin-left: 2px;
-  }
+/* .product-details{
+    background-color: white;
+    padding: 10px 10px 10px 10px;
+} */
 
-  h1 {
-    font-family: 'Overlock', cursive;
-    font-weight: 700;
-    font-size: 20px;
-    color: #402B19;
-    margin: 0;
-  }
+.upload-box {
+  width: 120%;
+}
 
-  .description {
-    font-size: 16px;
-    color: #93755C;
-    margin: 0;
-  }
+.upload-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
 
-  .price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #556B4E;
-    margin: 0;
-    margin-top: 3%;
-  }
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #402B19;
+  text-align: center;
+}
 
-  .controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 3%;
-  }
+.form-group {
+  gap: 5px;
+}
 
-  .quantity-control, .category-control {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
+label {
+  font-size: 14px;
+  font-weight: 600;
+}
 
-  .quantity-buttons {
-    background: #FFFFFF;
-    border: 1px solid #C1B8B0;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-  }
-
-  .quantity-btn {
-    background: none;
-    border: none;
-    padding: 4px 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .quantity-value {
-    font-size: 14px;
-    font-weight: bold;
-    color: #402B19;
-    min-width: 20px;
-    text-align: center;
-  }
-
-  .category-control input {
-    width: 40px;
-    height: 28px;
-    border: 1px solid #C1B8B0;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 14px;
-  }
-
-  .form-label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    color: #6E5641;
-    font-weight: 600;
-  }
-
-  input[type="text"] {
-    width: 100%;
-    height: 36px;
-    border: 1px solid #C1B8B0;
-    border-radius: 6px;
-    font-size: 14px;
-    padding: 4px 8px;
-  }
-
-  .actions {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .btn-primary {
-    border: none;
-    padding: 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 60%;
-    height:30%;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    justify-self: center;
-  }
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
 }
 </style>
