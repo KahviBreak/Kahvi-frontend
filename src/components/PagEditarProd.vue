@@ -58,10 +58,12 @@ const categoriaSelecionada = ref('')
           </div>
            <div class="categoria">
           <label for="cat">Categoria</label>
-          <select id="cat">
-            <option value="Bolo">Bolo</option>
-            <option value="Suco">Suco</option>
-          </select>
+          <select id="categoria" name="categoria" class="select-category" v-model="categoriaSelecionada">
+              <option value="" disabled>Selecione</option>
+              <option v-for="cat in categorias" :key="cat.value" :value="cat.value">
+                {{ cat.label }}
+              </option>
+            </select>
         </div>
         </div>
         <div class="botoes">
@@ -163,6 +165,21 @@ span {
   font-size: 18px;
   color: #93755C;
 }
+
+.categoria label {
+  font-weight: 500;
+  font-size: 18px;
+  color: #93755C;
+  display: block;
+}
+
+select{
+  width: 170px;
+  height: 38px;
+  border: #C1B8B0 2px solid;
+  border-radius: 10px;
+}
+
 
 .grao {
   font-weight: 500;
