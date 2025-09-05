@@ -7,6 +7,7 @@ import SobreView from '@/views/SobreView.vue'
 import PedidoView from '@/views/PedidoView.vue'
 import CardapioView from '@/views/CardapioView.vue'
 import PagCarrinhoView from '@/views/PagCarrinhoView.vue'
+import ProdutosAdmView from '@/views/ProdutosAdmView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +52,11 @@ const router = createRouter({
       path: '/cart',
       name: 'carrinho',
       component: PagCarrinhoView
+    },
+    {
+      path: '/produtos',
+      name: 'produtos',
+      component: ProdutosAdmView
     },
   ]});
 
