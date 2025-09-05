@@ -74,7 +74,7 @@ const handleFileUpload = (event) => {
           </div>
 
           <div class="category-control">
-            <label for="categoria" class="form-label">Categoria</label>
+            <label for="categoria" class="form-label">Categoria</label> <br>
             <select id="categoria" name="categoria" class="select-category" v-model="categoriaSelecionada">
               <option value="" disabled>Selecione</option>
               <option v-for="cat in categorias" :key="cat.value" :value="cat.value">
@@ -315,10 +315,15 @@ input[type="text"] {
 @media (max-width: 600px) {
 
 
+
+  input[type="text"] {
+  width: 350px;
+}
+
 .btn-primary{
    padding: 5px;
   font-size: 12px;
-  width: 40%;
+  width:100%;
   margin-top: 10px;
   font-weight: 200;
   display: grid;
@@ -332,6 +337,17 @@ input[type="text"] {
     padding: 10px 10px 10px 10px;
 } */
 
+.product-details{
+display: flex;
+align-items: center;
+}
+
+/* .category-control{
+display: grid;
+grid-template-columns: 1fr;
+} */
+
+
 .upload-box {
   width: 120%;
 }
@@ -339,7 +355,6 @@ input[type="text"] {
 .upload-box img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   border-radius: 12px;
 }
 
@@ -350,9 +365,6 @@ h2 {
   text-align: center;
 }
 
-.form-group {
-  gap: 5px;
-}
 
 label {
   font-size: 14px;
@@ -362,7 +374,6 @@ label {
 input,
 select {
   width: 100%;
-  padding: 10px;
   border-radius: 8px;
   font-size: 14px;
 }
