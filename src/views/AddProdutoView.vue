@@ -4,10 +4,14 @@ import PagAddProduto from '@/components/PagAddProduto.vue';
 </script>
 
 <template>
- <MenuBar />
- <PagAddProduto />
+<MenuBar/>
+<div class="fundo"><PagAddProduto/></div>
 </template>
 
 <style scoped>
 
+.fundo{
+
+    background-color: #F1EDE8;
+}
 </style>
