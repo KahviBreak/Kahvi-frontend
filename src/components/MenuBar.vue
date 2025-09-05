@@ -1,6 +1,7 @@
 <script setup>
 
 import '@/assets/main.css'
+import { useUsuarioStore } from "@/stores/counter"
 import { ref } from 'vue'
 
 const showMobileMenu = ref(false)
@@ -13,11 +14,27 @@ function closeMenu() {
     showMobileMenu.value = false
 }
 
-
+const store = useUsuarioStore()
 </script>
 
 <template>
-    <div id="menu">
+    <div id="menuAdmin" v-if="store.usuario?.role === 'admin'">
+         <img src='@/assets/Kahvi!9.png' alt="Logo" id="logo-admin" />
+        <div id="menu-links-admin">
+            <p>Produtos</p>
+            <p>Pedidos</p>
+            <p>Categorias</p>
+            <div id="pesquisa-admin">
+                <h1>Buscar</h1>
+                <img src="@/assets/Iconpesquisa-green.png" alt="Buscar" id="icon-pesquisa">
+            </div>
+
+        </div>
+        <div id="icons-end-admin">
+            <img src="@/assets/user-profile-03-white.png" alt="Usuário" id="user">
+        </div>
+    </div>
+    <div id="menu" v-else>
         <img src="@/assets/Kahvi!.png" alt="Logo" id="logo" />
 
         <div id="togglemenu" @click="toggleMenu">
@@ -88,13 +105,39 @@ function closeMenu() {
     justify-content: space-between;
 }
 
+#menuAdmin {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color:#5F7B5B;
+    padding: 10px 20px;
+    position: relative;
+    justify-content: space-between;
+}
+
 #logo {
     width: 60px;
     height: 60px;
     margin-left: 70px;
 }
 
+#logo-admin {
+    width: 60px;
+    height: 60px;
+    margin-left: 70px;
+}
+
 #menu-links {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+#menu-links-admin {
     display: flex;
     flex-direction: row;
     flex: 1;
@@ -113,13 +156,35 @@ function closeMenu() {
     margin-top: 0.5%;
 }
 
+#menu-links-admin p {
+    background-color:#5F7B5B;
+    color: #FFFFFF;
+    font-family: "Varta", sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 0.5%;
+}
+
 #menu-links :hover {
-    color: #273625;
+    color: #c8f7c2;
     font-size: 22px;
 }
 
 #pesquisa {
     background-color: #5F7B5B;
+    height: 38px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    min-width: 100px;
+    max-width: 300px;
+    flex: 1;
+}
+
+#pesquisa-admin {
+    background-color: #FFFFFF;
     height: 38px;
     border-radius: 15px;
     display: flex;
@@ -137,6 +202,13 @@ function closeMenu() {
 }
 
 #icons-end {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-right: 4%;
+}
+
+#icons-end-admin {
     display: flex;
     align-items: center;
     gap: 40px;
