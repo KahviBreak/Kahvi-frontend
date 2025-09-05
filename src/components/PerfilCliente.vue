@@ -157,4 +157,36 @@ select {
   border: 1px solid #ccc;
   background-color: white;
 }
+
+@media (max-width: 768px){
+
+}
+
+@media (max-width: 500px){
+  .imagem {
+  width: 200px;
+  height: 200px;
+}
+input {
+  height: 40px;
+}
+
+.inputsAdmin {
+  width: 320px;
+}
+select {
+  width: 340px;
+}
+.container {
+  padding-bottom: 190px;
+}
+
+.inputsUsuario .grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  width: 320px;
+  height: 440px;
+}
+}
 </style>
