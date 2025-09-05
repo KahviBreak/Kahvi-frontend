@@ -75,7 +75,6 @@ const handleFileUpload = (event) => {
 
           <div class="category-control">
             <label for="categoria" class="form-label">Categoria</label>
-            <br>
             <select id="categoria" name="categoria" class="select-category" v-model="categoriaSelecionada">
               <option value="" disabled>Selecione</option>
               <option v-for="cat in categorias" :key="cat.value" :value="cat.value">
