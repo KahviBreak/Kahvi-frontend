@@ -64,24 +64,24 @@ const handleFileUpload = (event) => {
           <input type="text" placeholder="Ex: Bolo de chocolate.">
         </div>
 
-        <div class="controls">
-                     <span>Valor por un</span>
+        <div class="container-quant">
+          <div class="quantidade">
+            <span>Valor por un</span>
             <div class="quantButton">
               <button class="quantity-button" @click="diminuirQuantidade" :disabled="preco <= 1">−</button>
               <span class="quantity-value">R${{ preco.toFixed(2).replace('.', ',') }}</span>
               <button class="quantity-button" @click="aumentarQuantidade">+</button>
             </div>
           </div>
-
-          <div class="category-control">
-            <label for="categoria" class="form-label">Categoria</label> <br>
-            <select id="categoria" name="categoria" class="select-category" v-model="categoriaSelecionada">
+           <div class="category-control">
+          <label for="categoria" class="form-label">Categoria</label> <br>
+          <select id="categoria" name="categoria" class="select-category" v-model="categoriaSelecionada">
               <option value="" disabled>Selecione</option>
               <option v-for="cat in categorias" :key="cat.value" :value="cat.value">
                 {{ cat.label }}
               </option>
             </select>
-          </div>
+        </div>
         </div>
 
         <div class="actions">
@@ -89,6 +89,7 @@ const handleFileUpload = (event) => {
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 
@@ -150,13 +151,13 @@ h1 {
   color: #402B19;
 }
 
-.controls {
+.container-quant {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .category-control {
-  padding-left: 50%;
+  margin-left: 33%;
 }
 
 .category-control input {
