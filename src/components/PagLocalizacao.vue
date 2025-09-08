@@ -34,7 +34,7 @@
 
           <div class="bloco">
             <div class="titulo-info">
-              <img src="@/assets/icon.png" alt="" class="marker02">
+              <img src="@/assets/Icon.png" alt="" class="marker02">
             </div>
             <strong>Horários de funcionamento</strong>
             <p>Seg. a Sáb.: 8h às 23h</p>
