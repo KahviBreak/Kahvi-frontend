@@ -11,7 +11,7 @@ import PagAddProduto from '@/components/PagAddProduto.vue';
 <style scoped>
 
 .fundo{
-
+    height: 89vh;
     background-color: #F1EDE8;
 }
 </style>
