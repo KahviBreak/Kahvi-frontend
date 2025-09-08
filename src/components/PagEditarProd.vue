@@ -38,6 +38,10 @@ const categoriaSelecionada = ref('')
   <div class="teste">
     <div class="container">
       <div class="img">
+        <div class="addFoto"><svg class="svg" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.00994 10.8889C2 11.6224 2 12.4455 2 13.3778V22.6222C2 26.6048 2 28.5961 2.77506 30.1173C3.45683 31.4553 4.54469 32.5432 5.88273 33.2249C7.40388 34 9.39518 34 13.3778 34H22.6222C23.5545 34 24.3776 34 25.1111 33.9901M2.00994 10.8889C2.04247 8.48871 2.18142 7.04782 2.77506 5.88273C3.45683 4.54469 4.54469 3.45683 5.88273 2.77506C7.40388 2 9.39518 2 13.3778 2H22.6222C26.6048 2 28.5961 2 30.1173 2.77506C31.4553 3.45683 32.5432 4.54469 33.2249 5.88273C34 7.40388 34 9.39518 34 13.3778V22.6222C34 25.3135 34 27.0954 33.7608 28.4374M2.00994 10.8889L10.8988 19.7778M25.1111 33.9901C27.5113 33.9575 28.9522 33.8186 30.1173 33.2249C31.4553 32.5432 32.5432 31.4553 33.2249 30.1173C33.4762 29.624 33.6461 29.0814 33.7608 28.4374M25.1111 33.9901L10.8988 19.7778M10.8988 19.7778L15.7373 14.9393C16.5293 14.1473 16.9253 13.7513 17.382 13.6029C17.7837 13.4724 18.2163 13.4724 18.618 13.6029C19.0747 13.7513 19.4707 14.1473 20.2627 14.9393L33.7608 28.4374M26.9067 9.11111H26.8711" stroke="white" stroke-width="3" stroke-linecap="round"/>
+</svg>
+</div>
         <img src="" alt="">
       </div>
       <div class="containerDetalhes">
@@ -108,8 +112,19 @@ body {
   height: 650px;
   border-radius: 12px;
   object-fit: cover;
-  background-color: #556B4E;
+  background-color: white;
   margin-right: 100px;
+}
+
+.addFoto{
+  width: 15%;
+  height: 11%;
+  border-top-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background-color: #5F7B5B;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .containerDetalhes {
@@ -163,21 +178,27 @@ h1 {
 span {
   font-weight: 500;
   font-size: 18px;
-  color: #93755C;
+  color: #5F7B5B;
 }
 
 .categoria label {
   font-weight: 500;
   font-size: 18px;
-  color: #93755C;
+  color: #5F7B5B;
   display: block;
 }
 
+.categoria{
+  margin-left: 46%;
+}
+
 select{
-  width: 170px;
-  height: 38px;
+  width: 145px;
+  height: 36px;
   border: #C1B8B0 2px solid;
-  border-radius: 10px;
+  border-radius: 4px;
+  background-color: white;
+  color: #5F7B5B;
 }
 
 
@@ -191,7 +212,7 @@ select{
   background-color: #FFFFFF;
   max-width: 140px;
   border: #C1B8B0 2px solid;
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 .quantity-button {
@@ -210,7 +231,7 @@ select{
   font-weight: bold;
   min-width: 24px;
   text-align: center;
-  color: #402B19;
+  color: #5F7B5B;
 }
 
 
