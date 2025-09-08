@@ -30,15 +30,14 @@
 #footer-top {
     display: flex;
     align-items: center;
-    width: 100%;
     background-color: #F9ECDD;
-    padding: 3%;
+    width: 100%;
 }
 
 #logokahvi {
     width: 80px;
     height: 80px;
-    margin: 0 22% 0 2%
+    margin: 1% 22% 1% 2%
 }
 
 #logo-insta {
@@ -46,7 +45,7 @@
     height: 30px;
     margin-top: 0.5%;
     justify-content: center;
-    margin-left: 18%;
+    margin-left: 18.5%;
 
 }
 
@@ -61,15 +60,14 @@
 
 #info {
     border-top: 2px solid #BC9E85;
-    width: 100%;
     background-color: #F9ECDD;
     align-items: center;
     justify-content: center;
     display: flex;
     flex-direction: column;
     font-family: "Spline Sans", sans-serif;
-    padding: 1%;
     color: #402B19;
+    width: 100%;
 }
 
 #info h1 {
@@ -80,22 +78,86 @@
 
 #info p {
     font-size: 15px;
+    margin-bottom: 1%;
 }
 
 @media (max-width: 500px) {
     #footer {
-        background-color: #5F7B5B;
-        flex-direction: column;
-        height: 50px;
-        display: flex;
-        align-items: center;
-    }
-
-    #footer-top,
-    #info{
-        display: none;
-    }
+    background-color: #F9ECDD;
+    flex-direction: column;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
 
 
+#logokahvi {
+    width: 40px;
+    height: 40px;
+}
+
+#logo-insta {
+    width: 20px;
+    height: 20px;
+    margin-left: 9%;
+
+}
+
+#logo-tiktok {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+#info h1 {
+    font-size: 14px;
+}
+
+#info p {
+    font-size: 12px;
+}
+}
+
+@media (max-width: 800px) {
+
+#logokahvi {
+    width: 40px;
+    height: 40px;
+}
+
+
+#logo-tiktok {
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+#logo-insta {
+    margin-left: 18%;
+    width: 20px;
+    height: 20px;
+}
+
+}
+
+@media (max-width: 1300px) {
+
+#logokahvi {
+    width: 55px;
+    height: 55px;
+}
+
+
+#logo-tiktok {
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+#logo-insta {
+    margin-left: 19.5%;
+    width: 30px;
+    height: 30px;
+}
 }
 </style>
