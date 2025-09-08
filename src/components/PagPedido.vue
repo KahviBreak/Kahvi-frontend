@@ -62,9 +62,9 @@ function click() {
     </div>
   </div>
    <div id="imagegrid">
-  <img src="@/assets/pedido1.png" alt="" style="height: 400px;width: 350px;">
-  <img src="@/assets/pedido2.png" alt="" style="height: 400px;width: 350px;" >
-  <img src="@/assets/pedido3.png" alt="" style="height: 400px;width: 350px;">
+  <img src="@/assets/pedido1.png" alt="">
+  <img src="@/assets/pedido2.png" alt="" >
+  <img src="@/assets/pedido3.png" alt="">
   </div>
 
     <div class="container-product">
@@ -85,7 +85,7 @@ function click() {
             </defs>
           </svg>
         </button>
-        <img :src="produto.imagem.url" alt="produto.name" style="height:369px;width:272px;"/>
+        <img :src="produto.imagem.url" alt="produto.name"/>
         <h1>{{ produto.nome }}</h1>
         <p>{{ produto.descricao }}</p>
         <p>{{ `R$ ` + produto.preco }}</p>
@@ -105,6 +105,10 @@ function click() {
   justify-content: center;
 }
 
+#imagegrid img{
+  width: 400px;
+  height: 500px;
+}
 
 div {
   font-family: 'Arial', sans-serif;
@@ -173,6 +177,8 @@ div {
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  height:369px;
+  width:272px;
 }
 
 /* Nome do Produto */
@@ -232,5 +238,48 @@ div {
   font-family: 'Passion One', sans-serif;
   font-size: 24px;
   font-weight: 24;
+}
+
+@media (max-width: 500px){
+#imagegrid img{
+  width: 130px;
+  height: 200px;
+}
+
+  .container-product {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  padding: 5px;
+}
+
+
+
+.produto img {
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 150px;
+  width: 100px;
+}
+
+
+
+/* Nome do Produto */
+.produto h1 {
+  font-size: 16px;
+}
+
+/* Descrição */
+.produto p:nth-of-type(1) {
+  display: none;
+}
+
+/* Preço */
+.produto p:nth-of-type(2) {
+  font-size: 15px;
+  font-weight: bold;
+}
+
 }
 </style>
