@@ -292,30 +292,43 @@ const observacoes = ref([
 <style scoped>
 .pagina {
   font-family: Arial, sans-serif;
-  padding: 40px;
+  padding: 20px;
   background-color: #fdfaf6;
+  max-width: 700px; /* largura fixa no centro */
+  margin: 0 auto;   /* centraliza na tela */
 }
 
-H2{
-  margin-bottom: 1%;
+h1 {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  color: #2F402C;
+}
+
+h2 {
+  margin: 16px 0 8px;
+  font-size: 18px;
   color: #2F402C;
 }
 
 /* Cabeçalho */
 .cabecalho {
   display: flex;
+  flex-direction: column; /* ✅ coloca em coluna */
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 40px;
-  color: #2F402C;
+  gap: 10px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .cabecalho h1 {
   margin: 0;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: bold;
+  color: #2F402C;
 }
+
 
 /* Dropdown */
 .dropdown {
@@ -325,125 +338,119 @@ H2{
 .dropdown-btn {
   background: #C2E0BD;
   border: 1px solid #5F7B5B;
-  padding: 10px 16px;
-  font-size: 16px;
+  padding: 6px 12px;
+  font-size: 14px;
   border-radius: 6px;
   cursor: pointer;
   color: #5F7B5B;
 }
 
-.dropdown-btn .seta {
-  margin-left: 8px;
-  font-size: 12px;
-}
-
 .dropdown-content {
   position: absolute;
-  top: 120%;
+  top: 110%;
   left: 0;
-  min-width: 160px;
+  min-width: 140px;
   background: #5F7B5B;
-  border: 1px solid #5F7B5B;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   z-index: 1000;
-  color: white !important;
 }
-
 
 .dropdown-content button {
   display: block;
   width: 100%;
-  padding: 10px 14px;
+  padding: 8px 12px;
   background: none;
   border: none;
   text-align: left;
   font-size: 14px;
   cursor: pointer;
+  color: white;
 }
 
 .dropdown-content button:hover {
   background-color: #f2f2f2;
+  color: #333;
 }
 
 /* Conteúdo */
 .conteudo {
-  max-width: 1200px;
-  margin: 0 auto;
   text-align: left;
 }
 
 /* Resumo Geral */
 .resumo-geral {
   background-color: #dbe6d1;
-  padding: 20px;
+  padding: 12px;
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .resumo-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 16px;
-  font-weight: 500;
+  margin-bottom: 6px;
+  font-size: 14px;
 }
 
 .pagamento {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 14px;
   background-color: #5F7B5B;
   color: white;
-  padding: 20px;
+  padding: 12px;
   border-radius: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 /* Lista de Pedidos */
 .order-list {
   background-color: rgba(95, 123, 91, 0.2);
-  padding: 20px;
+  padding: 12px;
   border-radius: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  overflow-x: auto;   /* ✅ adiciona rolagem horizontal */
 }
 
 table {
   width: 100%;
+  min-width: 500px;   /* ✅ garante que a tabela tenha largura mínima */
   border-collapse: collapse;
+  font-size: 14px;
 }
 
 thead {
   background-color: rgba(95, 123, 91, 0.2);
-  font-weight: bold;
 }
 
 th, td {
-  padding: 12px;
+  padding: 8px;
   border-bottom: 1px solid #BC9E85;
+  text-align: left;
+  white-space: nowrap; /* ✅ evita quebra estranha de texto */
 }
 
-/* Indicadores de vendas */
+
+/* Indicadores */
 .indicadores-vendas {
   background-color: #dbe6d1;
-  padding: 20px;
+  padding: 12px;
   border-radius: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .indicador-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 16px;
+  margin-bottom: 6px;
+  font-size: 14px;
 }
 
 /* Observações */
 .observacoes {
   background-color: rgba(95, 123, 91, 0.2);
-  padding: 20px;
+  padding: 12px;
   border-radius: 8px;
 }
 
@@ -456,9 +463,9 @@ th, td {
   background-color: #5F7B5B;
   color: #fff;
   margin-bottom: 6px;
-  padding: 8px 12px;
+  padding: 6px 10px;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 13px;
   width: fit-content;
 }
 </style>
