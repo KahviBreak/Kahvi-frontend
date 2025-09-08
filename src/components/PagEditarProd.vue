@@ -38,10 +38,13 @@ const categoriaSelecionada = ref('')
   <div class="teste">
     <div class="container">
       <div class="img">
-        <div class="addFoto"><svg class="svg" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M2.00994 10.8889C2 11.6224 2 12.4455 2 13.3778V22.6222C2 26.6048 2 28.5961 2.77506 30.1173C3.45683 31.4553 4.54469 32.5432 5.88273 33.2249C7.40388 34 9.39518 34 13.3778 34H22.6222C23.5545 34 24.3776 34 25.1111 33.9901M2.00994 10.8889C2.04247 8.48871 2.18142 7.04782 2.77506 5.88273C3.45683 4.54469 4.54469 3.45683 5.88273 2.77506C7.40388 2 9.39518 2 13.3778 2H22.6222C26.6048 2 28.5961 2 30.1173 2.77506C31.4553 3.45683 32.5432 4.54469 33.2249 5.88273C34 7.40388 34 9.39518 34 13.3778V22.6222C34 25.3135 34 27.0954 33.7608 28.4374M2.00994 10.8889L10.8988 19.7778M25.1111 33.9901C27.5113 33.9575 28.9522 33.8186 30.1173 33.2249C31.4553 32.5432 32.5432 31.4553 33.2249 30.1173C33.4762 29.624 33.6461 29.0814 33.7608 28.4374M25.1111 33.9901L10.8988 19.7778M10.8988 19.7778L15.7373 14.9393C16.5293 14.1473 16.9253 13.7513 17.382 13.6029C17.7837 13.4724 18.2163 13.4724 18.618 13.6029C19.0747 13.7513 19.4707 14.1473 20.2627 14.9393L33.7608 28.4374M26.9067 9.11111H26.8711" stroke="white" stroke-width="3" stroke-linecap="round"/>
-</svg>
-</div>
+        <div class="addFoto"><svg class="svg" width="36" height="36" viewBox="0 0 36 36" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M2.00994 10.8889C2 11.6224 2 12.4455 2 13.3778V22.6222C2 26.6048 2 28.5961 2.77506 30.1173C3.45683 31.4553 4.54469 32.5432 5.88273 33.2249C7.40388 34 9.39518 34 13.3778 34H22.6222C23.5545 34 24.3776 34 25.1111 33.9901M2.00994 10.8889C2.04247 8.48871 2.18142 7.04782 2.77506 5.88273C3.45683 4.54469 4.54469 3.45683 5.88273 2.77506C7.40388 2 9.39518 2 13.3778 2H22.6222C26.6048 2 28.5961 2 30.1173 2.77506C31.4553 3.45683 32.5432 4.54469 33.2249 5.88273C34 7.40388 34 9.39518 34 13.3778V22.6222C34 25.3135 34 27.0954 33.7608 28.4374M2.00994 10.8889L10.8988 19.7778M25.1111 33.9901C27.5113 33.9575 28.9522 33.8186 30.1173 33.2249C31.4553 32.5432 32.5432 31.4553 33.2249 30.1173C33.4762 29.624 33.6461 29.0814 33.7608 28.4374M25.1111 33.9901L10.8988 19.7778M10.8988 19.7778L15.7373 14.9393C16.5293 14.1473 16.9253 13.7513 17.382 13.6029C17.7837 13.4724 18.2163 13.4724 18.618 13.6029C19.0747 13.7513 19.4707 14.1473 20.2627 14.9393L33.7608 28.4374M26.9067 9.11111H26.8711"
+              stroke="white" stroke-width="3" stroke-linecap="round" />
+          </svg>
+        </div>
         <img src="" alt="">
       </div>
       <div class="containerDetalhes">
@@ -60,15 +63,15 @@ const categoriaSelecionada = ref('')
               <button class="quantity-button" @click="aumentarQuantidade">+</button>
             </div>
           </div>
-           <div class="categoria">
-          <label for="cat">Categoria</label>
-          <select id="categoria" name="categoria" class="select-category" v-model="categoriaSelecionada">
+          <div class="categoria">
+            <label for="cat">Categoria</label>
+            <select id="categoria" name="categoria" class="select-category" v-model="categoriaSelecionada">
               <option value="" disabled>Selecione</option>
               <option v-for="cat in categorias" :key="cat.value" :value="cat.value">
                 {{ cat.label }}
               </option>
             </select>
-        </div>
+          </div>
         </div>
         <div class="botoes">
           <div>
@@ -116,7 +119,7 @@ body {
   margin-right: 100px;
 }
 
-.addFoto{
+.addFoto {
   width: 15%;
   height: 11%;
   border-top-left-radius: 12px;
@@ -188,11 +191,11 @@ span {
   display: block;
 }
 
-.categoria{
+.categoria {
   margin-left: 46%;
 }
 
-select{
+select {
   width: 145px;
   height: 36px;
   border: #C1B8B0 2px solid;
@@ -333,7 +336,6 @@ input[type="text"] {
     max-width: 450px;
     margin: 0 auto;
     border-radius: 12px;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -345,15 +347,41 @@ input[type="text"] {
     object-fit: cover;
   }
 
+  .img {
+    width: 350px;
+    height: 250px;
+    border-radius: 12px 12px 0 0;
+    object-fit: cover;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    margin-right: 0;
+  } 
+
+  .svg{
+    width: 25px;
+  }
+
+  .addFoto {
+  width: 18%;
+  height: 20%;
+  border-top-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background-color: #5F7B5B;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
   .containerDetalhes {
     background: #fff;
     padding: 20px;
     border-radius: 0 0 12px 12px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    min-width: 303px;
-    margin-left: 2px;
+    gap: 5px;
+    width: 310px;
+    
   }
 
   h1 {
@@ -385,13 +413,6 @@ input[type="text"] {
     margin-top: 3%;
   }
 
-  .quantidade,
-  .graos {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
   .quantButton {
     background: #FFFFFF;
     border: 1px solid #C1B8B0;
@@ -417,13 +438,8 @@ input[type="text"] {
     text-align: center;
   }
 
-  .graos input {
-    width: 40px;
-    height: 28px;
-    border: 1px solid #C1B8B0;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 14px;
+  .categoria{
+    margin-left: 0;
   }
 
   .obs {
@@ -436,7 +452,7 @@ input[type="text"] {
   }
 
   input[type="text"] {
-    width: 100%;
+    width: 90%;
     height: 36px;
     border: 1px solid #C1B8B0;
     border-radius: 6px;
