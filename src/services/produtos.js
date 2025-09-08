@@ -13,6 +13,16 @@ class ProdutoService {
       throw error
     }
   }
+
+  async obterProdutoPorId(id) {
+    try {
+      const response = await axios.get(`produtos/${id}/`)
+      return response.data
+    } catch (error) {
+      console.error('Error fetching product by ID:', error)
+      throw error
+    }
+  }
 }
 
 export default ProdutoService
