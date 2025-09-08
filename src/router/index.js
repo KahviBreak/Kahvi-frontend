@@ -6,8 +6,10 @@ import PagDetalheView from '@/views/PagDetalheView.vue'
 import SobreView from '@/views/SobreView.vue'
 import PedidoView from '@/views/PedidoView.vue'
 import CardapioView from '@/views/CardapioView.vue'
+import PerfilClienteView from '@/views/PerfilClienteView.vue'
 import PagCarrinhoView from '@/views/PagCarrinhoView.vue'
 import ProdutosAdmView from '@/views/ProdutosAdmView.vue'
+import LocalizacaoView from '@/views/LocalizacaoView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,6 +51,11 @@ const router = createRouter({
       component: CadastroView,
     },
     {
+      path: '/perfil',
+      name: 'perfilCliente',
+      component: PerfilClienteView
+    },
+    {
       path: '/cart',
       name: 'carrinho',
       component: PagCarrinhoView
@@ -58,6 +65,11 @@ const router = createRouter({
       name: 'produtos',
       component: ProdutosAdmView
     },
+    {
+      path: '/localizacao',
+      name: 'localizacao',
+      component: LocalizacaoView
+    }
   ]});
 
 export default router
