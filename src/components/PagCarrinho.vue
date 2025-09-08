@@ -1,73 +1,67 @@
 <script setup>
-import { ref, } from 'vue'
-const produto = ref(null)
+import { computed } from 'vue'
+import { useCartStore } from '@/stores/cart'
 
-const produtos = ref([
-    {
-        id: 1,
-        nome: 'Focaccia de Alecrim',
-        descricao: 'Focaccia macia com aroma fresco de alecrim.',
-        quantidade: ref(1),
-        preco: 10,
-        imagem: 'Frame 29.png',
-    },
-    {
-        id: 2,
-        nome: 'Focaccia de Alecrim',
-        descricao: 'Focaccia macia com aroma fresco de alecrim.',
-        quantidade: ref(1),
-        preco: 10,
-        imagem: 'Frame 29.png',
-    },
-    {
-        id: 3,
-        nome: 'Focaccia de Alecrim',
-        descricao: 'Focaccia macia com aroma fresco de alecrim.',
-        quantidade: ref(1),
-        preco: 10,
-        imagem: 'Frame 29.png',
-    },
-])
+const cartStore = useCartStore()
 
-const getImage = (img) =>
-    new URL(`../assets/${img}`, import.meta.url).href
+// lista de produtos do carrinho
+const produtos = computed(() => cartStore.items)
+
+// calcular total
+const total = computed(() => cartStore.totalPrice)
+
+// funções de controle
+const aumentarQuantidade = (item) => {
+  cartStore.addCart(item, 1) // adiciona +1 no item já existente
+}
+
+const diminuirQuantidade = (item) => {
+  if (item.quantity > 1) {
+    item.quantity--
+  }
+}
+
+const excluirProduto = (id) => {
+  cartStore.removeCart(id)
+}
+
 </script>
 
 <template>
-    <div class="carrinho">
-        <div class="lista-produtos">
-            <div class="card-produto" v-for="item in produtos" :key="item.id">
-                <img :src="getImage(item.imagem)" class="img-produto" />
+  <div class="carrinho">
+    <div class="lista-produtos">
+      <div class="card-produto" v-for="item in produtos" :key="item.id">
+        <img :src="item.imagem" class="img-produto" />
 
-                <div class="info-produto">
-                    <h3>{{ item.nome }}</h3>
-                    <p class="descricao">{{ item.descricao }}</p>
+        <div class="info-produto">
+          <h3>{{ item.nome }}</h3>
+          <p class="descricao">{{ item.descricao }}</p>
 
-                    <div class="number">
-                    <div class="quantidade">
-                        <button @click="item.quantidade--" :disabled="item.quantidade <= 1">−</button>
-                        <span>{{ item.quantidade }}</span>
-                        <button @click="item.quantidade++">+</button>
-                    </div>
-                    <p class="preco">R$ {{ item.preco }}</p>
-                    </div>
-
-                    <button class="excluir">Excluir</button>
-                </div>
+          <div class="number">
+            <div class="quantidade">
+              <button @click="diminuirQuantidade(item)" :disabled="item.quantity <= 1">−</button>
+              <span>{{ item.quantity }}</span>
+              <button @click="aumentarQuantidade(item)">+</button>
             </div>
-        </div>
+            <p class="preco">R$ {{ item.preco }}</p>
+          </div>
 
-        <div class="resumo-pedido">
-            <div class="espacomento-resumo">
-                <h4>Produtos ({{ produtos.length }})</h4>
-                <div class="total">
-                    <span class="total-dois">Total</span>
-                    <p class="total-tres">R$XX</p>
-                </div>
-                <button class="finalizar">Finalizar Pedido</button>
-            </div>
+          <button class="excluir" @click="excluirProduto(item.id)">Excluir</button>
         </div>
+      </div>
     </div>
+
+    <div class="resumo-pedido">
+      <div class="espacomento-resumo">
+        <h4>Produtos ({{ produtos.length }})</h4>
+        <div class="total">
+          <span class="total-dois">Total</span>
+          <p class="total-tres">R$ {{ total }}</p>
+        </div>
+        <button class="finalizar">Finalizar Pedido</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
