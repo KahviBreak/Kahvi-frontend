@@ -1,21 +1,22 @@
 <script setup>
 import { ref } from 'vue'
 
-const quantity = ref(1)
 
 const product = ref({
   image: 'src/assets/Frame 30.png',
 })
 
+const preco = ref(0)
+
 const aumentarQuantidade = () => {
-  if (quantity.value < product.value.inStock) {
-    quantity.value++
+  if (preco.value < 1 || preco.value >= 1) {
+    preco.value++
   }
 }
 
 const diminuirQuantidade = () => {
-  if (quantity.value > 1) {
-    quantity.value--
+  if (preco.value > 1) {
+    preco.value--
   }
 }
 
@@ -64,12 +65,11 @@ const handleFileUpload = (event) => {
         </div>
 
         <div class="controls">
-          <div class="quantity-control">
-            <span style="color:#556B4E ;">Valor un.:</span>
-            <div class="quantity-buttons">
-              <button class="quantity-btn" @click="diminuirQuantidade" :disabled="quantity <= 1">−</button>
-              <span class="quantity-value">{{ quantity }}</span>
-              <button class="quantity-btn" @click="aumentarQuantidade" :disabled="quantity >= product.inStock">+</button>
+                     <span>Valor por un</span>
+            <div class="quantButton">
+              <button class="quantity-button" @click="diminuirQuantidade" :disabled="preco <= 1">−</button>
+              <span class="quantity-value">R${{ preco.toFixed(2).replace('.', ',') }}</span>
+              <button class="quantity-button" @click="aumentarQuantidade">+</button>
             </div>
           </div>
 
@@ -89,7 +89,6 @@ const handleFileUpload = (event) => {
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 
@@ -183,6 +182,33 @@ span {
   font-size: 18px;
   color: #93755C;
 }
+
+.quantButton {
+  background-color: #FFFFFF;
+  max-width: 140px;
+  border: #C1B8B0 2px solid;
+  border-radius: 10px;
+}
+
+.quantity-button {
+  background-color: #fff;
+  border: none;
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.quantity-value {
+  font-size: 18px;
+  font-weight: bold;
+  min-width: 24px;
+  text-align: center;
+  color: #402B19;
+}
+
 
 .quantity-buttons {
   background-color: #FFFFFF;
