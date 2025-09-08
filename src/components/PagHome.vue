@@ -13,6 +13,7 @@
 </template>
 
 <style scoped>
+
 @import url('https://fonts.googleapis.com/css2?family=Varta:wght@300..700&display=swap');
 
 .home-container {
@@ -28,6 +29,7 @@
     text-align: center;
     padding: 0 1rem;
     box-sizing: border-box;
+    margin-top: 2%;
 }
 
 .home-content {
@@ -47,13 +49,7 @@
     line-height: 1.5;
 }
 
-@media  (max-width: 640px) {
-
-     .home-container {
-        background-image: url("@/assets/fundoHomemobile.png");
-
-    }
-
+@media screen and (min-width: 640px) {
     .logo {
         width: 190px;
     }
@@ -64,49 +60,13 @@
     }
 }
 
-@media  (max-width: 768px) {
-
-     .home-container {
-        background-image: url("@/assets/fundoHomemobile.png");
-
-    }
-
+@media screen and (min-width: 768px) {
     .logo {
         width: 500px;
     }
 
     .slogan {
         font-size: 1.8rem;
-    }
-}
-
-@media  (max-width: 500px) {
-    .logo {
-        width: 300px;
-    }
-
-    .slogan {
-        font-size: 1.6rem;
-    }
-    .home-container {
-        background-image: url("@/assets/fundoHomemobile.png");
-
-    }
-}
-
-@media (max-width: 200px) {
-
-    .home-container {
-        background-image: url("@/assets/fundoHomemobile.png");
-
-    }
-
-    .logo {
-        width: 250px;
-    }
-
-    .slogan {
-        font-size: 1.6rem;
     }
 }
 
