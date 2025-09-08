@@ -11,6 +11,7 @@ export const useProdutoStore = defineStore('produto', () => {
     page_size: 10,
     total_pages: 0,
   })
+
   async function buscarProdutosPorCategoria(pagina = 1, categoria = '') {
     console.log('dentro store')
     console.log(categoria)
@@ -28,15 +29,5 @@ export const useProdutoStore = defineStore('produto', () => {
     total_pages: state.value.total_pages,
   }))
 
-  async function buscarProdutoPorId(id) {
-    try {
-      const produto = await produtoService.obterProdutoPorId(id)
-      return produto
-    } catch (error) {
-      console.error('Error fetching product by ID in store:', error)
-      throw error
-    }
-  }
-
-  return { produtos, meta, buscarProdutosPorCategoria, buscarProdutoPorId }
+  return { produtos, meta, buscarProdutosPorCategoria }
 })

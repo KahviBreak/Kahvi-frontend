@@ -20,21 +20,6 @@ onMounted(() => {
 // onMounted(() => {
 // })
 
-// // Função para adicionar um produto ao carrinho
-// export function adicionarProdutoAoCarrinho(carrinho, produto) {
-//   // Verifica se o produto já está no carrinho
-//   const index = carrinho.findIndex(item => item.id === produto.id);
-
-//   if (index !== -1) {
-//     // Se já existe, aumenta a quantidade
-//     carrinho[index].quantidade += 1;
-//   } else {
-//     // Se não existe, adiciona com quantidade 1
-//     carrinho.push({ ...produto, quantidade: 1 });
-//   }
-//   return carrinho;
-// }
-
 const categoriaSelecionada = ref('Tudo')
 
 const selecionarCategoria = (nome) => {
@@ -48,7 +33,6 @@ function click() {
 </script>
 
 <template>
-
   <div>
     <div class="container-categoria">
     <div
@@ -61,12 +45,6 @@ function click() {
       <div class="linha" v-if="categoriaSelecionada === categoria.nome"></div>
     </div>
   </div>
-   <div id="imagegrid">
-  <img src="@/assets/pedido1.png" alt="" style="height: 400px;width: 350px;">
-  <img src="@/assets/pedido2.png" alt="" style="height: 400px;width: 350px;" >
-  <img src="@/assets/pedido3.png" alt="" style="height: 400px;width: 350px;">
-  </div>
-
     <div class="container-product">
       <div v-for="produto in produtoStore.produtos" :key="produto.id" class="produto">
         <button type="button" class="button" @click="click()">ADD <svg width="24" height="24" viewBox="0 0 24 24"
@@ -98,14 +76,7 @@ function click() {
 @import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
-#imagegrid{
-  display: flex;
-  margin-top: 50px;
-  gap: 30px;
-  justify-content: center;
-}
-
-
+/* Estilo Geral */
 div {
   font-family: 'Arial', sans-serif;
   color: #4a2c18;
