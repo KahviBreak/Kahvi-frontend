@@ -15,6 +15,6 @@ import PagEditarProd from '@/components/PagEditarProd.vue';
 <style scoped>
 .back{
     background-color: #F1EDE8;
-    height: 87vh;
+    height: 100%;
 }
 </style>
