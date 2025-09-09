@@ -43,9 +43,10 @@ const diminuirQuantidade = () => {
 const addCart = () => {
   const productToAdd = {
     id: produto.value.id,
-    title: produto.value.nome,
-    image: produto.value.imagem?.url,
-    price: produto.value.preco,
+    nome: produto.value.nome,
+    descricao: produto.value.descricao,
+    imagem: produto.value.imagem?.url,
+    preco: produto.value.preco,
   }
   cartStore.addCart(productToAdd, quantity.value)
   alert('Produto adicionado ao carrinho 🛒✅!')
