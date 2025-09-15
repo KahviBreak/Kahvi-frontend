@@ -12,7 +12,7 @@ export const useUsuarioStore = defineStore('usuario', {
     async login(email, password) {
       try {
         const response = await axios.post(
-          'https://kahvi-back-mgf7.onrender.com/api/login/',
+          'https://kahvi-back.onrender.com/api/login/',
           {
             email,
             password,
