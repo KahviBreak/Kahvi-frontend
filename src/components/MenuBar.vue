@@ -1,7 +1,9 @@
 <script setup>
 
 import '@/assets/main.css'
+import '@/main.js'
 import { ref } from 'vue'
+
 
 const showMobileMenu = ref(false)
 function toggleMenu() {
@@ -26,45 +28,38 @@ function closeMenu() {
             <span></span>
         </div>
         <div id="menu-links">
-          <router-link to="/">
-          <p>Início</p>
-          </router-link>
-          <router-link>
+            <p>Início</p>
             <p>Sobre nós</p>
-          </router-link>
-          <router-link to="/cardapio">
             <p>Cardápio</p>
-          </router-link>
-          <router-link to="/pedido">
-            <p>Faça seu pedido</p>
-          </router-link>
+            <p>Localização</p>
             <div id="pesquisa">
                 <h1>Buscar</h1>
                 <img src="@/assets/Iconpesquisa.png" alt="Buscar" id="icon-pesquisa">
             </div>
-              <div id="icons-end">
+
+        </div>
+        <div id="icons-end">
             <img src="@/assets/circle.png" alt="Carrinho" id="basket">
             <img src="@/assets/user-profile-03.png" alt="Usuário" id="user">
         </div>
-        </div>
-
 
 
 
 
         <div v-if="showMobileMenu" id="mobile-menu">
+
             <button id="close-menu" @click="closeMenu"><img src="@/assets/images/close.png" alt=""></button>
             <ul id="ul-links">
-                <router-link to="/">
+                <router-link>
                     <li @click="toggleMenu">INÍCIO</li>
                 </router-link>
                 <router-link>
                     <li @click="toggleMenu">SOBRE NÓS</li>
                 </router-link>
-                <router-link to="/cardapio">
+                <router-link>
                     <li @click="toggleMenu">CARDÁPIO</li>
                 </router-link>
-                <router-link to="/pedido">
+                <router-link>
                     <li @click="toggleMenu">FAÇA SEU PEDIDO</li>
                 </router-link>
             </ul>
@@ -75,6 +70,12 @@ function closeMenu() {
                 <button id="button-logo"><img src="@/assets/images/Vector.png" alt="tiktok" id="logo-sociais"></button>
 
             </div>
+
+            <router-link to="/"><p @click="toggleMenu">Início</p></router-link>
+            <p @click="toggleMenu"><router-link to="/sobre">Sobre nós</router-link></p>
+            <p @click="toggleMenu"><router-link to="/pedido">Cardápio</router-link></p>
+            <p @click="toggleMenu"><router-link to="/pedido">Faça seu pedido</router-link></p>
+
         </div>
     </div>
 </template>
@@ -97,8 +98,8 @@ function closeMenu() {
 }
 
 #logo {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     margin-left: 70px;
 }
 
@@ -109,19 +110,21 @@ function closeMenu() {
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
+    align-content: space-between;
 }
 
 #menu-links p {
     background-color: white;
     color: #5F7B5B;
     font-family: "Varta", sans-serif;
-    font-size: 25px;
+    font-size: 20px;
     cursor: pointer;
+    margin-top: 0.5%;
 }
 
 #menu-links :hover {
     color: #273625;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 #pesquisa {
@@ -133,7 +136,7 @@ function closeMenu() {
     justify-content: space-between;
     padding: 0 15px;
     min-width: 100px;
-    max-width: 332px;
+    max-width: 300px;
     flex: 1;
 }
 
@@ -145,14 +148,14 @@ function closeMenu() {
 #icons-end {
     display: flex;
     align-items: center;
-    margin-left: 70px;
-    gap: 30px;
+    gap: 40px;
+    margin-right: 4%;
 }
 
 h1 {
     color: white;
     font-family: "Varta", sans-serif;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 200;
     margin: 10px 5px 5px 5px;
 }
@@ -274,7 +277,7 @@ h1 {
         font-size: 22px;
     }
 
-    #menu{
+    #menu {
         background-color: #5F7B5B;
     }
 
