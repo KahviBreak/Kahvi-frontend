@@ -56,7 +56,9 @@ function closeMenu() {
      <router-link to="/cart">
        <img src="@/assets/circle.png" alt="Carrinho" id="basket">
      </router-link>
+     <router-link to="/login">
      <img src="@/assets/user-profile-03.png" alt="Usuário" id="user">
+     </router-link>
    </div>
 
 
