@@ -1,10 +1,23 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-const props = defineProps(['id'])
 import { useProdutoStore } from '@/stores/produtos'
-const produtoStore = useProdutoStore();
+import { useCartStore } from '@/stores/cart'
 
+// props recebidas
+const props = defineProps({
+  id: {
+    type: Number,
+    required: true
+  }
+})
+
+// stores
+const produtoStore = useProdutoStore()
+const cartStore = useCartStore()
+
+// estados
 const produto = ref({
+  id: null,
   nome: '',
   descricao: '',
   imagem: { url: '' },
@@ -13,12 +26,11 @@ const produto = ref({
 const quantity = ref(1)
 const grao = ref(1)
 
-const product = ref({})
+const product = ref({}) // mantive seu "product" caso use em outro lugar
 
+// funções de quantidade
 const aumentarQuantidade = () => {
-  if (quantity.value < product.value.inStock) {
-    quantity.value++
-  }
+  quantity.value++
 }
 
 const diminuirQuantidade = () => {
@@ -27,59 +39,89 @@ const diminuirQuantidade = () => {
   }
 }
 
+// adicionar ao carrinho
+const addCart = () => {
+  const productToAdd = {
+    id: produto.value.id,
+    nome: produto.value.nome,
+    descricao: produto.value.descricao,
+    imagem: produto.value.imagem?.url,
+    preco: produto.value.preco,
+  }
+  cartStore.addCart(productToAdd, quantity.value)
+  alert('Produto adicionado ao carrinho 🛒✅!')
+}
+
+// carregar produto com base na prop id
 onMounted(async () => {
   const produtoSelecionado = await produtoStore.buscarProdutoPorId(props.id)
-  produto.value = produtoSelecionado || { nome: 'Produto não encontrado', descricao: '' };
-  // produto.value = buscarProdutoPorId(id);
+  produto.value = produtoSelecionado || { nome: 'Produto não encontrado', descricao: '' }
+  product.value = produto.value // mantém sincronizado caso use "product"
 })
-
 </script>
+
 <template>
   <div class="teste">
-  <div class="container">
-    <div class="img">
-      <img :src="produto.imagem.url" alt="" style="width: 506px; height:677px;">
-    </div>
-    <div class="containerDetalhes">
-      <h1>{{ produto.nome }} - {{ props.id }}</h1>
-      <p class="descricao">{{produto.descricao}}</p>
-      <div class="container-quant">
-        <div class="quantidade">
-          <span>Quantidade:</span>
-          <div class="quantButton">
-          <button class="quantity-button" @click="diminuirQuantidade" :disabled="quantity <= 1">−</button>
-          <span class="quantity-value">{{ quantity }}</span>
-          <button class="quantity-button" @click="aumentarQuantidade" :disabled="quantity >= product.inStock">+</button>
-        </div>
-        </div>
-        <div class="graos">
-          <label for="grao" class="grao">Grão:</label>
-          <br>
-          <input type="number" name="grao" id="grao">
-        </div>
+    <div class="container">
+      <div class="img">
+        <img :src="produto.imagem.url" alt="" style="width: 506px; height:677px;" />
       </div>
-      <p class="preco"> R${{produto.preco}}</p>
-      <div class="observacao-div">
-      <label class="obs"><svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd"
-            d="M9 0C13.9657 0 18 3.72236 18 8.32416C18 12.926 13.9657 16.6483 9 16.6483C7.58962 16.6483 6.25294 16.3477 5.06271 15.8114L1.73633 16.9457C1.7009 16.9578 1.66461 16.9676 1.62774 16.9751C0.792068 17.145 0.0636139 16.4179 0.311432 15.6527C0.319403 15.6281 0.32869 15.6039 0.339258 15.5801L1.51222 12.9439C0.557316 11.6223 0 10.0327 0 8.32416C0 3.72236 4.03428 0 9 0ZM12.7385 7.72701C13.1973 7.72701 13.5692 8.07296 13.5692 8.49971C13.5692 8.92646 13.1973 9.27242 12.7385 9.27242H12.6C12.1412 9.27242 11.7692 8.92646 11.7692 8.49971C11.7692 8.07296 12.1412 7.72701 12.6 7.72701H12.7385ZM9.96923 8.49971C9.96923 8.07296 9.59728 7.72701 9.13846 7.72701H9C8.54118 7.72701 8.16923 8.07296 8.16923 8.49971C8.16923 8.92646 8.54118 9.27242 9 9.27242H9.13846C9.59728 9.27242 9.96923 8.92646 9.96923 8.49971ZM5.53846 7.72701C5.99728 7.72701 6.36923 8.07296 6.36923 8.49971C6.36923 8.92646 5.99728 9.27242 5.53846 9.27242H5.4C4.94118 9.27242 4.56923 8.92646 4.56923 8.49971C4.56923 8.07296 4.94118 7.72701 5.4 7.72701H5.53846Z"
-            fill="#6E5641" />
-        </svg>
-        Alguma observação?</label>
-      <input type="text" placeholder="Ex: tirar azeitona, milho etc.">
-      </div>
-      <div class="botoes">
-        <div>
-          <button class="botao">Comprar agora</button>
 
-          <button style="background-color: #C2E0BD; color:#5F7B5B;" class="botao">Adicionar no carrinho</button>
+      <div class="containerDetalhes">
+        <h1>{{ produto.nome }} - {{ props.id }}</h1>
+        <p class="descricao">{{ produto.descricao }}</p>
 
+        <div class="container-quant">
+          <div class="quantidade">
+            <span>Quantidade:</span>
+            <div class="quantButton">
+              <button class="quantity-button" @click="diminuirQuantidade" :disabled="quantity <= 1">−</button>
+              <span class="quantity-value">{{ quantity }}</span>
+              <button class="quantity-button" @click="aumentarQuantidade">+</button>
+            </div>
+          </div>
+
+          <div class="graos">
+            <label for="grao" class="grao">Grão:</label>
+            <br />
+            <input type="number" name="grao" id="grao" v-model="grao" />
+          </div>
+        </div>
+
+        <p class="preco">R$ {{ produto.preco }}</p>
+
+        <div class="observacao-div">
+          <label class="obs">
+            <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M9 0C13.9657 0 18 3.72236 18 8.32416C18 12.926 13.9657 16.6483 9 16.6483C7.58962 16.6483 6.25294 16.3477 5.06271 15.8114L1.73633 16.9457C1.7009 16.9578 1.66461 16.9676 1.62774 16.9751C0.792068 17.145 0.0636139 16.4179 0.311432 15.6527C0.319403 15.6281 0.32869 15.6039 0.339258 15.5801L1.51222 12.9439C0.557316 11.6223 0 10.0327 0 8.32416C0 3.72236 4.03428 0 9 0ZM12.7385 7.72701C13.1973 7.72701 13.5692 8.07296 13.5692 8.49971C13.5692 8.92646 13.1973 9.27242 12.7385 9.27242H12.6C12.1412 9.27242 11.7692 8.92646 11.7692 8.49971C11.7692 8.07296 12.1412 7.72701 12.6 7.72701H12.7385ZM9.96923 8.49971C9.96923 8.07296 9.59728 7.72701 9.13846 7.72701H9C8.54118 7.72701 8.16923 8.07296 8.16923 8.49971C8.16923 8.92646 8.54118 9.27242 9 9.27242H9.13846C9.59728 9.27242 9.96923 8.92646 9.96923 8.49971ZM5.53846 7.72701C5.99728 7.72701 6.36923 8.07296 6.36923 8.49971C6.36923 8.92646 5.99728 9.27242 5.53846 9.27242H5.4C4.94118 9.27242 4.56923 8.92646 4.56923 8.49971C4.56923 8.07296 4.94118 7.72701 5.4 7.72701H5.53846Z"
+                fill="#6E5641"
+              />
+            </svg>
+            Alguma observação?
+          </label>
+          <input type="text" placeholder="Ex: tirar azeitona, milho etc." />
+        </div>
+
+        <div class="botoes">
+          <div>
+            <button class="botao">Comprar agora</button>
+            <button
+              style="background-color: #C2E0BD; color:#5F7B5B;"
+              class="botao"
+              @click="addCart"
+            >
+              Adicionar no carrinho
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
