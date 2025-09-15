@@ -14,4 +14,11 @@ import PagAddProduto from '@/components/PagAddProduto.vue';
     height: 89vh;
     background-color: #F1EDE8;
 }
+
+@media (max-width: 600px) {
+    .fundo{
+    height: 110vh;
+    background-color: #F1EDE8;
+}
+}
 </style>
