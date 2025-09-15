@@ -42,6 +42,7 @@ onMounted(() =>{
 
     <div class="adicionar-container">
       <a href="add" class="btn-adicionar" @click="adicionarProduto" style="text-decoration: none;">Adicionar produto</a>
+      <button class="btn-adicionar-2">Adicionar categoria</button>
     </div>
   </div>
 </template>
@@ -155,12 +156,16 @@ onMounted(() =>{
 
 .adicionar-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 10px;
+padding-left: 33%;
+padding-right: 33%;
 }
 
 .btn-adicionar {
+
   background: #5F7B5B;
   color: white;
   border: none;
@@ -170,7 +175,23 @@ onMounted(() =>{
   font-weight: 600;
   font-size: 16px;
   cursor: pointer;
+  margin-bottom: 2%;
 }
+
+.btn-adicionar-2 {
+
+  background: #C2E0BD;
+  color: #5F7B5B;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 6px;
+  font-family: 'Overpass';
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
 @media (max-width: 768px) {
 
     .lista-produtos{

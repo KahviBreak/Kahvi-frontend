@@ -2,6 +2,9 @@
 import { onMounted, ref } from 'vue'
 import { useCategoriaStore } from '@/stores/categorias.js'
 import { useProdutoStore } from '@/stores/produtos'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const categoriaStore = useCategoriaStore()
 const produtoStore = useProdutoStore()
@@ -42,6 +45,13 @@ const selecionarCategoria = (nome) => {
   produtoStore.buscarProdutosPorCategoria(1, nome)
 }
 
+function abrirDetalhe(produto) {
+  router.push({ 
+    name: 'detalhe',  // ⚠️ aqui tem que bater com o name do router
+    params: { id: Number(produto.id) } // garante que seja número
+  })
+}
+
 function click() {
   alert('funcionando')
 }
@@ -69,7 +79,7 @@ function click() {
 
     <div class="container-product">
       <div v-for="produto in produtoStore.produtos" :key="produto.id" class="produto">
-        <button type="button" class="button" @click="click()">ADD <svg width="24" height="24" viewBox="0 0 24 24"
+        <button type="button" class="button" @click.stop="click()">ADD <svg width="24" height="24" viewBox="0 0 24 24"
             fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: translateY(2px);">
             <g clip-path="url(#clip0_108_1090)">
               <path
@@ -86,7 +96,7 @@ function click() {
           </svg>
         </button>
         <img :src="produto.imagem.url" alt="produto.name"  style="width:272px;height:369px;"/>
-        <h1>{{ produto.nome }}</h1>
+        <h1 @click="abrirDetalhe(produto)">{{ produto.nome }}</h1>
         <p>{{ produto.descricao }}</p>
         <p>{{ `R$ ` + produto.preco }}</p>
       </div>

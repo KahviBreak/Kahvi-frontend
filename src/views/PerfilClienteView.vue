@@ -14,4 +14,11 @@ import PerfilCliente from '@/components/PerfilCliente.vue';
     width: 100%;
     height: 100%;
 }
+
+@media (max-width: 500px){
+           .perfil{
+            height: 125vh;
+           } 
+
+}
 </style>
