@@ -12,6 +12,7 @@ import RelatorioView from '@/views/RelatorioView.vue'
 import AddProdutoView from '@/views/AddProdutoView.vue'
 import ProdutosAdmView from '@/views/ProdutosAdmView.vue'
 import LocalizacaoView from '@/views/LocalizacaoView.vue'
+import AddCategoriaView from '@/views/AddCategoriaView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -81,7 +82,12 @@ const router = createRouter({
       path: '/localizacao',
       name: 'localizacao',
       component: LocalizacaoView
-    }
+    },
+    {
+      path: '/addcategoria',
+      name: 'categoria',
+      component: AddCategoriaView
+    },
   ]});
 
 export default router
