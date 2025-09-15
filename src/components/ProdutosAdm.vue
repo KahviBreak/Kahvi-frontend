@@ -83,6 +83,7 @@ const getImage = (img) =>
 
     <div class="adicionar-container">
       <button class="btn-adicionar">Adicionar produto</button>
+      <button class="btn-adicionar-2">Adicionar cateoriga</button>
     </div>
   </div>
 </template>
@@ -196,12 +197,16 @@ const getImage = (img) =>
 
 .adicionar-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 10px;
+padding-left: 33%;
+padding-right: 33%;
 }
 
 .btn-adicionar {
+
   background: #5F7B5B;
   color: white;
   border: none;
@@ -211,7 +216,23 @@ const getImage = (img) =>
   font-weight: 600;
   font-size: 16px;
   cursor: pointer;
+  margin-bottom: 2%;
 }
+
+.btn-adicionar-2 {
+
+  background: #C2E0BD;
+  color: #5F7B5B;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 6px;
+  font-family: 'Overpass';
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
 @media (max-width: 768px) {
 
     .lista-produtos{
