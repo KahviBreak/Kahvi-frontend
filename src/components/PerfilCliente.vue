@@ -18,6 +18,21 @@ const mudarVisualizacao = (evento) => {
     autenticacao.value.usuario = false
   }
 }
+
+
+const product = ref({
+  image: 'src/assets/perfil.png',
+})
+
+const imagemPreview = ref(product.value.image)
+
+const handleFileUpload = (event) => {
+  const file = event.target.files[0]
+  if (file) {
+    imagemPreview.value = URL.createObjectURL(file)
+  }
+}
+
 </script>
 
 <template>
@@ -28,7 +43,16 @@ const mudarVisualizacao = (evento) => {
       </router-link>
     </div>
 
-    <img class="imagem" src="/src/assets/perfil.png" alt="perfil" />
+    <label class="imagem" for="uploadImagem">
+          <img v-if="imagemPreview" :src="imagemPreview" alt="Preview do Produto" class="img-clickable" />
+        </label>
+        <input 
+          id="uploadImagem" 
+          type="file" 
+          accept="image/*" 
+          @change="handleFileUpload" 
+          style="display: none;" 
+        />
 
 
     <div class="inputsAdmin" v-if="autenticacao.admin">
@@ -110,6 +134,13 @@ const mudarVisualizacao = (evento) => {
   height: 350px;
   margin: 20px 0;
   background: #d9d3cd;
+}
+.img-clickable {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
 }
 
 
