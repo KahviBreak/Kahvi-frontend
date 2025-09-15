@@ -2,6 +2,9 @@
 import { onMounted, ref } from 'vue'
 import { useCategoriaStore } from '@/stores/categorias.js'
 import { useProdutoStore } from '@/stores/produtos'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const categoriaStore = useCategoriaStore()
 const produtoStore = useProdutoStore()
@@ -20,11 +23,33 @@ onMounted(() => {
 // onMounted(() => {
 // })
 
+// // Função para adicionar um produto ao carrinho
+// export function adicionarProdutoAoCarrinho(carrinho, produto) {
+//   // Verifica se o produto já está no carrinho
+//   const index = carrinho.findIndex(item => item.id === produto.id);
+
+//   if (index !== -1) {
+//     // Se já existe, aumenta a quantidade
+//     carrinho[index].quantidade += 1;
+//   } else {
+//     // Se não existe, adiciona com quantidade 1
+//     carrinho.push({ ...produto, quantidade: 1 });
+//   }
+//   return carrinho;
+// }
+
 const categoriaSelecionada = ref('Tudo')
 
 const selecionarCategoria = (nome) => {
   categoriaSelecionada.value = nome
   produtoStore.buscarProdutosPorCategoria(1, nome)
+}
+
+function abrirDetalhe(produto) {
+  router.push({ 
+    name: 'detalhe',  // ⚠️ aqui tem que bater com o name do router
+    params: { id: Number(produto.id) } // garante que seja número
+  })
 }
 
 function click() {
@@ -33,6 +58,7 @@ function click() {
 </script>
 
 <template>
+
   <div>
     <div class="container-categoria">
     <div
@@ -45,9 +71,15 @@ function click() {
       <div class="linha" v-if="categoriaSelecionada === categoria.nome"></div>
     </div>
   </div>
+   <div id="imagegrid">
+  <img src="@/assets/pedido1.png" alt="" style="height: 400px;width: 350px;">
+  <img src="@/assets/pedido2.png" alt="" style="height: 400px;width: 350px;" >
+  <img src="@/assets/pedido3.png" alt="" style="height: 400px;width: 350px;">
+  </div>
+
     <div class="container-product">
       <div v-for="produto in produtoStore.produtos" :key="produto.id" class="produto">
-        <button type="button" class="button" @click="click()">ADD <svg width="24" height="24" viewBox="0 0 24 24"
+        <button type="button" class="button" @click.stop="click()">ADD <svg width="24" height="24" viewBox="0 0 24 24"
             fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: translateY(2px);">
             <g clip-path="url(#clip0_108_1090)">
               <path
@@ -64,7 +96,7 @@ function click() {
           </svg>
         </button>
         <img :src="produto.imagem.url" alt="produto.name"  style="width:272px;height:369px;"/>
-        <h1>{{ produto.nome }}</h1>
+        <h1 @click="abrirDetalhe(produto)">{{ produto.nome }}</h1>
         <p>{{ produto.descricao }}</p>
         <p>{{ `R$ ` + produto.preco }}</p>
       </div>
@@ -76,7 +108,14 @@ function click() {
 @import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
-/* Estilo Geral */
+#imagegrid{
+  display: flex;
+  margin-top: 50px;
+  gap: 30px;
+  justify-content: center;
+}
+
+
 div {
   font-family: 'Arial', sans-serif;
   color: #4a2c18;

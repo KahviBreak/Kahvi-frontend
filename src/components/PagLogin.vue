@@ -2,8 +2,10 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUsuarioStore } from '@/stores/counter.js'
+import "@passageidentity/passage-elements/passage-auth";
+const appId = import.meta.env.VITE_PASSAGE_APP_ID;
 
-const store = useUsuarioStore() 
+const store = useUsuarioStore()
 const email = ref('')
 const password = ref('')
 const router = useRouter()
@@ -33,7 +35,7 @@ async function handleLogin() {
       <img src="../assets/images/Kahvi!2.png" alt="Logo Kahvi" class="logo" />
 
       <div class="form">
-        <input
+        <!-- <input
           type="email"
           placeholder="Email"
           class="input"
@@ -56,11 +58,11 @@ async function handleLogin() {
 
         <div class="register">
           <span>Não tem uma conta?</span>
-          <!-- Use router-link se for página interna, ou um @click.prevent -->
           <a href="#" @click.prevent="$router.push('/register')">Criar &gt;&gt;</a>
         </div>
 
-        <p v-if="store.error" style="color: red;">{{ store.error }}</p>
+        <p v-if="store.error" style="color: red;">{{ store.error }}</p> -->
+        <passage-auth :app-id="appId"></passage-auth>
       </div>
     </div>
   </div>
