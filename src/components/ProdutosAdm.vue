@@ -1,88 +1,47 @@
 <script setup>
-import { ref } from 'vue'
+import { useProdutoStore } from '@/stores/produtos.js'
+import { onMounted } from 'vue';
 
-const produtos = ref([
-  {
-    id: 1,
-    nome: 'Focaccia de Alecrim',
-    descricao: 'Focaccia macia com aroma fresco de alecrim.',
-    quantidade: ref(1),
-    preco: 10,
-    imagem: 'Frame 29.png',
-  },
-  {
-    id: 2,
-    nome: 'Focaccia de Alecrim',
-    descricao: 'Focaccia macia com aroma fresco de alecrim.',
-    quantidade: ref(1),
-    preco: 10,
-    imagem: 'Frame 29.png',
-  },
-  {
-    id: 3,
-    nome: 'Focaccia de Alecrim',
-    descricao: 'Focaccia macia com aroma fresco de alecrim.',
-    quantidade: ref(1),
-    preco: 10,
-    imagem: 'Frame 29.png',
-  },
-  {
-    id: 4,
-    nome: 'Focaccia de Alecrim',
-    descricao: 'Focaccia macia com aroma fresco de alecrim.',
-    quantidade: ref(1),
-    preco: 10,
-    imagem: 'Frame 29.png',
-  },
-  {
-    id: 4,
-    nome: 'Focaccia de Alecrim',
-    descricao: 'Focaccia macia com aroma fresco de alecrim.',
-    quantidade: ref(1),
-    preco: 10,
-    imagem: 'Frame 29.png',
-  },{
-    id: 4,
-    nome: 'Focaccia de Alecrim',
-    descricao: 'Focaccia macia com aroma fresco de alecrim.',
-    quantidade: ref(1),
-    preco: 10,
-    imagem: 'Frame 29.png',
-  },
-])
+const produtoStore = useProdutoStore()
 
-const getImage = (img) =>
-  new URL(`../assets/${img}`, import.meta.url).href
+onMounted(() =>{
+  produtoStore.buscarProdutosPorCategoria()
+})
+
 </script>
 
 <template>
   <div class="admin-produtos">
     <div class="lista-produtos">
-      <div class="card-produto" v-for="item in produtos" :key="item.id">
-        <img :src="getImage(item.imagem)" class="img-produto" />
+      <div 
+        class="card-produto" 
+        v-for="produto in produtoStore.produtos" 
+        :key="produto.id"
+      >
+        <img :src="produto.imagem.url" class="img-produto" />
 
         <div class="info-produto">
-          <h3>{{ item.nome }}</h3>
-          <p class="descricao">{{ item.descricao }}</p>
+          <h3>{{ produto.nome }}</h3>
+          <p class="descricao">{{ produto.descricao }}</p>
 
-          <p class="estoque">Quantidade em estoque</p>
+          <p class="estoque" style="font-family: Arial, Helvetica, sans-serif;">Quantidade em estoque</p>
 
           <div class="quantidade">
-            <button @click="item.quantidade--" :disabled="item.quantidade <= 1">−</button>
-            <span>{{ item.quantidade }}</span>
-            <button @click="item.quantidade++">+</button>
+            <button @click="diminuirQuantidade(produto)" :disabled="produto.quantidade <= 1">−</button>
+            <span>{{ produto.quantidade }}</span>
+            <button @click="aumentarQuantidade(produto)">+</button>
           </div>
 
           <div class="acoes">
-            <button class="excluir">Excluir</button>
-            <button class="editar">Editar</button>
+            <button class="excluir" @click="excluirProduto(produto.id)">Excluir</button>
+            <button class="editar" @click="editarProduto(produto)">Editar</button>
           </div>
         </div>
       </div>
     </div>
 
     <div class="adicionar-container">
-      <button class="btn-adicionar">Adicionar produto</button>
+      <a href="add" class="btn-adicionar" @click="adicionarProduto" style="text-decoration: none;">Adicionar produto</a>
     </div>
   </div>
 </template>
