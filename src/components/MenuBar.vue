@@ -71,9 +71,9 @@ function closeMenu() {
 
             </div>
 
-            <p @click="toggleMenu"><router-link to="/">Início</router-link></p>
-            <p @click="toggleMenu"><router-link to="/">Sobre nós</router-link></p>
-            <p @click="toggleMenu"><router-link to="/cardapio">Cardápio</router-link></p>
+            <router-link to="/"><p @click="toggleMenu">Início</p></router-link>
+            <p @click="toggleMenu"><router-link to="/sobre">Sobre nós</router-link></p>
+            <p @click="toggleMenu"><router-link to="/pedido">Cardápio</router-link></p>
             <p @click="toggleMenu"><router-link to="/pedido">Faça seu pedido</router-link></p>
 
         </div>

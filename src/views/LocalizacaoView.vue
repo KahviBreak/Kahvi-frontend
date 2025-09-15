@@ -1,13 +1,15 @@
 <script setup>
+import PagLocalizacao from '@/components/PagLocalizacao.vue';
 import MenuBar from '@/components/MenuBar.vue';
-import PagHome from '@/components/PagHome.vue';
 import FooterBar from '@/components/FooterBar.vue';
 </script>
 
 <template>
-<MenuBar/>
-<PagHome />
+<MenuBar />
+<PagLocalizacao />
 <FooterBar />
+
+
 </template>
 
 <style scoped>
