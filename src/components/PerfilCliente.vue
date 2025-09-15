@@ -40,12 +40,16 @@ const mudarVisualizacao = (evento) => {
       <input type="text" name="CPF" id="CPF" placeholder="111.111.111-11"/>
       <label for="telefone">TELEFONE</label>
       <input type="number" name="telefone" id="telefone" placeholder="+55 (99) 9 9999-9999" />
-      <label for="visualizar">Visualizar Como</label>
-      <select id="visualizar" name="visualizar" @change="mudarVisualizacao">
-        <option value="">Visualizar Como</option>
-        <option value="administrador">Administrador</option>
-        <option value="cliente">Cliente</option>
+      <label for="visualizar">VISUALIZAR COMO</label>
+      <select id="visualizar" name="visualizar" @change="mudarVisualizacao" style="font-size: 14px !important;">
+        <option value="" style="font-size: 14px !important;">Visualizar Como</option>
+        <option value="administrador" style="font-size: 14px !important;">Administrador</option>
+        <option value="cliente" style="font-size: 14px !important;">Cliente</option>
       </select>
+
+      <div>
+        <button class="btn">SALVAR</button>
+      </div>
     </div>
 
 
@@ -76,6 +80,8 @@ const mudarVisualizacao = (evento) => {
 
           <label for="complemento">COMPLEMENTO</label>
           <input type="text" id="complemento" placeholder="Casa pau a pique" />
+
+          <button class="btn-2"> SALVAR</button>
         </div>
       </div>
     </div>
@@ -111,6 +117,36 @@ const mudarVisualizacao = (evento) => {
   display: flex;
   flex-direction: column;
   width: 370px;
+}
+
+.btn{
+ background: #5F7B5B;
+ border: none;
+ color: white;
+   font-weight: 500;
+  font-size: 20px;
+  margin-top: 6% !important;
+  border-radius: 5px;
+  padding: 2px 8px;
+  width: 105%;
+  margin-top: 0;
+    height: 40px;
+
+}
+
+.btn-2{
+ background: #5F7B5B;
+ border: none;
+ color: white;
+   font-weight: 500;
+  font-size: 20px;
+  margin-top: 14% !important;
+  border-radius: 5px;
+  padding: 2px 8px;
+  width: 105%;
+  margin-top: 0;
+    height: 40px;
+
 }
 
 

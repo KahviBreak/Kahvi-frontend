@@ -8,6 +8,7 @@ import PedidoView from '@/views/PedidoView.vue'
 import CardapioView from '@/views/CardapioView.vue'
 import PerfilClienteView from '@/views/PerfilClienteView.vue'
 import PagCarrinhoView from '@/views/PagCarrinhoView.vue'
+import RelatorioView from '@/views/RelatorioView.vue'
 import AddProdutoView from '@/views/AddProdutoView.vue'
 import ProdutosAdmView from '@/views/ProdutosAdmView.vue'
 import LocalizacaoView from '@/views/LocalizacaoView.vue'
@@ -60,6 +61,11 @@ const router = createRouter({
       path: '/cart',
       name: 'carrinho',
       component: PagCarrinhoView
+    },
+    {
+      path: '/relatorio',
+      name: 'relatorio',
+      component: RelatorioView
     },
     {
       path: '/add',
