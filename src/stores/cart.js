@@ -7,8 +7,10 @@ export const useCartStore = defineStore('cart', () => {
   function addCart(product, quantity = 1) {
     const existing = items.value.find((item) => item.id === product.id)
     if (existing) {
+      console.log('add.. quanti')
       existing.quantity += quantity
     } else {
+      console.log('novo')
       items.value.push({ ...product, quantity })
     }
   }
