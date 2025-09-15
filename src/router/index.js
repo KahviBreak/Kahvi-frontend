@@ -6,6 +6,7 @@ import PagDetalheView from '@/views/PagDetalheView.vue'
 import SobreView from '@/views/SobreView.vue'
 import PedidoView from '@/views/PedidoView.vue'
 import CardapioView from '@/views/CardapioView.vue'
+import EditarProdView from '@/views/EditarProdView.vue'
 import PerfilClienteView from '@/views/PerfilClienteView.vue'
 import PagCarrinhoView from '@/views/PagCarrinhoView.vue'
 import RelatorioView from '@/views/RelatorioView.vue'
@@ -52,6 +53,11 @@ const router = createRouter({
       path: '/cadastro',
       name: 'cadastro',
       component: CadastroView,
+    },
+    {
+      path: '/editarproduto',
+      name: 'editar produto',
+      component: EditarProdView,
     },
     {
       path: '/perfil',
