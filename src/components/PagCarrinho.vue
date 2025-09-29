@@ -27,6 +27,12 @@ const excluirProduto = (id) => {
 // ✅ Enviar carrinho para o backend
 const finalizarPedido = async () => {
   try {
+    if (produtos.value.length === 0) {
+      alert('Seu carrinho está vazio!')
+      return
+    }
+
+    // Monta o pedido
     const pedido = {
       produtos: produtos.value.map(p => ({
         id: p.id,
@@ -37,7 +43,8 @@ const finalizarPedido = async () => {
       total: total.value
     }
 
-    const response = await axios.post('https://kahvi-back.onrender.com/api/compras/', pedido)
+    // Aqui não precisa pegar o token manualmente, o interceptor do axios já faz
+    const response = await axios.post('/compras/', pedido)
 
     alert('✅ Pedido enviado com sucesso!')
     console.log('📦 Resposta do servidor:', response.data)
@@ -45,8 +52,10 @@ const finalizarPedido = async () => {
     // Limpa carrinho depois de finalizar
     cartStore.clearCart()
   } catch (error) {
-    console.error('❌ Erro ao enviar pedido:', error)
-    alert('Erro ao finalizar pedido.')
+    console.error('❌ Erro ao enviar pedido:', error.response || error)
+    alert(
+      error.response?.data?.detail || 'Erro ao finalizar pedido. Verifique o console.'
+    )
   }
 }
 </script>
