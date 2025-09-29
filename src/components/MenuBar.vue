@@ -1,36 +1,70 @@
 <script setup>
 import '@/assets/main.css'
-import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from '@/stores/auth'
 import { ref } from 'vue'
 
 const showMobileMenu = ref(false)
 function toggleMenu() {
   showMobileMenu.value = !showMobileMenu.value
 }
-
 function closeMenu() {
   showMobileMenu.value = false
 }
-const store = useAuthStore();
+const store = useAuthStore()
 </script>
 
 <template>
   {{ store.user }}
-  <div id="menuAdmin" v-if="store.user?.is_superuser=== true">
+  <!-- MENU ADMIN -->
+  <div id="menuAdmin" v-if="store.user?.is_superuser === true">
     <img src="@/assets/Kahvi!white.png" alt="Logo" id="logo-admin" />
+
+    <!-- Botão hamburguer -->
+    <div id="togglemenu-admin" @click="toggleMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Links desktop -->
     <div id="menu-links-admin">
-      <p>Produtos</p>
-      <p>Pedidos</p>
-      <p>Categorias</p>
+      <router-link to="">Categorias</router-link>
+      <router-link to="">Produtos</router-link>
+      <router-link to="">Pedidos</router-link>
+      <router-link to="">Relatórios</router-link>
       <div id="pesquisa-admin">
         <h1>Buscar</h1>
         <img src="@/assets/Iconpesquisa-green.png" alt="Buscar" id="icon-pesquisa" />
       </div>
     </div>
+
     <div id="icons-end-admin">
       <img src="@/assets/user-profile-03-white.png" alt="Usuário" id="user" />
     </div>
+
+    <!-- Menu mobile -->
+    <div v-if="showMobileMenu" id="mobile-menu-admin">
+      <button id="close-menu-admin" @click="closeMenu">
+        <img src="@/assets/images/close.png" alt="Fechar" />
+      </button>
+      <ul id="ul-links-admin">
+        <router-link>
+          <li @click="toggleMenu">Categorias</li>
+        </router-link>
+        <router-link>
+          <li @click="toggleMenu">Produtos</li>
+        </router-link>
+        <router-link>
+          <li @click="toggleMenu">Pedidos</li>
+        </router-link>
+        <router-link>
+          <li @click="toggleMenu">Relatórios</li>
+        </router-link>
+      </ul>
+    </div>
   </div>
+
+  <!-- MENU USUÁRIO -->
   <div id="menu" v-else>
     <img src="@/assets/Kahvi!.png" alt="Logo" id="logo" />
 
@@ -40,30 +74,22 @@ const store = useAuthStore();
       <span></span>
     </div>
     <div id="menu-links">
-       <router-link to="/">
-       <p>Início</p>
-     </router-link>
-     <router-link to="/sobre">
-       <p>Sobre nós</p>
-     </router-link>
-     <router-link to="/pedido">
-       <p>Cardápio</p>
-     </router-link>
-     <router-link to="/localizacao">
-       <p>Localização</p>
-     </router-link>
+      <router-link to="/"><p>Início</p></router-link>
+      <router-link to="/sobre"><p>Sobre nós</p></router-link>
+      <router-link to="/pedido"><p>Cardápio</p></router-link>
+      <router-link to="/localizacao"><p>Localização</p></router-link>
       <div id="pesquisa">
         <h1>Buscar</h1>
         <img src="@/assets/Iconpesquisa.png" alt="Buscar" id="icon-pesquisa" />
       </div>
     </div>
     <div id="icons-end">
-        <router-link to="/cart">
-       <img src="@/assets/circle.png" alt="Carrinho" id="basket">
-     </router-link>
-     <router-link to="/login">
-     <img src="@/assets/user-profile-03.png" alt="Usuário" id="user">
-     </router-link>
+      <router-link to="/cart">
+        <img src="@/assets/circle.png" alt="Carrinho" id="basket" />
+      </router-link>
+      <router-link to="/login">
+        <img src="@/assets/user-profile-03.png" alt="Usuário" id="user" />
+      </router-link>
     </div>
 
     <div v-if="showMobileMenu" id="mobile-menu">
@@ -71,20 +97,14 @@ const store = useAuthStore();
         <img src="@/assets/images/close.png" alt="" />
       </button>
       <ul id="ul-links">
-        <router-link>
-          <li @click="toggleMenu">INÍCIO</li>
-        </router-link>
-        <router-link>
-          <li @click="toggleMenu">SOBRE NÓS</li>
-        </router-link>
-        <router-link>
-          <li @click="toggleMenu">CARDÁPIO</li>
-        </router-link>
-        <router-link>
-          <li @click="toggleMenu">FAÇA SEU PEDIDO</li>
-        </router-link>
+        <router-link><li @click="toggleMenu">INÍCIO</li></router-link>
+        <router-link><li @click="toggleMenu">SOBRE NÓS</li></router-link>
+        <router-link><li @click="toggleMenu">CARDÁPIO</li></router-link>
+        <router-link><li @click="toggleMenu">FAÇA SEU PEDIDO</li></router-link>
       </ul>
-      <p>ACOMPANHE <span style="color: rgba(39, 54, 37, 1)">KAHVI!</span> NAS REDES SOCIAIS</p>
+      <p>
+        ACOMPANHE <span style="color: rgba(39, 54, 37, 1)">KAHVI!</span> NAS REDES SOCIAIS
+      </p>
       <div id="redes-sociais">
         <button id="button-logo">
           <img src="@/assets/images/logoinsta.png" alt="insta" id="logo-sociais" />
@@ -104,6 +124,7 @@ const store = useAuthStore();
   text-decoration: none;
 }
 
+/* -------- MENU USUÁRIO -------- */
 #menu {
   display: flex;
   flex-wrap: wrap;
@@ -114,6 +135,7 @@ const store = useAuthStore();
   justify-content: space-between;
 }
 
+/* -------- MENU ADMIN -------- */
 #menuAdmin {
   display: flex;
   flex-wrap: wrap;
@@ -124,18 +146,14 @@ const store = useAuthStore();
   justify-content: space-between;
 }
 
-#logo {
-  width: 60px;
-  height: 60px;
-  margin-left: 70px;
-}
-
+#logo,
 #logo-admin {
   width: 60px;
   height: 60px;
   margin-left: 70px;
 }
 
+/* Links usuário */
 #menu-links {
   display: flex;
   flex-direction: row;
@@ -146,28 +164,9 @@ const store = useAuthStore();
   align-content: space-between;
 }
 
-#menu-links-admin {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  align-content: space-between;
-}
-
-#menu-links p {
+#menu-links a {
   background-color: white;
   color: #5f7b5b;
-  font-family: 'Varta', sans-serif;
-  font-size: 20px;
-  cursor: pointer;
-  margin-top: 0.5%;
-}
-
-#menu-links-admin p {
-  background-color: #5f7b5b;
-  color: #ffffff;
   font-family: 'Varta', sans-serif;
   font-size: 20px;
   cursor: pointer;
@@ -179,8 +178,32 @@ const store = useAuthStore();
   font-size: 22px;
 }
 
-#pesquisa {
-  background-color: #5f7b5b;
+/* Links admin */
+#menu-links-admin {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+#menu-links-admin :deep(a) {
+  color: white;
+  text-decoration: none;
+  font-family: 'Varta', sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#menu-links-admin :deep(a:hover) {
+  color: #c8f7c2;
+}
+
+/* Busca */
+#pesquisa,
+#pesquisa-admin {
   height: 38px;
   border-radius: 15px;
   display: flex;
@@ -190,38 +213,28 @@ const store = useAuthStore();
   min-width: 100px;
   max-width: 300px;
   flex: 1;
+}
+
+#pesquisa {
+  background-color: #5f7b5b;
 }
 
 #pesquisa-admin {
   background-color: #ffffff;
-  height: 38px;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 15px;
-  min-width: 100px;
-  max-width: 300px;
-  flex: 1;
 }
 
-#icon-pesquisa {
-  height: 24px;
-  width: 24px;
-}
-
-#icons-end {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  margin-right: 4%;
-}
-
+/* Ícones */
+#icons-end,
 #icons-end-admin {
   display: flex;
   align-items: center;
   gap: 40px;
   margin-right: 4%;
+}
+
+#icon-pesquisa {
+  height: 24px;
+  width: 24px;
 }
 
 h1 {
@@ -238,6 +251,7 @@ h1 {
   width: 50px;
 }
 
+/* Hamburguer usuário */
 #togglemenu {
   display: none;
   flex-direction: column;
@@ -258,6 +272,28 @@ h1 {
   transition: 0.3s;
 }
 
+/* Hamburguer admin */
+#togglemenu-admin {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+#togglemenu-admin span {
+  display: block;
+  width: 30px;
+  height: 4px;
+  background: #ffffff;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Mobile menu usuário */
 #mobile-menu {
   display: flex;
   flex-direction: column;
@@ -280,7 +316,22 @@ h1 {
   text-align: left;
 }
 
-#ul-links {
+/* Mobile menu admin */
+#mobile-menu-admin {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #5f7b5b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+#ul-links,
+#ul-links-admin {
   font-size: 20px;
   background-color: #5f7b5b;
   list-style: none;
@@ -292,17 +343,21 @@ h1 {
   margin-bottom: 20px;
 }
 
-#ul-links :hover {
-  color: #273625;
-  font-size: 18px;
-}
-
-#ul-links li {
+#ul-links li,
+#ul-links-admin li {
   margin: 15px;
   color: #ffffff;
+  cursor: pointer;
 }
 
-#close-menu {
+#ul-links li:hover,
+#ul-links-admin li:hover {
+  color: #c8f7c2;
+}
+
+/* Fechar */
+#close-menu,
+#close-menu-admin {
   background-color: #5f7b5b;
   border: none;
   color: white;
@@ -311,10 +366,12 @@ h1 {
   margin: 5px 15px 5px auto;
 }
 
-#close-menu img {
+#close-menu img,
+#close-menu-admin img {
   width: 28px;
 }
 
+/* Redes sociais (usuário) */
 #redes-sociais {
   display: flex;
   margin-left: 35px;
@@ -333,28 +390,25 @@ h1 {
   width: 30px;
 }
 
+/* Responsividade usuário */
 @media (max-width: 900px) {
   h1,
   p {
     font-size: 22px;
   }
-
   #menu {
     background-color: #5f7b5b;
   }
-
   #logo {
     width: 80px;
     height: 80px;
     content: url('@/assets/Kahvi!9.png');
   }
-
   #basket,
   #user {
     width: 42px;
     height: 42px;
   }
-
   #pesquisa {
     width: 60%;
   }
@@ -362,21 +416,23 @@ h1 {
 
 @media (max-width: 1300px) {
   #menu-links,
-  #icons-end {
+  #icons-end,
+  #menu-links-admin,
+  #icons-end-admin {
     display: none;
   }
-
-  #togglemenu {
+  #togglemenu,
+  #togglemenu-admin {
     display: flex;
   }
 }
 
 @media (max-width: 500px) {
-  #logo {
+  #logo,
+  #logo-admin {
     width: 60px;
     height: 60px;
   }
-
   h1,
   #mobile-menu p {
     font-size: 20px;
