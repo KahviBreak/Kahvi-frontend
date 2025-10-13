@@ -34,7 +34,7 @@ onMounted(() =>{
 
           <div class="acoes">
             <button class="excluir" @click="excluirProduto(produto.id)">Excluir</button>
-            <button class="editar" @click="editarProduto(produto)">Editar</button>
+            <router-link to="/editarproduto"><button class="editar" @click="editarProduto(produto)">Editar</button></router-link>
           </div>
         </div>
       </div>
