@@ -34,13 +34,13 @@ const finalizarPedido = async () => {
 
     // Monta o pedido
     const pedido = {
-      produtos: produtos.value.map(p => ({
-        id: p.id,
-        nome: p.nome,
+      itens: produtos.value.map(p => ({
+        produto: p.id,
         quantidade: p.quantity,
         preco: p.preco
       })),
-      total: total.value
+      tipo_pagamento: 1,
+      valor: total.value
     }
 
     // Aqui não precisa pegar o token manualmente, o interceptor do axios já faz
@@ -113,6 +113,7 @@ const finalizarPedido = async () => {
     flex-direction: column;
     gap: 20px;
     width: 70%;
+    margin-bottom: 25px;
 }
 
 .card-produto {
@@ -150,7 +151,7 @@ const finalizarPedido = async () => {
 }
 
 .descricao {
-    margin-bottom: 8%;
+    margin-bottom: 1%;
     font-family: 'Overpass';
     font-style: normal;
     font-weight: 500;

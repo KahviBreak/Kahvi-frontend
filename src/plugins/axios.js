@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://kahvi-back.onrender.com/api'
+axios.defaults.baseURL = 'http://localhost:19003/api'
 
 const token = localStorage.getItem('psg_auth_token')
 if (token) {
