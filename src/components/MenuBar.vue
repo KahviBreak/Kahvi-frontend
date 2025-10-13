@@ -14,7 +14,6 @@ const store = useAuthStore()
 </script>
 
 <template>
-  {{ store.user }}
   <!-- MENU ADMIN -->
   <div id="menuAdmin" v-if="store.user?.is_superuser === true">
     <img src="@/assets/Kahvi!white.png" alt="Logo" id="logo-admin" />
@@ -30,8 +29,8 @@ const store = useAuthStore()
     <div id="menu-links-admin">
       <router-link to="">Categorias</router-link>
       <router-link to="">Produtos</router-link>
-      <router-link to="">Pedidos</router-link>
-      <router-link to="">Relatórios</router-link>
+      <router-link to="/pedido">Pedidos</router-link>
+      <router-link to="/relatorio">Relatórios</router-link>
       <div id="pesquisa-admin">
         <h1>Buscar</h1>
         <img src="@/assets/Iconpesquisa-green.png" alt="Buscar" id="icon-pesquisa" />
@@ -54,10 +53,10 @@ const store = useAuthStore()
         <router-link>
           <li @click="toggleMenu">Produtos</li>
         </router-link>
-        <router-link>
+        <router-link to="/pedido">
           <li @click="toggleMenu">Pedidos</li>
         </router-link>
-        <router-link>
+        <router-link to="/relatorios">
           <li @click="toggleMenu">Relatórios</li>
         </router-link>
       </ul>
