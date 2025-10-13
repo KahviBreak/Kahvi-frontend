@@ -28,7 +28,7 @@ const store = useAuthStore()
     <!-- Links desktop -->
     <div id="menu-links-admin">
       <router-link to="">Categorias</router-link>
-      <router-link to="">Produtos</router-link>
+      <router-link to="/produtos">Produtos</router-link>
       <router-link to="/pedido">Pedidos</router-link>
       <router-link to="/relatorio">Relatórios</router-link>
       <div id="pesquisa-admin">
@@ -50,7 +50,7 @@ const store = useAuthStore()
         <router-link>
           <li @click="toggleMenu">Categorias</li>
         </router-link>
-        <router-link>
+        <router-link to="/produtos">
           <li @click="toggleMenu">Produtos</li>
         </router-link>
         <router-link to="/pedido">
