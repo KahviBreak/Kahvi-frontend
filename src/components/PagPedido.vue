@@ -72,9 +72,9 @@ function click() {
     </div>
   </div>
    <div id="imagegrid">
-  <img src="@/assets/pedido1.png" alt="" style="height: 400px;width: 350px;">
-  <img src="@/assets/pedido2.png" alt="" style="height: 400px;width: 350px;" >
-  <img src="@/assets/pedido3.png" alt="" style="height: 400px;width: 350px;">
+  <img src="@/assets/pedido1.png" alt="" class="imggrid">
+  <img src="@/assets/pedido2.png" alt="" class="imggrid">
+  <img src="@/assets/pedido3.png" alt="" class="imggrid">
   </div>
 
     <div class="container-product">
@@ -115,6 +115,9 @@ function click() {
   justify-content: center;
 }
 
+.imggrid{
+  height: 400px;width: 350px;
+}
 
 div {
   font-family: 'Arial', sans-serif;
@@ -228,6 +231,13 @@ div {
   .produto p:nth-of-type(2) {
     font-size: 0.8rem;
   }
+
+  #imagegrid img{
+  min-width: 20%;
+  height: 40%;
+  padding-left: 3px;
+  padding-right: 3px;
+}
 }
 
 .button {
