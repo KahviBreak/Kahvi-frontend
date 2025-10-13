@@ -6,8 +6,10 @@
     <div id="footer">
         <div id="footer-top">
             <img src="@/assets/Kahvi!.png" alt="logo" id="logokahvi">
+            <div class="teste">
             <img src="@/assets/Group 7.png" alt="logo-insta" id="logo-insta">
             <img src="@/assets/Vector.png" alt="logo-tiktok" id="logo-tiktok">
+            </div>
         </div>
         <div id="info">
             <h1>Gerenciar cookies</h1>
@@ -18,6 +20,12 @@
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap');
+
+
+.teste{
+    display: flex;
+    justify-content: center;
+}
 
 #footer {
     background-color: #F9ECDD;
@@ -68,6 +76,7 @@
     font-family: "Spline Sans", sans-serif;
     color: #402B19;
     width: 100%;
+    justify-content: center;
 }
 
 #info h1 {
