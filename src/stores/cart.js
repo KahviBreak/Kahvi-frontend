@@ -19,9 +19,14 @@ export const useCartStore = defineStore('cart', () => {
     items.value = items.value.filter((item) => item.id !== productId)
   }
 
+  // ✅ limpar carrinho depois do pedido
+  function clearCart() {
+    items.value = []
+  }
+
   const totalPrice = computed(() =>
     items.value.reduce((sum, item) => sum + item.preco * item.quantity, 0)
   )
 
-  return { items, addCart, removeCart, totalPrice }
+  return { items, addCart, removeCart, clearCart, totalPrice }
 })
