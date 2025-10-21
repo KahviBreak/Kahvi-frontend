@@ -72,9 +72,9 @@ function click() {
     </div>
   </div>
    <div id="imagegrid">
-  <img src="@/assets/pedido1.png" alt="" style="height: 400px;width: 350px;">
-  <img src="@/assets/pedido2.png" alt="" style="height: 400px;width: 350px;" >
-  <img src="@/assets/pedido3.png" alt="" style="height: 400px;width: 350px;">
+  <img src="@/assets/pedido1.png" alt="">
+  <img src="@/assets/pedido2.png" alt="" >
+  <img src="@/assets/pedido3.png" alt="">
   </div>
 
     <div class="container-product">
@@ -95,7 +95,7 @@ function click() {
             </defs>
           </svg>
         </button>
-        <img :src="produto.imagem.url" alt="produto.name"  style="width:272px;height:369px;"/>
+        <img :src="produto.imagem.url" alt="produto.name"/>
         <h1 @click="abrirDetalhe(produto)">{{ produto.nome }}</h1>
         <p>{{ produto.descricao }}</p>
         <p>{{ `R$ ` + produto.preco }}</p>
@@ -113,8 +113,13 @@ function click() {
   margin-top: 50px;
   gap: 30px;
   justify-content: center;
+  
 }
 
+#imagegrid img{
+  height: 400px;
+  width: 350px;
+}
 
 div {
   font-family: 'Arial', sans-serif;
@@ -183,6 +188,8 @@ div {
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  width:272px;
+  height:369px;
 }
 
 /* Nome do Produto */
@@ -208,28 +215,6 @@ div {
   margin-top: 8px;
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-  .container-product {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-    padding: 10px;
-  }
-
-  .produto img {
-    height: 120px;
-  }
-
-  .produto h1 {
-    font-size: 0.9rem;
-  }
-
-  .produto p:nth-of-type(1),
-  .produto p:nth-of-type(2) {
-    font-size: 0.8rem;
-  }
-}
-
 .button {
   position: absolute;
   width: 25%;
@@ -243,4 +228,47 @@ div {
   font-size: 24px;
   font-weight: 24;
 }
+
+/* Responsivo */
+@media (max-width: 500px) {
+  .container-product {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 100px));
+    gap: 0px;
+    padding: 45px;
+  }
+
+  .produto img {
+  width:150px;
+  height:369px;
+}
+
+  .produto img {
+    height: 120px;
+  }
+
+  .produto h1 {
+    font-size: 0.9rem;
+  }
+
+  .produto p:nth-of-type(1),
+  .produto p:nth-of-type(2) {
+    font-size: 0.8rem;
+  }
+
+  #imagegrid img{
+  height: 280px;
+  width: 130px;
+}
+
+#imagegrid{
+  gap: 10px;
+}
+
+.button{
+  font-size: 12px;
+}
+
+}
+
+
 </style>
