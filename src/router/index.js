@@ -14,6 +14,7 @@ import AddProdutoView from '@/views/AddProdutoView.vue'
 import ProdutosAdmView from '@/views/ProdutosAdmView.vue'
 import LocalizacaoView from '@/views/LocalizacaoView.vue'
 import AddCategoriaView from '@/views/AddCategoriaView.vue'
+import HistoricoPedView from '@/views/HistoricoPedView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -93,6 +94,11 @@ const router = createRouter({
       path: '/addcategoria',
       name: 'categoria',
       component: AddCategoriaView
+    },
+    {
+      path: '/historico',
+      name: 'historico',
+      component: HistoricoPedView
     },
   ]});
 
