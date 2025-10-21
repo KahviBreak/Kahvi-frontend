@@ -1,24 +1,17 @@
 <script setup>
 import { ref } from 'vue'
 
-
+// Estado do produto
 const product = ref({
   image: 'src/assets/Frame 30.png',
+  nome: '',
+  descricao: '',
+  preco: 0,
+  categoria: ''
 })
 
 const preco = ref(0)
-
-const aumentarQuantidade = () => {
-  if (preco.value < 1 || preco.value >= 1) {
-    preco.value++
-  }
-}
-
-const diminuirQuantidade = () => {
-  if (preco.value > 1) {
-    preco.value--
-  }
-}
+const imagemPreview = ref(product.value.image)
 
 const categorias = ref([
   { value: 'bolos', label: 'Bolos' },
@@ -26,13 +19,50 @@ const categorias = ref([
   { value: 'doces', label: 'Doces' },
   { value: 'salgados', label: 'Salgados' }
 ])
-const categoriaSelecionada = ref('')
-const imagemPreview = ref(product.value.image)
 
+// Aumentar e diminuir valor
+const aumentarQuantidade = () => {
+  preco.value++
+}
+const diminuirQuantidade = () => {
+  if (preco.value > 1) preco.value--
+}
+
+// Upload da imagem
 const handleFileUpload = (event) => {
   const file = event.target.files[0]
   if (file) {
     imagemPreview.value = URL.createObjectURL(file)
+    product.value.image = file
+  }
+}
+
+// Função para enviar produto para o backend (endpoint POST)
+const adicionarProduto = async () => {
+  try {
+    const formData = new FormData()
+    formData.append('nome', product.value.nome)
+    formData.append('descricao', product.value.descricao)
+    formData.append('preco', preco.value)
+    formData.append('categoria', product.value.categoria)
+    formData.append('imagem', product.value.image)
+
+    const response = await fetch('http://localhost:5174/produtos', {
+      method: 'POST',
+      body: formData
+    })
+
+    if (response.ok) {
+      alert('Produto adicionado com sucesso!')
+      product.value = { nome: '', descricao: '', preco: 0, categoria: '', image: '' }
+      imagemPreview.value = ''
+      preco.value = 0
+    } else {
+      alert('Erro ao adicionar produto!')
+    }
+  } catch (error) {
+    console.error(error)
+    alert('Erro de conexão com o servidor!')
   }
 }
 </script>
@@ -58,10 +88,18 @@ const handleFileUpload = (event) => {
         
         <div class="form-group">
           <label class="form-label">Nome</label>
-          <input type="text" placeholder="Ex: Bolo.">
+          <input 
+            type="text" 
+            placeholder="Ex: Bolo." 
+            v-model="product.nome"
+          >
           
           <label class="form-label">Descrição</label>
-          <input type="text" placeholder="Ex: Bolo de chocolate.">
+          <input 
+            type="text" 
+            placeholder="Ex: Bolo de chocolate." 
+            v-model="product.descricao"
+          >
         </div>
 
         <div class="container-quant">
@@ -73,36 +111,32 @@ const handleFileUpload = (event) => {
               <button class="quantity-button" @click="aumentarQuantidade">+</button>
             </div>
           </div>
-           <div class="category-control">
-          <label for="categoria" class="form-label">Categoria</label> <br>
-          <select id="categoria" name="categoria" class="select-category" v-model="categoriaSelecionada">
+
+          <div class="category-control">
+            <label for="categoria" class="form-label">Categoria</label> <br>
+            <select id="categoria" name="categoria" class="select-category" v-model="product.categoria">
               <option value="" disabled>Selecione</option>
               <option v-for="cat in categorias" :key="cat.value" :value="cat.value">
                 {{ cat.label }}
               </option>
             </select>
-        </div>
+          </div>
         </div>
 
         <div class="actions">
-          <button class="btn-primary">Adicionar Produto</button>
+          <button class="btn-primary" @click="adicionarProduto">Adicionar Produto</button>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-
-
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
-
 .page {
   display: flex;
   justify-content: center;
 }
+
 .select-category {
   box-sizing: border-box;
   width: 150px;
@@ -116,19 +150,13 @@ const handleFileUpload = (event) => {
   cursor: pointer;
 }
 
-
-
-body {
-  font-family: 'Overpass', sans-serif;
-}
-
 .product-container {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   align-items: start;
   max-width: 1000px;
   gap: 40px;
-  margin: 0px auto;
+  margin: 0 auto;
   padding-top: 50px;
   padding-bottom: 5%;
 }
@@ -136,6 +164,7 @@ body {
 .product-image img {
   width: 76%;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .product-details {
@@ -158,18 +187,6 @@ h1 {
 
 .category-control {
   margin-left: 33%;
-}
-
-.category-control input {
-  box-sizing: border-box;
-  width: 80px;
-  height: 36px;
-  background: #FFFFFF;
-  border: #C1B8B0 2px solid;
-  border-radius: 10px;
-  margin: 0;
-  padding: 0;
-  font-size: 18px;
 }
 
 span {
@@ -205,63 +222,8 @@ span {
 .quantity-value {
   font-size: 18px;
   font-weight: bold;
-  min-width: 24px;
   text-align: center;
   color: #402B19;
-}
-
-
-.quantity-buttons {
-  background-color: #FFFFFF;
-  max-width: 120px;
-  border: #C1B8B0 2px solid;
-  border-radius: 10px;
-}
-
-.quantity-btn {
-  background-color: #fff;
-  border: none;
-  border-radius: 6px;
-  width: 32px;
-  height: 32px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.quantity-value {
-  font-size: 18px;
-  font-weight: bold;
-  min-width: 24px;
-  text-align: center;
-  color: #402B19;
-}
-
-.price {
-  font-weight: bold;
-  color: #402B19;
-  font-family: 'Outfit';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 30px;
-  color: #402B19;
-}
-
-.form-group {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2px;
-}
-
-.form-label {
-  font-family: 'Overpass';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 25px;
-  color: #5F7B5B;
-  margin-top: 5px;
 }
 
 input[type="text"] {
@@ -271,8 +233,7 @@ input[type="text"] {
   background: #FFFFFF;
   border: 1px solid #C1B8B0;
   border-radius: 5px;
-  margin-top: 0;
-  padding: 0;
+  padding-left: 8px;
 }
 
 .btn-primary {
@@ -286,23 +247,7 @@ input[type="text"] {
   cursor: pointer;
   width: 100%;
   margin-top: 8px;
-  font-family: 'Overpass';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 30px;
-  color: #FFFFFF;
-  align-items: center;
-  text-align: center;
-}
-
-.actions {
-  row-gap: 100px;
-}
-
-.btn-primary:nth-of-type(2) {
-  background-color: #B7D1B4;
-  color: #402B19;
+  transition: 0.2s;
 }
 
 .btn-primary:hover {
@@ -315,94 +260,5 @@ input[type="text"] {
     gap: 20px;
     padding: 20px;
   }
-
-  .product-image {
-    text-align: center;
-  }
-
-  .product-image img {
-    width: 90%;
-    max-width: 350px;
-  }
-
-  .category-control {
-    padding-left: 0;
-  }
-
-  .controls {
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-  }
-
-  input[type="text"] {
-    width: 100%;
-  }
-}
-
-@media (max-width: 600px) {
-
-
-
-  input[type="text"] {
-  width: 350px;
-}
-
-.btn-primary{
-   padding: 5px;
-  font-size: 12px;
-  width:100%;
-  margin-top: 10px;
-  font-weight: 200;
-  display: grid;
-  justify-self: center;
-  align-items: center;
-  text-align: center;
-}
-
-/* .product-details{
-    background-color: white;
-    padding: 10px 10px 10px 10px;
-} */
-
-.product-details{
-display: flex;
-align-items: center;
-}
-
-/* .category-control{
-display: grid;
-grid-template-columns: 1fr;
-} */
-
-
-.upload-box {
-  width: 120%;
-}
-
-.upload-box img {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-}
-
-h2 {
-  font-size: 20px;
-  font-weight: bold;
-  color: #402B19;
-  text-align: center;
-}
-
-
-label {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-input,
-select {
-  width: 100%;
-  border-radius: 8px;
-  font-size: 14px;
-}
 }
 </style>
