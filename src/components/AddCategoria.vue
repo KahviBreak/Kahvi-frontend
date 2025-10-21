@@ -1,3 +1,39 @@
+<script setup>
+import { reactive, onMounted } from 'vue'
+import { useCategoriaStore } from '@/stores/categorias.js'
+
+
+const categoriaStore = useCategoriaStore()
+
+const defaultCategoria = { id: null, descricao: '' }
+const categoria = reactive({ ...defaultCategoria })
+
+onMounted(async () => {
+  await categoriaStore.buscarCategorias()
+})
+
+function limpar() {
+  Object.assign(categoria, { ...defaultCategoria })
+}
+
+async function salvar() {
+  await categoriaStore.salvarCategoria({ ...categoria })
+  limpar()
+}
+
+// function editar(categoria_para_editar) {
+//   Object.assign(categoria, categoria_para_editar)
+// }
+
+async function excluir(id) {
+  await categoriaStore.excluirCategoria(id)
+  limpar()
+}
+
+</script>
+
+
+
 <template>
   <div></div>
   <div class="voltar">
@@ -9,12 +45,12 @@
       <div class="teste">
         <h1> Adicionar Categoria</h1>
         <div class="input">
-            <label for="">Nome categoria</label>
-            <input type="text" name="" id="" placeholder="Ex: bolos">
+            <label for="" >Nome categoria</label>
+            <input type="text" name="" id="" placeholder="Ex: bolos" v-model="categoria.nome">
         </div>
         <div class="buttons">
-            <button class="button-um">Salvar Categoria</button>
-            <button class="button-dois">Remover Categoria</button>
+            <button class="button-um" @click="salvar">Salvar Categoria</button>
+            <button class="button-dois" @click="excluir">Remover Categoria</button>
         </div>
     </div>
     </div>
