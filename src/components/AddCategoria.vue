@@ -18,6 +18,7 @@
         </div>
     </div>
     </div>
+    <!-- oi -->
 </template>
 
 <style scoped>
@@ -114,6 +115,6 @@ input[type="text"] {
     display: flex;
   justify-self: center;
   justify-content: center;
-  
+
 }
 </style>
