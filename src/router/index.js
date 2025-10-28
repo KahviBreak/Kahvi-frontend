@@ -98,7 +98,8 @@ const router = createRouter({
     {
       path: '/finalizarcompra',
       name: 'finalizar',
-      component: PagFinalizarView
+      component: PagFinalizarView,
+      props: true
     },
   ]});
 
