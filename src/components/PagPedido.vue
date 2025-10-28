@@ -46,7 +46,7 @@ const selecionarCategoria = (nome) => {
 }
 
 function abrirDetalhe(produto) {
-  router.push({ 
+  router.push({
     name: 'detalhe',  // ⚠️ aqui tem que bater com o name do router
     params: { id: Number(produto.id) } // garante que seja número
   })
@@ -61,21 +61,19 @@ function click() {
 
   <div>
     <div class="container-categoria">
-    <div
-      v-for="categoria in categoriaStore.categorias"
-      :key="categoria.id"
-      :class="['categoria', { ativo: categoriaSelecionada === categoria.nome }]"
-      @click="selecionarCategoria(categoria.nome)"
-    >
-      <h1>{{ categoria.nome.toUpperCase() }}</h1>
-      <div class="linha" v-if="categoriaSelecionada === categoria.nome"></div>
+      <div v-for="categoria in categoriaStore.categorias" :key="categoria.id"
+        :class="['categoria', { ativo: categoriaSelecionada === categoria.nome }]"
+        @click="selecionarCategoria(categoria.nome)">
+        <!-- <img :src="categoria.imagem.url" alt=""> -->
+        <h1>{{ categoria.nome.toUpperCase() }}</h1>
+        <div class="linha" v-if="categoriaSelecionada === categoria.nome"></div>
+      </div>
     </div>
-  </div>
-   <div id="imagegrid">
-  <img src="@/assets/pedido1.png" alt="">
-  <img src="@/assets/pedido2.png" alt="" >
-  <img src="@/assets/pedido3.png" alt="">
-  </div>
+    <div id="imagegrid">
+      <img src="@/assets/pedido1.png" alt="">
+      <img src="@/assets/pedido2.png" alt="">
+      <img src="@/assets/pedido3.png" alt="">
+    </div>
 
     <div class="container-product">
       <div v-for="produto in produtoStore.produtos" :key="produto.id" class="produto">
@@ -95,7 +93,7 @@ function click() {
             </defs>
           </svg>
         </button>
-        <img :src="produto.imagem.url" alt="produto.name"/>
+        <img :src="produto.imagem.url" alt="produto.name" />
         <h1 @click="abrirDetalhe(produto)">{{ produto.nome }}</h1>
         <p>{{ produto.descricao }}</p>
         <p>{{ `R$ ` + produto.preco }}</p>
@@ -108,15 +106,16 @@ function click() {
 @import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
-#imagegrid{
+
+#imagegrid {
   display: flex;
   margin-top: 50px;
   gap: 30px;
   justify-content: center;
-  
+
 }
 
-#imagegrid img{
+#imagegrid img {
   height: 400px;
   width: 350px;
 }
@@ -188,8 +187,8 @@ div {
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  width:272px;
-  height:369px;
+  width: 272px;
+  height: 369px;
 }
 
 /* Nome do Produto */
@@ -231,18 +230,19 @@ div {
 
 /* Responsivo */
 @media (max-width: 500px) {
+
   .container-product {
     grid-template-columns: repeat(auto-fill, minmax(150px, 100px));
-    gap: 0px;
-    padding: 45px;
+    gap: 30px;
+    justify-content: center;
+  }
+
+  .produto{
+    padding: 0;
   }
 
   .produto img {
-  width:150px;
-  height:369px;
-}
-
-  .produto img {
+    width: 150px;
     height: 120px;
   }
 
@@ -255,20 +255,19 @@ div {
     font-size: 0.8rem;
   }
 
-  #imagegrid img{
-  height: 280px;
-  width: 130px;
+  #imagegrid img {
+    height: 280px;
+    width: 125px;
+    margin: 1px;
+  }
+
+  #imagegrid {
+    gap: 10px;
+  }
+
+  .button {
+    font-size: 12px;
+  }
+
 }
-
-#imagegrid{
-  gap: 10px;
-}
-
-.button{
-  font-size: 12px;
-}
-
-}
-
-
 </style>
