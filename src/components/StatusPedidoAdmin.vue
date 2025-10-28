@@ -1,67 +1,45 @@
+<script setup>
+import { ref, onMounted } from 'vue'
+import CompraService from '@/services/pedidos'
+
+const lista = ref([])
+const compraService = new CompraService()
+
+onMounted(async () => {
+  try {
+    const resposta = await compraService.obterCompras(1, 'filtro')
+    // Se a resposta for um objeto com 'results', use resposta.results
+    lista.value = resposta.results || resposta
+  } catch (error) {
+    console.error('Erro ao carregar compras:', error)
+  }
+})
+</script>
+
 <template>
   <div class="container">
     <h1>Pedidos</h1>
-
     <div class="cards">
-      <div
-        v-for="(pedido, index) in pedidos"
-        :key="index"
-        class="card"
-      >
-        <div class="image-container">
-          <img
-            src="@/assets/foccacia 1.png"
-          />
-          <span
-            class="tag"
-            :class="pedido.tipo === 'Delivery' ? 'delivery' : 'local'"
-          >
-            {{ pedido.tipo }}
-          </span>
-        </div>
-
-        <div class="card-content">
-          <p>2x Focaccia de Alecrim</p>
-          <p>Obs: Sem alecrim</p>
-          <p>2x Café Expresso</p>
-          <p>1x Água sem gás</p>
-
-          <div class="buttons">
-            <button class="btn-ver">Ver pedido</button>
-            <button class="btn-pronto">Pronto</button>
-          </div>
+      <div v-for="(compra, index) in lista" :key="index" class="card">
+        <div class="image-container"></div>
+        <p>ID: {{ compra.id }}</p>
+        <p>{{ compra.itens }}</p>
+        <p>Valor da compra: R${{ compra.valor }}</p>
+        <div class="buttons">
+          <button class="btn-ver">Ver pedido</button>
+          <button class="btn-pronto">Pronto</button>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "Pedidos",
-  data() {
-    return {
-      pedidos: [
-        { tipo: "Delivery" },
-        { tipo: "No local" },
-        { tipo: "Delivery" },
-        { tipo: "Delivery" },
-        { tipo: "No local" },
-        { tipo: "Delivery" },
-        { tipo: "Delivery" },
-        { tipo: "No local" },
-      ],
-    };
-  },
-};
-</script>
-
 <style scoped>
 .container {
   background-color: #f2eee9;
   min-height: 100vh;
   padding: 30px;
-  font-family: "Segoe UI", sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 h1 {
@@ -123,7 +101,6 @@ h1 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-
 }
 
 /* Tag */
