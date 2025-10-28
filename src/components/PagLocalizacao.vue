@@ -2,7 +2,8 @@
   <div class="localizacao-container">
     <!-- Banner -->
     <section class="banner">
-      <img src="@/assets/banner.png" alt="Cafeteria Kahvi" />
+      <p class="titulo1">NOSSA <br> LOCALIZAÇÃO</p>
+      <img src="@/assets/cafe1.png" alt="Cafeteria Kahvi" />
     </section>
 
     <!-- Conteúdo -->
@@ -57,6 +58,7 @@
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tai+Le&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Archivo+Black&family=Bebas+Neue&display=swap');
 
 p{
    font-family: "Noto Sans Tai Le", sans-serif;
@@ -70,11 +72,27 @@ p{
   color: #fff;
 }
 
-/* Banner */
+.banner{
+  position: relative;
+  display: flex;}
+
 .banner img {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.titulo1{
+position: absolute;
+font-family: 'Alatsi';
+margin-top: 30%;
+margin-left: 5%;
+font-size: 180px;
+color: #FAE8D2;
+line-height: 100%;
+font-family: 'Bebas Neue';
+font-style: normal;
+font-weight: 400;
 }
 
 .marker02{
@@ -172,6 +190,13 @@ p{
 
 /* Responsivo */
 @media (max-width: 768px) {
+.titulo1 {
+    font-size: 70px;
+    margin-top: 30%;
+    margin-left: 7%;
+    line-height: 95%;
+  }
+
   .grid {
     grid-template-columns: 1fr;
   }
