@@ -27,7 +27,6 @@ const store = useAuthStore()
 
     <!-- Links desktop -->
     <div id="menu-links-admin">
-      <router-link to="">Categorias</router-link>
       <router-link to="/produtos">Produtos</router-link>
       <router-link to="/statusadmin">Pedidos</router-link>
       <router-link to="/relatorio">Relatórios</router-link>
@@ -47,9 +46,6 @@ const store = useAuthStore()
         <img src="@/assets/images/close.png" alt="Fechar" />
       </button>
       <ul id="ul-links-admin">
-        <router-link>
-          <li @click="toggleMenu">Categorias</li>
-        </router-link>
         <router-link to="/produtos">
           <li @click="toggleMenu">Produtos</li>
         </router-link>
