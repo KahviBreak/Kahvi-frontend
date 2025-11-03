@@ -21,9 +21,14 @@ onMounted(async () => {
     <h1>Pedidos</h1>
     <div class="cards">
       <div v-for="(compra, index) in lista" :key="index" class="card">
-        <div class="image-container"></div>
-        <p>ID: {{ compra.id }}</p>
-        <p>{{ compra.itens }}</p>
+        <div v-for="item in compra.itens" :key="item.produto">
+          <div class="image-container">
+            <img :src="item.produto_detalhe.imagem.url" alt="Imagem do produto" />
+          </div>
+          <p>ID: {{ compra.id }}</p>
+          <p>Item: {{ item.produto_detalhe.nome }} - Quantidade: {{ item.quantidade }}</p>
+        </div>
+        <!-- <p>{{ compra.itens }}</p> -->
         <p>Valor da compra: R${{ compra.valor }}</p>
         <div class="buttons">
           <button class="btn-ver">Ver pedido</button>
