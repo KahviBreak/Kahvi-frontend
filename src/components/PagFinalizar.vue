@@ -66,11 +66,12 @@ const finalizarPedido = async () => {
 </script>
 
 <template>
+<div class="fundo">
   <div class="finalizacao">
-    <h1>Finalização do Pedido</h1>
+    <h1>FINALIZAÇÃO DO PEDIDO</h1>
 
     <section class="itens">
-      <h2>Resumo dos Produtos</h2>
+      <h2>Produtos</h2>
       <div v-for="item in produtos" :key="item.id" class="produto">
         <img :src="item.imagem" alt="" class="img" />
         <div>
@@ -82,7 +83,7 @@ const finalizarPedido = async () => {
       </div>
       <div class="total">
         <span>Total:</span>
-        <strong>R$ {{ total }}</strong>
+        <strong class="tottal">R$ {{ total }}</strong>
       </div>
     </section>
 
@@ -108,29 +109,29 @@ const finalizarPedido = async () => {
     </section>
 
     <section class="pagamento">
-      <h2>Forma de Pagamento</h2>
+      <h2 class="forma">Forma de Pagamento</h2>
       <div>
-  <label>
+  <label class="labelpag">
     <input type="radio" v-model="tipoPagamento" :value="1" />
     Cartão de Crédito
   </label>
-  <label>
+  <label class="labelpag">
     <input type="radio" v-model="tipoPagamento" :value="2" />
     Cartão de Débito
   </label>
-  <label>
+  <label class="labelpag">
     <input type="radio" v-model="tipoPagamento" :value="3" />
     Boleto
   </label>
-  <label>
+  <label class="labelpag">
     <input type="radio" v-model="tipoPagamento" :value="4" />
     Pix
   </label>
-  <label>
+  <label class="labelpag">
     <input type="radio" v-model="tipoPagamento" :value="5" />
     Dinheiro
   </label>
-  <label>
+  <label class="labelpag">
     <input type="radio" v-model="tipoPagamento" :value="6" />
     Transferência Bancária
   </label>
@@ -141,26 +142,45 @@ const finalizarPedido = async () => {
       Finalizar Pedido
     </button>
   </div>
+  </div>
 </template>
 
 <style scoped>
+
+.forma{
+font-family: 'Outfit';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+color: #402B19;
+}
+.fundo{
+  background-color: #F1EDE8;
+}
+
+span, .tottal{
+  color: #5F7B5B;
+}
+
+
 .finalizacao {
   max-width: 800px;
-  margin: 30px auto;
-  padding: 20px;
-  background: #f1ede8;
+  margin: auto;
+  padding: 30px;
   border-radius: 8px;
   font-family: 'Overpass';
 }
 
 h1 {
   text-align: center;
-  color: #402b19;
+font-weight: 400;
+font-size: 50px;
+color: #2F402C;
+
   margin-bottom: 20px;
 }
 
 .itens {
-  background: white;
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 20px;
@@ -192,18 +212,39 @@ h1 {
   font-size: 18px;
   font-weight: 600;
 }
-
-.entrega, .pagamento {
-  background: white;
+.pagamento{
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 20px;
+}
+.entrega {
+  background: #5F7B5B;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: white;
 }
 
 label {
   display: block;
   margin: 8px 0;
   font-size: 16px;
+}
+
+input[type="radio"] {
+  margin-top: 0px;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.labelpag {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  background-color: #DBD1C5;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
 }
 
 input[type="text"] {
