@@ -64,7 +64,9 @@ function click() {
       <div v-for="categoria in categoriaStore.categorias" :key="categoria.id"
         :class="['categoria', { ativo: categoriaSelecionada === categoria.nome }]"
         @click="selecionarCategoria(categoria.nome)">
-        <!-- <img :src="categoria.imagem.url" alt=""> -->
+        <div class="categoria-foto">
+        <img v-if="categoria.imagem" :src="categoria.imagem.url" :alt="categoria.nome" class="categoria-img" />
+        </div>
         <h1>{{ categoria.nome.toUpperCase() }}</h1>
         <div class="linha" v-if="categoriaSelecionada === categoria.nome"></div>
       </div>
@@ -142,6 +144,20 @@ div {
   color: #5F7B5B;
   font-size: 13px;
   position: relative;
+}
+
+.categoria-foto{
+  background-color: #DBD1C5;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.categoria-foto img{
+  width: 50px;
 }
 
 .categoria h1 {
@@ -228,7 +244,12 @@ div {
   font-weight: 24;
 }
 
-/* Responsivo */
+/* Responsivo */.categoria h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  font-family: "Yantramanav", sans-serif;
+}
 @media (max-width: 500px) {
 
   .container-product {
@@ -237,7 +258,7 @@ div {
     justify-content: center;
   }
 
-  .produto{
+  .produto {
     padding: 0;
   }
 
@@ -257,8 +278,7 @@ div {
 
   #imagegrid img {
     height: 280px;
-    width: 125px;
-    margin: 1px;
+    width: 105px;
   }
 
   #imagegrid {
@@ -268,6 +288,41 @@ div {
   .button {
     font-size: 12px;
   }
+
+  .container-categoria {
+  flex-wrap: wrap;
+  gap: 2%;
+}
+
+  .categoria-foto{
+  background-color: #DBD1C5;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.categoria-foto img{
+  width: 30px;
+}
+
+.categoria h1 {.categoria h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  font-family: "Yantramanav", sans-serif;
+}
+  margin: 0;
+  font-size: 9px;
+  letter-spacing: 0.2px;
+  font-family: "Yantramanav", sans-serif;
+}
+
+.categoria .linha{
+  display: none;
+}
 
 }
 </style>
