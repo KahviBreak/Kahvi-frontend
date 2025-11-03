@@ -90,7 +90,9 @@ const finalizarPedido = async () => {
           <span class="total-dois">Total</span>
           <p class="total-tres">R$ {{ total }}</p>
         </div>
-        <button class="finalizar" @click="finalizarPedido">Finalizar Pedido</button>
+        <router-link to="/finalizarcompra">
+        <button class="finalizar">Finalizar Pedido</button>
+      </router-link>
       </div>
     </div>
   </div>
@@ -278,6 +280,7 @@ const finalizarPedido = async () => {
     display: flex;
     justify-self: center;
     justify-content: center;
+    text-decoration: none;
 }
 
 @media (max-width: 500px) {
