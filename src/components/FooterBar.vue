@@ -45,7 +45,7 @@
 #logokahvi {
     width: 80px;
     height: 80px;
-    margin: 1% 22% 1% 2%
+    margin: 1% 30% 1% 2%
 }
 
 #logo-insta {
@@ -53,7 +53,7 @@
     height: 30px;
     margin-top: 0.5%;
     justify-content: center;
-    margin-left: 18.5%;
+    margin-left: 150px;
 
 }
 
@@ -108,7 +108,7 @@
 #logo-insta {
     width: 20px;
     height: 20px;
-    margin-left: 9%;
+    margin-left: 0px;
 
 }
 
@@ -142,7 +142,6 @@
 }
 
 #logo-insta {
-    margin-left: 18%;
     width: 20px;
     height: 20px;
 }
@@ -164,7 +163,6 @@
 }
 
 #logo-insta {
-    margin-left: 19.5%;
     width: 30px;
     height: 30px;
 }

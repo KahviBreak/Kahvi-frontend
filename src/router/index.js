@@ -15,6 +15,7 @@ import ProdutosAdmView from '@/views/ProdutosAdmView.vue'
 import LocalizacaoView from '@/views/LocalizacaoView.vue'
 import AddCategoriaView from '@/views/AddCategoriaView.vue'
 import PagFinalizarView from '@/views/PagFinalizarView.vue'
+import StatusAdminView from '@/views/StatusAdminView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -100,6 +101,11 @@ const router = createRouter({
       name: 'finalizar',
       component: PagFinalizarView,
       props: true
+    },
+    {
+      path: '/statusadmin',
+      name: 'statusadmin',
+      component: StatusAdminView
     },
   ]});
 
