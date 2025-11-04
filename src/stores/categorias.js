@@ -28,5 +28,23 @@ export const useCategoriaStore = defineStore('categoria', () => {
     total_pages: state.value.total_pages,
   }))
 
-  return { categorias, meta, buscarCategorias }
+    async function excluirCategoria(id) {
+    await categoriaService.excluirCategoria(id)
+    const index = categorias.value.findIndex((categoria) => categoria.id === id)
+    categorias.value.splice(index, 1)
+  }
+
+  async function salvarCategoria(categoria) {
+    if (categoria.id) {
+      await categoriaService.atualizarCategoria(categoria)
+      const index = categorias.value.findIndex((c) => c.id === categoria.id)
+      categorias.value.splice(index, 1, categoria)
+    } else {
+      const data = await categoriaService.adicionarCategoria(categoria)
+      categorias.value.splice(0, 0, data)
+    }
+  }
+
+
+  return { categorias, meta, buscarCategorias, excluirCategoria, salvarCategoria}
 })

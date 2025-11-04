@@ -6,8 +6,10 @@
     <div id="footer">
         <div id="footer-top">
             <img src="@/assets/Kahvi!.png" alt="logo" id="logokahvi">
+            <div class="teste">
             <img src="@/assets/Group 7.png" alt="logo-insta" id="logo-insta">
             <img src="@/assets/Vector.png" alt="logo-tiktok" id="logo-tiktok">
+            </div>
         </div>
         <div id="info">
             <h1>Gerenciar cookies</h1>
@@ -18,6 +20,12 @@
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap');
+
+
+.teste{
+    display: flex;
+    justify-content: center;
+}
 
 #footer {
     background-color: #F9ECDD;
@@ -37,7 +45,7 @@
 #logokahvi {
     width: 80px;
     height: 80px;
-    margin: 1% 22% 1% 2%
+    margin: 1% 30% 1% 2%
 }
 
 #logo-insta {
@@ -45,7 +53,7 @@
     height: 30px;
     margin-top: 0.5%;
     justify-content: center;
-    margin-left: 18.5%;
+    margin-left: 150px;
 
 }
 
@@ -68,6 +76,7 @@
     font-family: "Spline Sans", sans-serif;
     color: #402B19;
     width: 100%;
+    justify-content: center;
 }
 
 #info h1 {
@@ -99,7 +108,7 @@
 #logo-insta {
     width: 20px;
     height: 20px;
-    margin-left: 9%;
+    margin-left: 0px;
 
 }
 
@@ -133,7 +142,6 @@
 }
 
 #logo-insta {
-    margin-left: 18%;
     width: 20px;
     height: 20px;
 }
@@ -155,7 +163,6 @@
 }
 
 #logo-insta {
-    margin-left: 19.5%;
     width: 30px;
     height: 30px;
 }

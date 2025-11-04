@@ -1,18 +1,17 @@
 <script setup>
 import { computed } from 'vue'
 import { useCartStore } from '@/stores/cart'
+import axios from 'axios'
 
 const cartStore = useCartStore()
 
 // lista de produtos do carrinho
 const produtos = computed(() => cartStore.items)
-
-// calcular total
 const total = computed(() => cartStore.totalPrice)
 
 // funções de controle
 const aumentarQuantidade = (item) => {
-  cartStore.addCart(item, 1) // adiciona +1 no item já existente
+  cartStore.addCart(item, 1)
 }
 
 const diminuirQuantidade = (item) => {
@@ -25,6 +24,40 @@ const excluirProduto = (id) => {
   cartStore.removeCart(id)
 }
 
+// ✅ Enviar carrinho para o backend
+const finalizarPedido = async () => {
+  try {
+    if (produtos.value.length === 0) {
+      alert('Seu carrinho está vazio!')
+      return
+    }
+
+    // Monta o pedido
+    const pedido = {
+      itens: produtos.value.map(p => ({
+        produto: p.id,
+        quantidade: p.quantity,
+        preco: p.preco
+      })),
+      tipo_pagamento: 1,
+      valor: total.value
+    }
+
+    // Aqui não precisa pegar o token manualmente, o interceptor do axios já faz
+    const response = await axios.post('/compras/', pedido)
+
+    alert('✅ Pedido enviado com sucesso!')
+    console.log('📦 Resposta do servidor:', response.data)
+
+    // Limpa carrinho depois de finalizar
+    cartStore.clearCart()
+  } catch (error) {
+    console.error('❌ Erro ao enviar pedido:', error.response || error)
+    alert(
+      error.response?.data?.detail || 'Erro ao finalizar pedido. Verifique o console.'
+    )
+  }
+}
 </script>
 
 <template>
@@ -57,7 +90,9 @@ const excluirProduto = (id) => {
           <span class="total-dois">Total</span>
           <p class="total-tres">R$ {{ total }}</p>
         </div>
+        <router-link to="/finalizarcompra">
         <button class="finalizar">Finalizar Pedido</button>
+      </router-link>
       </div>
     </div>
   </div>
@@ -80,6 +115,7 @@ const excluirProduto = (id) => {
     flex-direction: column;
     gap: 20px;
     width: 70%;
+    margin-bottom: 25px;
 }
 
 .card-produto {
@@ -117,7 +153,7 @@ const excluirProduto = (id) => {
 }
 
 .descricao {
-    margin-bottom: 8%;
+    margin-bottom: 1%;
     font-family: 'Overpass';
     font-style: normal;
     font-weight: 500;
@@ -244,6 +280,7 @@ const excluirProduto = (id) => {
     display: flex;
     justify-self: center;
     justify-content: center;
+    text-decoration: none;
 }
 
 @media (max-width: 500px) {

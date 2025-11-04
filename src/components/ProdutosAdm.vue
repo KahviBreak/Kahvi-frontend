@@ -13,9 +13,9 @@ onMounted(() =>{
 <template>
   <div class="admin-produtos">
     <div class="lista-produtos">
-      <div 
-        class="card-produto" 
-        v-for="produto in produtoStore.produtos" 
+      <div
+        class="card-produto"
+        v-for="produto in produtoStore.produtos"
         :key="produto.id"
       >
         <img :src="produto.imagem.url" class="img-produto" />
@@ -34,7 +34,7 @@ onMounted(() =>{
 
           <div class="acoes">
             <button class="excluir" @click="excluirProduto(produto.id)">Excluir</button>
-            <button class="editar" @click="editarProduto(produto)">Editar</button>
+            <router-link to="/editarproduto"><button class="editar" @click="editarProduto(produto)">Editar</button></router-link>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@ onMounted(() =>{
 
     <div class="adicionar-container">
       <a href="add" class="btn-adicionar" @click="adicionarProduto" style="text-decoration: none;">Adicionar produto</a>
-      <button class="btn-adicionar-2">Adicionar categoria</button>
+      <router-link to="/addcategoria"><button class="btn-adicionar-2">Adicionar categoria</button></router-link>
     </div>
   </div>
 </template>

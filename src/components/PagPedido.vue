@@ -71,11 +71,12 @@ function click() {
         <div class="linha" v-if="categoriaSelecionada === categoria.nome"></div>
       </div>
     </div>
-    <div id="imagegrid">
-      <img src="@/assets/pedido1.png" alt="">
-      <img src="@/assets/pedido2.png" alt="">
-      <img src="@/assets/pedido3.png" alt="">
-    </div>
+  </div>
+   <div id="imagegrid">
+  <img src="@/assets/pedido1.png" alt="" class="imggrid">
+  <img src="@/assets/pedido2.png" alt="" class="imggrid">
+  <img src="@/assets/pedido3.png" alt="" class="imggrid">
+  </div>
 
     <div class="container-product">
       <div v-for="produto in produtoStore.produtos" :key="produto.id" class="produto">
@@ -95,7 +96,7 @@ function click() {
             </defs>
           </svg>
         </button>
-        <img :src="produto.imagem.url" alt="produto.name" />
+        <img @click="abrirDetalhe(produto)" :src="produto.imagem.url" alt="produto.name"/>
         <h1 @click="abrirDetalhe(produto)">{{ produto.nome }}</h1>
         <p>{{ produto.descricao }}</p>
         <p>{{ `R$ ` + produto.preco }}</p>
