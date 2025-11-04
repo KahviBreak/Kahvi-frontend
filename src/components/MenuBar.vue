@@ -91,11 +91,14 @@ const store = useAuthStore()
       <button id="close-menu" @click="closeMenu">
         <img src="@/assets/images/close.png" alt="" />
       </button>
+      <router-link to="/login">
+        <img src="@/assets/user-profile-03-white.png" alt="Usuário" id="user" />
+      </router-link>
       <ul id="ul-links">
-        <router-link><li @click="toggleMenu">INÍCIO</li></router-link>
-        <router-link><li @click="toggleMenu">SOBRE NÓS</li></router-link>
-        <router-link><li @click="toggleMenu">CARDÁPIO</li></router-link>
-        <router-link><li @click="toggleMenu">FAÇA SEU PEDIDO</li></router-link>
+        <router-link to="/"><li @click="toggleMenu">INÍCIO</li></router-link>
+        <router-link to="/sobre"><li @click="toggleMenu">SOBRE NÓS</li></router-link>
+        <router-link to="/pedido"><li @click="toggleMenu">CARDÁPIO</li></router-link>
+        <router-link to="/localizacao"><li @click="toggleMenu">LOCALIZAÇÃO</li></router-link>
       </ul>
       <p>
         ACOMPANHE <span style="color: rgba(39, 54, 37, 1)">KAHVI!</span> NAS REDES SOCIAIS
@@ -299,6 +302,7 @@ h1 {
   height: 100vh;
   background: #5f7b5b;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
 }
 
 #mobile-menu p {
@@ -307,7 +311,7 @@ h1 {
   font-size: 20px;
   font-weight: 500;
   color: #ffffff;
-  margin: 100px 50px 15px 50px;
+  margin: 100px 50px 1px 50px;
   text-align: left;
 }
 
@@ -318,11 +322,10 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
+  width: 100vh;
   background: #5f7b5b;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  position: fixed;
 }
 
 #ul-links,
@@ -334,7 +337,7 @@ h1 {
   font-weight: 500;
   display: flex;
   flex-direction: column;
-  margin-top: 90px;
+  margin-top: 40px;
   margin-bottom: 20px;
 }
 
@@ -357,17 +360,19 @@ h1 {
   border: none;
   color: white;
   font-size: 24px;
-  width: 20px;
   margin: 5px 15px 5px auto;
 }
 
 #close-menu img,
 #close-menu-admin img {
-  width: 28px;
+  width: 38px;
 }
 
 /* Redes sociais (usuário) */
-#redes-sociais {
+#redes-sociais {#user {
+  height: 50px;
+  width: 50px;
+}
   display: flex;
   margin-left: 35px;
 }
@@ -432,5 +437,12 @@ h1 {
   #mobile-menu p {
     font-size: 20px;
   }
+
+  #user {
+  height: 50px;
+  width: 50px;
+  margin: 50px  50px 0 50px;
+
+}
 }
 </style>

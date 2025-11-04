@@ -43,10 +43,10 @@ const categoriaSelecionada = ref('Tudo')
 const selecionarCategoria = (nome) => {
   categoriaSelecionada.value = nome
   produtoStore.buscarProdutosPorCategoria(1, nome)
-}
+}    
 
 function abrirDetalhe(produto) {
-  router.push({ 
+  router.push({
     name: 'detalhe',  // ⚠️ aqui tem que bater com o name do router
     params: { id: Number(produto.id) } // garante que seja número
   })
@@ -61,14 +61,15 @@ function click() {
 
   <div>
     <div class="container-categoria">
-    <div
-      v-for="categoria in categoriaStore.categorias"
-      :key="categoria.id"
-      :class="['categoria', { ativo: categoriaSelecionada === categoria.nome }]"
-      @click="selecionarCategoria(categoria.nome)"
-    >
-      <h1>{{ categoria.nome.toUpperCase() }}</h1>
-      <div class="linha" v-if="categoriaSelecionada === categoria.nome"></div>
+      <div v-for="categoria in categoriaStore.categorias" :key="categoria.id"
+        :class="['categoria', { ativo: categoriaSelecionada === categoria.nome }]"
+        @click="selecionarCategoria(categoria.nome)">
+        <div class="categoria-foto">
+        <img v-if="categoria.imagem" :src="categoria.imagem.url" :alt="categoria.nome" class="categoria-img" />
+        </div>
+        <h1>{{ categoria.nome.toUpperCase() }}</h1>
+        <div class="linha" v-if="categoriaSelecionada === categoria.nome"></div>
+      </div>
     </div>
   </div>
    <div id="imagegrid">
@@ -95,7 +96,7 @@ function click() {
             </defs>
           </svg>
         </button>
-        <img @click="abrirDetalhe(produto)" :src="produto.imagem.url" alt="produto.name"  style="width:272px;height:369px;"/>
+        <img @click="abrirDetalhe(produto)" :src="produto.imagem.url" alt="produto.name"/>
         <h1 @click="abrirDetalhe(produto)">{{ produto.nome }}</h1>
         <p>{{ produto.descricao }}</p>
         <p>{{ `R$ ` + produto.preco }}</p>
@@ -108,15 +109,18 @@ function click() {
 @import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
-#imagegrid{
+
+#imagegrid {
   display: flex;
   margin-top: 50px;
   gap: 30px;
   justify-content: center;
+
 }
 
-.imggrid{
-  height: 400px;width: 350px;
+#imagegrid img {
+  height: 400px;
+  width: 350px;
 }
 
 div {
@@ -130,9 +134,9 @@ div {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 7%;
   margin-top: 2%;
   width: 100%;
+  gap: 7%;
 }
 
 .categoria {
@@ -143,8 +147,23 @@ div {
   position: relative;
 }
 
+.categoria-foto{
+  background-color: #DBD1C5;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.categoria-foto img{
+  width: 50px;
+}
+
 .categoria h1 {
-  margin: 0;
+  margin: auto;
   font-size: 22px;
   letter-spacing: 0.5px;
   font-family: "Yantramanav", sans-serif;
@@ -186,6 +205,8 @@ div {
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  width: 272px;
+  height: 369px;
 }
 
 /* Nome do Produto */
@@ -211,35 +232,6 @@ div {
   margin-top: 8px;
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-  .container-product {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-    padding: 10px;
-  }
-
-  .produto img {
-    height: 120px;
-  }
-
-  .produto h1 {
-    font-size: 0.9rem;
-  }
-
-  .produto p:nth-of-type(1),
-  .produto p:nth-of-type(2) {
-    font-size: 0.8rem;
-  }
-
-  #imagegrid img{
-  min-width: 20%;
-  height: 40%;
-  padding-left: 3px;
-  padding-right: 3px;
-}
-}
-
 .button {
   position: absolute;
   width: 25%;
@@ -252,5 +244,88 @@ div {
   font-family: 'Passion One', sans-serif;
   font-size: 24px;
   font-weight: 24;
+}
+
+/* Responsivo */.categoria h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  font-family: "Yantramanav", sans-serif;
+}
+@media (max-width: 500px) {
+
+  .container-product {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 100px));
+    gap: 30px;
+    justify-content: center;
+  }
+
+  .produto {
+    padding: 0;
+  }
+
+  .produto img {
+    width: 150px;
+    height: 120px;
+  }
+
+  .produto h1 {
+    font-size: 0.9rem;
+  }
+
+  .produto p:nth-of-type(1),
+  .produto p:nth-of-type(2) {
+    font-size: 0.8rem;
+  }
+
+  #imagegrid img {
+    height: 220px;
+    width: 120px;
+  }
+
+  #imagegrid {
+    gap: 10px;
+  }
+
+  .button {
+    font-size: 12px;
+  }
+
+  .container-categoria {
+  flex-wrap: wrap;
+  gap: 2%;
+  margin-top: 6px;
+}
+
+  .categoria-foto{
+  background-color: #DBD1C5;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.categoria-foto img{
+  width: 30px;
+}
+
+.categoria h1 {.categoria h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  font-family: "Yantramanav", sans-serif;
+}
+  margin: 0;
+  font-size: 9px;
+  letter-spacing: 0.2px;
+  font-family: "Yantramanav", sans-serif;
+}
+
+.categoria .linha{
+  display: none;
+}
+
 }
 </style>

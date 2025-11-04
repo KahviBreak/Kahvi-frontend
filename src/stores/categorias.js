@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+
 import CategoriaService from '@/services/categorias'
 
 const categoriaService = new CategoriaService()
