@@ -43,7 +43,7 @@ const categoriaSelecionada = ref('Tudo')
 const selecionarCategoria = (nome) => {
   categoriaSelecionada.value = nome
   produtoStore.buscarProdutosPorCategoria(1, nome)
-}
+}    
 
 function abrirDetalhe(produto) {
   router.push({
@@ -133,9 +133,9 @@ div {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 7%;
   margin-top: 2%;
   width: 100%;
+  gap: 7%;
 }
 
 .categoria {
@@ -148,12 +148,13 @@ div {
 
 .categoria-foto{
   background-color: #DBD1C5;
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   justify-content: center;
   display: flex;
   align-items: center;
+  margin: auto;
 }
 
 .categoria-foto img{
@@ -161,7 +162,7 @@ div {
 }
 
 .categoria h1 {
-  margin: 0;
+  margin: auto;
   font-size: 22px;
   letter-spacing: 0.5px;
   font-family: "Yantramanav", sans-serif;
@@ -277,8 +278,8 @@ div {
   }
 
   #imagegrid img {
-    height: 280px;
-    width: 105px;
+    height: 220px;
+    width: 120px;
   }
 
   #imagegrid {
@@ -292,6 +293,7 @@ div {
   .container-categoria {
   flex-wrap: wrap;
   gap: 2%;
+  margin-top: 6px;
 }
 
   .categoria-foto{
