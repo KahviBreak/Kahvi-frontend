@@ -102,7 +102,6 @@ function click() {
         <p>{{ `R$ ` + produto.preco }}</p>
       </div>
     </div>
-  </div>
 </template>
 
 <style scoped>
