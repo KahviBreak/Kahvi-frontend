@@ -104,7 +104,6 @@ function click() {
       </div>
     </div>
     </div>
-  </div>
 </template>
 
 <style scoped>
