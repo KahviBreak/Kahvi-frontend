@@ -1,221 +1,332 @@
 <script setup>
-import { useCardapioStore } from '@/stores/cardapio.js';
-const cardapio = useCardapioStore();
+import { onMounted, ref } from 'vue'
+import { useCategoriaStore } from '@/stores/categorias.js'
+import { useProdutoStore } from '@/stores/produtos'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const categoriaStore = useCategoriaStore()
+const produtoStore = useProdutoStore()
+const props = defineProps({
+  categoria: {
+    type: String,
+    required: true,
+  },
+})
+
+onMounted(() => {
+  categoriaStore.buscarCategorias()
+  produtoStore.buscarProdutosPorCategoria(1, props.categoria)
+})
+
+// onMounted(() => {
+// })
+
+// // Função para adicionar um produto ao carrinho
+// export function adicionarProdutoAoCarrinho(carrinho, produto) {
+//   // Verifica se o produto já está no carrinho
+//   const index = carrinho.findIndex(item => item.id === produto.id);
+
+//   if (index !== -1) {
+//     // Se já existe, aumenta a quantidade
+//     carrinho[index].quantidade += 1;
+//   } else {
+//     // Se não existe, adiciona com quantidade 1
+//     carrinho.push({ ...produto, quantidade: 1 });
+//   }
+//   return carrinho;
+// }
+
+const categoriaSelecionada = ref('Tudo')
+
+const selecionarCategoria = (nome) => {
+  categoriaSelecionada.value = nome
+  produtoStore.buscarProdutosPorCategoria(1, nome)
+}    
+
+function abrirDetalhe(produto) {
+  router.push({
+    name: 'detalhe',  // ⚠️ aqui tem que bater com o name do router
+    params: { id: Number(produto.id) } // garante que seja número
+  })
+}
+
+function click() {
+  alert('funcionando')
+}
 </script>
 
-
 <template>
-    <div class="cabeçalho">
-      <p class="titulo">UM POUCO SOBRE NOSSO CARDÁPIO...</p>
-    </div>
 
-    <div class="container">
-    <div class="fundo2">
-      <div class="container-dois">
-        <div class="aliementos-cima">
-          <h1>BOLOS</h1>
-          <p v-for="(bolo, index) in cardapio.bolos" :key="'bolo-' + index">{{ bolo }}</p>
+  <div>
+    <div class="container-categoria">
+      <div v-for="categoria in categoriaStore.categorias" :key="categoria.id"
+        :class="['categoria', { ativo: categoriaSelecionada === categoria.nome }]"
+        @click="selecionarCategoria(categoria.nome)">
+        <div class="categoria-foto">
+        <img v-if="categoria.imagem" :src="categoria.imagem.url" :alt="categoria.nome" class="categoria-img" />
         </div>
-        <div>
-          <img class="foto" src="../assets/bolo.png" alt="" />
-        </div>
-
-      </div>
-      <div class="container-dois">
-        <div class="alimentos-cima">
-          <h1>SALGADOS</h1>
-          <p v-for="(salgado, index) in cardapio.salgados" :key="'salgado-' + index">{{ salgado }}</p>
-        </div>
-        <div>
-          <img class="foto" src="../assets/pao.png" alt="" />
-        </div>
+        <h1>{{ categoria.nome.toUpperCase() }}</h1>
+        <div class="linha" v-if="categoriaSelecionada === categoria.nome"></div>
       </div>
     </div>
+  </div>
+   <div id="imagegrid">
+  <img src="@/assets/pedido1.png" alt="" class="imggrid">
+  <img src="@/assets/pedido2.png" alt="" class="imggrid">
+  <img src="@/assets/pedido3.png" alt="" class="imggrid">
+  </div>
 
-    <div class="fundo3">
-      <div class="container-tres">
-        <div>
-          <img class="foto" src="../assets/cupcake.png" alt="" />
-        </div>
-        <div class="alimentos">
-          <h1>SOBREMESAS</h1>
-          <p v-for="(sobremesa, index) in cardapio.sobremesas" :key="'sobremesa-' + index">{{ sobremesa }}</p>
-        </div>
-      </div>
-      <div class="container-tres">
-        <div>
-          <img class="foto" src="../assets/xicara.png" alt="" style="margin-top: 10%;"/>
-        </div>
-        <div class="alimentos">
-          <h1>CAFÈS</h1>
-            <p v-for="(cafe, index) in cardapio.cafes" :key="'cafe-' + index">{{ cafe }}</p>
-        </div>
-      </div>
+    <div class="container-product">
+      <div v-for="produto in produtoStore.produtos" :key="produto.id" class="produto">
+        <div v-if="produto.estoque > 0">
+        <button type="button" class="button" @click.stop="click()">ADD <svg width="24" height="24" viewBox="0 0 24 24"
+            fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: translateY(2px);">
+            <g clip-path="url(#clip0_108_1090)">
+              <path
+                d="M4 9H20L19.1654 18.1811C19.0717 19.2112 18.208 20 17.1736 20H6.82643C5.79202 20 4.92829 19.2112 4.83464 18.1811L4 9Z"
+                stroke="white" stroke-width="2" stroke-linejoin="round" />
+              <path d="M8 11V8C8 5.79086 9.79086 4 12 4C14.2091 4 16 5.79086 16 8V11" stroke="white" stroke-width="2"
+                stroke-linecap="round" />
+            </g>
+            <defs>
+              <clipPath id="clip0_108_1090">
+                <rect width="24" height="24" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </button>
+        <img @click="abrirDetalhe(produto)" :src="produto.imagem.url" alt="produto.name"/>
+        <h1 @click="abrirDetalhe(produto)">{{ produto.nome }}</h1>
+        <p>{{ produto.descricao }}</p>
+        <p>{{ `R$ ` + produto.preco }}</p>
       </div>
     </div>
-
-    <div class="button">
-      <button>
-        Fazer Pedido
-        <svg style="margin-left: 20px; margin-top: 2px;" width="19" height="27" viewBox="0 0 19 27" fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path d="M0.999997 1L18 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M18 13L1 26" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-
-      </button>
     </div>
-
 </template>
 
 <style scoped>
-.alimentos {
-  text-align: end;
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overlock:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
+
+#imagegrid {
+  display: flex;
+  margin-top: 50px;
+  gap: 30px;
+  justify-content: center;
+
 }
 
-.button {
+#imagegrid img {
+  height: 400px;
+  width: 350px;
+}
+
+div {
+  font-family: 'Arial', sans-serif;
+  color: #4a2c18;
+  background-color: #fff;
+}
+
+.container-categoria {
   display: flex;
   justify-content: center;
-  background-color: #DBD1C5;
-  padding-top: 2%;
-  padding-bottom: 3%;
-}
-
-button {
-  background: #402b19;
-  border-radius: 10px;
-  color: white;
-  width: 10%;
-  width: 415px;
-  height: 70px;
-  border-radius: 10px;
-  border: none;
-  font-family: 'Varta';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 58px;
-  margin-top: 1%;
-}
-
-.cabeçalho{
-  background-color: #FAF0E5;
-  height: 150px;
+  align-items: center;
+  flex-wrap: wrap;
   margin-top: 2%;
+  width: 100%;
+  gap: 7%;
+}
+
+.categoria {
+  text-align: center;
+  cursor: pointer;
+  color: #5F7B5B;
+  font-size: 13px;
   position: relative;
 }
 
-.titulo {
-  display: flex;
-  justify-content: center;
-  font-family: 'Overlock SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 49px;
-  color: #402b19;
-  padding-top: 3%;
-}
-
-.container {
-}
-
-.fundo2{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
-  gap: 100px;
-  padding-top: 3%;
+.categoria-foto{
   background-color: #DBD1C5;
-  height: 10%;
-  padding-bottom: 4%;
-}
-
-.container-dois {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  justify-content: center;
   display: flex;
-  justify-content: row;
-  gap: 50px;
-  margin-top: 3%;
+  align-items: center;
+  margin: auto;
 }
 
-.fundo3{
+.categoria-foto img{
+  width: 50px;
+}
+
+.categoria h1 {
+  margin: auto;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  font-family: "Yantramanav", sans-serif;
+}
+
+.categoria .linha {
+  margin-top: 4px;
+  height: 2px;
+  background-color: #5F7B5B;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.categoria:hover h1 {
+  color: #5F7B5B;
+}
+
+/* Container dos Produtos */
+.container-product {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-items: center;
-  gap: 100px;
-  padding-top: 3%;
-  background-color: #FAF0E5;
-  height: 10%;
-  padding-bottom: 4%;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 50px;
 }
 
-.container-tres {
-  display: flex;
-  justify-content: row;
-  gap: 50px;
-}
-
-/* .bolo{
-  margin-left: 30%;
-  margin-top: 30%;
-}
-.bolos{
-  position: absolute;
-  margin-top: 5%;
-
-}
-
-.abaixo{
-  margin-top: 20%;
-  margin-left: 70%;
-}
-.abaixos{
-  position: absolute;
-    margin-top: 15%;
-
-} */
-h1 {
-  font-family: 'Overlock SC';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 39px;
-  color: #402b19;
-}
-
-p {
-  font-family: 'Overlock';
-  font-style: normal;
-  font-weight: 700;
+/* Estilo de cada Produto */
+.produto {
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  font-family: 'Overlock', sans-serif;
+  font-weight: 100;
   font-size: 24px;
-  line-height: 29px;
-  color: #402b19;
 }
 
-@media (max-width: 768px) {
-  .container-dois,
-  .container-tres {
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    margin-left: 2%;
+.produto img {
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 272px;
+  height: 369px;
+}
+
+/* Nome do Produto */
+.produto h1 {
+  font-size: 1rem;
+  margin: 10px 0 5px 0;
+  font-weight: bold;
+  color: #3e2618;
+}
+
+/* Descrição */
+.produto p:nth-of-type(1) {
+  font-size: 0.85rem;
+  color: #7b5c48;
+  min-height: 30px;
+}
+
+/* Preço */
+.produto p:nth-of-type(2) {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #4a2c18;
+  margin-top: 8px;
+}
+
+.button {
+  position: absolute;
+  width: 25%;
+  height: 10%;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: none;
+  background-color: #5F7B5B;
+  color: #FFFFFF;
+  font-family: 'Passion One', sans-serif;
+  font-size: 24px;
+  font-weight: 24;
+}
+
+/* Responsivo */.categoria h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  font-family: "Yantramanav", sans-serif;
+}
+@media (max-width: 500px) {
+
+  .container-product {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 100px));
+    gap: 30px;
+    justify-content: center;
   }
 
-  .foto {
-    max-width: 80px;
+  .produto {
+    padding: 0;
   }
 
-  h1 {
-    font-size: 20px;
+  .produto img {
+    width: 150px;
+    height: 120px;
   }
 
-  p {
-    font-size: 16px;
+  .produto h1 {
+    font-size: 0.9rem;
   }
 
-  button {
-    font-size: 20px;
-    height: 50px;
+  .produto p:nth-of-type(1),
+  .produto p:nth-of-type(2) {
+    font-size: 0.8rem;
   }
+
+  #imagegrid img {
+    height: 220px;
+    width: 120px;
+  }
+
+  #imagegrid {
+    gap: 10px;
+  }
+
+  .button {
+    font-size: 12px;
+  }
+
+  .container-categoria {
+  flex-wrap: wrap;
+  gap: 2%;
+  margin-top: 6px;
+}
+
+  .categoria-foto{
+  background-color: #DBD1C5;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.categoria-foto img{
+  width: 30px;
+}
+
+.categoria h1 {.categoria h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  font-family: "Yantramanav", sans-serif;
+}
+  margin: 0;
+  font-size: 9px;
+  letter-spacing: 0.2px;
+  font-family: "Yantramanav", sans-serif;
+}
+
+.categoria .linha{
+  display: none;
+}
+
 }
 </style>
